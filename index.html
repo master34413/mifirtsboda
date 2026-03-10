@@ -1,18 +1,20 @@
-<html lang="es" class="scroll-smooth"><head>
+<html lang="es" class="scroll-smooth">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ivon &amp; Osvaldo | Boda</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --marfil: #FCFBF8;
@@ -22,7 +24,7 @@
             --gold-light: rgba(197, 160, 89, 0.15);
             --accent: #E8B4A6;
             --speed: 6s;
-            
+
             --gold-dark: #d4af37;
             --bg-light: #faf9f7;
             --text-dark: #222222;
@@ -30,151 +32,847 @@
         }
 
         body {
-            margin: 0; 
-            background-color: var(--marfil); 
+            margin: 0;
+            background-color: var(--marfil);
             color: var(--text-main);
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
 
-        .font-title { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-        .font-subtitle { font-family: 'Open Sans', sans-serif; }
+        .font-title {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
 
-        input:focus, select:focus, textarea:focus, button:focus {
+        .font-subtitle {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus {
             outline: none !important;
             box-shadow: none !important;
             border-color: var(--gold);
         }
 
         /* --- Loader --- */
-        #loading-screen { position: fixed; inset: 0; z-index: 10000; background-color: var(--marfil); display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out; }
-        .magic-loader { position: relative; width: 140px; height: 140px; animation: magical-float 3s ease-in-out infinite; }
-        .main-figure { position: absolute; width: 100%; height: 100%; filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.3)); }
-        .part { position: absolute; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .tier-top { animation: morph-1 var(--speed) infinite; }
-        .tier-middle { animation: morph-2 var(--speed) infinite; }
-        .tier-base-left { animation: morph-3 var(--speed) infinite; }
-        .tier-base-right { animation: morph-4 var(--speed) infinite; }
-        @keyframes morph-1 { 0%, 30%, 90%, 100% { width: 28px; height: 14px; top: 35px; left: 56px; background: var(--accent); border-radius: 4px 4px 0 0; } 50%, 70% { width: 16px; height: 16px; top: 30px; left: 42px; background: var(--gold); border-radius: 50%; } }
-        @keyframes morph-2 { 0%, 30%, 90%, 100% { width: 48px; height: 18px; top: 49px; left: 46px; background: #fff; border-radius: 4px 4px 0 0; border-bottom: 2px solid var(--gold-light); } 50%, 70% { width: 16px; height: 16px; top: 30px; left: 82px; background: var(--gold); border-radius: 50%; border-bottom: none; } }
-        @keyframes morph-3 { 0%, 30%, 90%, 100% { width: 38px; height: 24px; top: 67px; left: 32px; background: var(--gold-light); border-radius: 4px 0 0 4px; } 50%, 70% { width: 24px; height: 40px; top: 50px; left: 38px; background: var(--gold); border-radius: 4px; } }
-        @keyframes morph-4 { 0%, 30%, 90%, 100% { width: 38px; height: 24px; top: 67px; left: 70px; background: var(--gold-light); border-radius: 0 4px 4px 0; clip-path: none; } 50%, 70% { width: 40px; height: 40px; top: 50px; left: 70px; background: #fff; clip-path: polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%); } }
-        @keyframes magical-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.05); } }
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background-color: var(--marfil);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .magic-loader {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            animation: magical-float 3s ease-in-out infinite;
+        }
+
+        .main-figure {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.3));
+        }
+
+        .part {
+            position: absolute;
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .tier-top {
+            animation: morph-1 var(--speed) infinite;
+        }
+
+        .tier-middle {
+            animation: morph-2 var(--speed) infinite;
+        }
+
+        .tier-base-left {
+            animation: morph-3 var(--speed) infinite;
+        }
+
+        .tier-base-right {
+            animation: morph-4 var(--speed) infinite;
+        }
+
+        @keyframes morph-1 {
+
+            0%,
+            30%,
+            90%,
+            100% {
+                width: 28px;
+                height: 14px;
+                top: 35px;
+                left: 56px;
+                background: var(--accent);
+                border-radius: 4px 4px 0 0;
+            }
+
+            50%,
+            70% {
+                width: 16px;
+                height: 16px;
+                top: 30px;
+                left: 42px;
+                background: var(--gold);
+                border-radius: 50%;
+            }
+        }
+
+        @keyframes morph-2 {
+
+            0%,
+            30%,
+            90%,
+            100% {
+                width: 48px;
+                height: 18px;
+                top: 49px;
+                left: 46px;
+                background: #fff;
+                border-radius: 4px 4px 0 0;
+                border-bottom: 2px solid var(--gold-light);
+            }
+
+            50%,
+            70% {
+                width: 16px;
+                height: 16px;
+                top: 30px;
+                left: 82px;
+                background: var(--gold);
+                border-radius: 50%;
+                border-bottom: none;
+            }
+        }
+
+        @keyframes morph-3 {
+
+            0%,
+            30%,
+            90%,
+            100% {
+                width: 38px;
+                height: 24px;
+                top: 67px;
+                left: 32px;
+                background: var(--gold-light);
+                border-radius: 4px 0 0 4px;
+            }
+
+            50%,
+            70% {
+                width: 24px;
+                height: 40px;
+                top: 50px;
+                left: 38px;
+                background: var(--gold);
+                border-radius: 4px;
+            }
+        }
+
+        @keyframes morph-4 {
+
+            0%,
+            30%,
+            90%,
+            100% {
+                width: 38px;
+                height: 24px;
+                top: 67px;
+                left: 70px;
+                background: var(--gold-light);
+                border-radius: 0 4px 4px 0;
+                clip-path: none;
+            }
+
+            50%,
+            70% {
+                width: 40px;
+                height: 40px;
+                top: 50px;
+                left: 70px;
+                background: #fff;
+                clip-path: polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%);
+            }
+        }
+
+        @keyframes magical-float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-12px) scale(1.05);
+            }
+        }
 
         /* --- Global Base Elements --- */
-        .beam-border { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; overflow: hidden; z-index: 0; }
-        .beam-border::after { content: ""; position: absolute; top: 50%; left: 50%; width: 50%; height: 200%; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: translate(-50%, -50%) rotate(0deg); animation: beam-rotate 4s linear infinite; filter: blur(4px); }
-        @keyframes beam-rotate { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        .beam-border {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            overflow: hidden;
+            z-index: 0;
+        }
 
-        .rainbow-container { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 80; padding: 1px; border-radius: 9999px; overflow: hidden; background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light)); background-size: 200% 100%; animation: moveGradient 3s linear infinite; }
-        @keyframes moveGradient { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
-        .rainbow-inner { background: rgba(252, 251, 248, 0.95); backdrop-filter: blur(16px); padding: 0.5rem 1.5rem; border-radius: 9999px; display: flex; gap: 1rem; align-items: center; }
+        .beam-border::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: beam-rotate 4s linear infinite;
+            filter: blur(4px);
+        }
 
-        .typing-cursor::after { content: '|'; animation: blink 1s step-start infinite; font-weight: 200; opacity: 0.5; }
-        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes beam-rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
 
-        #intermediate-screen { position: fixed; inset: 0; z-index: 9000; background-color: var(--marfil); display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; opacity: 0; transition: opacity 0.5s; }
-        #intermediate-screen.visible { opacity: 1; pointer-events: all; }
-        .hero-img-mask { mask-image: linear-gradient(to bottom, black 50%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%); }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .rainbow-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 80;
+            padding: 1px;
+            border-radius: 9999px;
+            overflow: hidden;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
+            background-size: 200% 100%;
+            animation: moveGradient 3s linear infinite;
+        }
+
+        @keyframes moveGradient {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 200% 0%;
+            }
+        }
+
+        .rainbow-inner {
+            background: rgba(252, 251, 248, 0.95);
+            backdrop-filter: blur(16px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            font-weight: 200;
+            opacity: 0.5;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        #intermediate-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background-color: var(--marfil);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        #intermediate-screen.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .hero-img-mask {
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
 
         /* Scroll to Top Button */
-        #btn-petalo-reverso { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); border: 1px solid rgba(197, 160, 89, 0.5); color: var(--gold); display: flex; align-items: center; justify-content: center; z-index: 90; opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.9); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
-        #btn-petalo-reverso:hover { background: rgba(255, 255, 255, 0.9); border-color: var(--gold); box-shadow: 0 6px 20px rgba(197, 160, 89, 0.25); transform: translateY(0) scale(1.05); }
-        #btn-petalo-reverso:hover iconify-icon { transform: translateY(-3px); }
-        #btn-petalo-reverso.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        #btn-petalo-reverso {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(197, 160, 89, 0.5);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        #btn-petalo-reverso:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: var(--gold);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.25);
+            transform: translateY(0) scale(1.05);
+        }
+
+        #btn-petalo-reverso:hover iconify-icon {
+            transform: translateY(-3px);
+        }
+
+        #btn-petalo-reverso.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
 
         /* =========================================
            ESTILOS PADRES Y PADRINOS
            ========================================= */
-        .tree-container { position: relative; width: 100%; max-width: 900px; margin-top: 40px; display: flex; flex-direction: column; align-items: center; }
-        .glow-line { position: absolute; background-color: var(--gold-dark); box-shadow: 0 0 12px rgba(212, 175, 55, 0.7), 0 0 4px rgba(255, 255, 255, 0.8) inset; z-index: 1; will-change: transform; }
-        .line-v-top { top: 0; left: 50%; width: 2px; height: 120px; transform-origin: top; transform: scaleY(0); background: linear-gradient(to bottom, transparent, var(--gold-dark)); }
-        .line-h-left { top: 120px; right: 50%; height: 2px; width: 28%; transform-origin: right; transform: scaleX(0); background: linear-gradient(to left, var(--gold-dark), #f3e5ab); }
-        .line-h-right { top: 120px; left: 50%; height: 2px; width: 28%; transform-origin: left; transform: scaleX(0); background: linear-gradient(to right, var(--gold-dark), #f3e5ab); }
-        .line-v-bottom { top: 120px; left: 50%; width: 2px; height: 160px; transform-origin: top; transform: scaleY(0); background: linear-gradient(to bottom, var(--gold-dark), #f3e5ab); }
+        .tree-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        .cards-row { display: flex; justify-content: space-between; width: 100%; margin-top: 120px; z-index: 2; position: relative; }
-        .card-left, .card-right { margin-top: -60px; }
-        .godparents-row { display: flex; justify-content: center; width: 100%; margin-top: 40px; z-index: 2; position: relative; }
-        
-        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(212, 175, 55, 0.2); border-top: 1px solid rgba(255, 255, 255, 1); border-left: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04); border-radius: 16px; padding: 35px 25px; text-align: center; width: 42%; max-width: 400px; box-sizing: border-box; opacity: 0; transform: translateY(20px); transition: box-shadow 0.3s ease, border-color 0.3s ease; }
-        .godparent-card { width: 100%; max-width: 450px; }
-        .glass-card:hover { border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 0 25px rgba(212, 175, 55, 0.1); }
-        
-        .icon-circle { width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--gold-dark); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; color: var(--gold-dark); }
-        .icon-circle svg { width: 20px; height: 20px; }
-        .memorial-star { display: inline-block; margin-left: 4px; color: var(--gold-dark); }
-        .memorial-star svg { width: 12px; height: 12px; fill: var(--gold-dark); }
+        .glow-line {
+            position: absolute;
+            background-color: var(--gold-dark);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.7), 0 0 4px rgba(255, 255, 255, 0.8) inset;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        .line-v-top {
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 120px;
+            transform-origin: top;
+            transform: scaleY(0);
+            background: linear-gradient(to bottom, transparent, var(--gold-dark));
+        }
+
+        .line-h-left {
+            top: 120px;
+            right: 50%;
+            height: 2px;
+            width: 28%;
+            transform-origin: right;
+            transform: scaleX(0);
+            background: linear-gradient(to left, var(--gold-dark), #f3e5ab);
+        }
+
+        .line-h-right {
+            top: 120px;
+            left: 50%;
+            height: 2px;
+            width: 28%;
+            transform-origin: left;
+            transform: scaleX(0);
+            background: linear-gradient(to right, var(--gold-dark), #f3e5ab);
+        }
+
+        .line-v-bottom {
+            top: 120px;
+            left: 50%;
+            width: 2px;
+            height: 160px;
+            transform-origin: top;
+            transform: scaleY(0);
+            background: linear-gradient(to bottom, var(--gold-dark), #f3e5ab);
+        }
+
+        .cards-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 120px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .card-left,
+        .card-right {
+            margin-top: -60px;
+        }
+
+        .godparents-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 40px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 1);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            width: 42%;
+            max-width: 400px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .godparent-card {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 0 25px rgba(212, 175, 55, 0.1);
+        }
+
+        .icon-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid var(--gold-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            color: var(--gold-dark);
+        }
+
+        .icon-circle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .memorial-star {
+            display: inline-block;
+            margin-left: 4px;
+            color: var(--gold-dark);
+        }
+
+        .memorial-star svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--gold-dark);
+        }
 
         @media (max-width: 768px) {
-            .cards-row { flex-direction: column; gap: 40px; margin-top: 60px; }
-            .card-left, .card-right { margin-top: 0; width: 100%; max-width: 100%; }
-            .godparents-row { margin-top: 40px; }
-            .line-h-left, .line-h-right { display: none; }
-            .line-v-top { height: 100%; }
-            .line-v-bottom { display: none; }
-            .glass-card { opacity: 1 !important; transform: none !important; }
+            .cards-row {
+                flex-direction: column;
+                gap: 40px;
+                margin-top: 60px;
+            }
+
+            .card-left,
+            .card-right {
+                margin-top: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .godparents-row {
+                margin-top: 40px;
+            }
+
+            .line-h-left,
+            .line-h-right {
+                display: none;
+            }
+
+            .line-v-top {
+                height: 100%;
+            }
+
+            .line-v-bottom {
+                display: none;
+            }
+
+            .glass-card {
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
 
         /* =========================================
            ESTILOS ITINERARIO (El Gran Día)
            ========================================= */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .glass-tray { position: relative; max-width: 900px; width: 100%; padding: 25px; border-radius: 24px; background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 100%); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 20px 50px rgba(0,0,0,0.05), 0 0 40px rgba(212, 175, 55, 0.1) inset; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; box-sizing: border-box; overflow: hidden; opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; }
-        .glass-tray::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 180deg at 50% 50%, transparent 0%, rgba(212,175,55,0.15) 20%, transparent 40%); animation: rotateLight 12s linear infinite; z-index: 0; pointer-events: none; }
-        
-        .light-orb { position: absolute; border-radius: 50%; filter: blur(50px); z-index: 0; animation: floatOrb 8s infinite alternate ease-in-out; pointer-events: none; }
-        .orb-1 { width: 250px; height: 250px; background: rgba(212, 175, 55, 0.4); top: -50px; left: -50px; }
-        .orb-2 { width: 200px; height: 200px; background: rgba(255, 240, 200, 0.5); bottom: -20px; right: -20px; animation-delay: -4s; animation-duration: 10s; }
-        
-        @keyframes rotateLight { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 40px) scale(1.2); } }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
 
-        .event-card { position: relative; z-index: 1; background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.85) 100%); border-radius: 16px; padding: 50px 30px; text-align: center; display: flex; flex-direction: column; align-items: center; transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .event-card:hover { transform: translateY(-8px) scale(1.02); background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,1) 100%); box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 0 25px rgba(212, 175, 55, 0.2); border-color: #fff; }
-        
-        @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        .icon-wrapper { width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; margin-bottom: 25px; background: rgba(255,255,255,0.5); transition: all 0.4s ease; animation: floatIcon 4s ease-in-out infinite; }
-        .event-card:nth-child(3) .icon-wrapper { animation-delay: -2s; }
-        .event-card:hover .icon-wrapper { background: var(--gold); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); animation-play-state: paused; transform: translateY(-5px); }
-        .icon-wrapper svg { width: 24px; height: 24px; color: var(--gold); transition: color 0.3s ease; }
-        .event-card:hover .icon-wrapper svg { color: #fff; }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        .btn-black { position: relative; background: #111111; color: #ffffff; border: none; border-radius: 30px; padding: 14px 28px; display: flex; align-items: center; gap: 8px; cursor: pointer; text-decoration: none; overflow: hidden; z-index: 1; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .btn-black::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--gold); transform: translateX(-101%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); z-index: -1; border-radius: 30px; }
-        .btn-black svg { width: 14px; height: 14px; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .btn-black:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); }
-        .btn-black:hover::before { transform: translateX(0); }
-        .btn-black:hover svg { transform: translate(4px, -4px) scale(1.1); }
+        .glass-tray {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            padding: 25px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), 0 0 40px rgba(212, 175, 55, 0.1) inset;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            box-sizing: border-box;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .glass-tray::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 180deg at 50% 50%, transparent 0%, rgba(212, 175, 55, 0.15) 20%, transparent 40%);
+            animation: rotateLight 12s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .light-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 0;
+            animation: floatOrb 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 250px;
+            height: 250px;
+            background: rgba(212, 175, 55, 0.4);
+            top: -50px;
+            left: -50px;
+        }
+
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 240, 200, 0.5);
+            bottom: -20px;
+            right: -20px;
+            animation-delay: -4s;
+            animation-duration: 10s;
+        }
+
+        @keyframes rotateLight {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(30px, 40px) scale(1.2);
+            }
+        }
+
+        .event-card {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.85) 100%);
+            border-radius: 16px;
+            padding: 50px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 1) 100%);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 25px rgba(212, 175, 55, 0.2);
+            border-color: #fff;
+        }
+
+        @keyframes floatIcon {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.4s ease;
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+
+        .event-card:nth-child(3) .icon-wrapper {
+            animation-delay: -2s;
+        }
+
+        .event-card:hover .icon-wrapper {
+            background: var(--gold);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            animation-play-state: paused;
+            transform: translateY(-5px);
+        }
+
+        .icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+            color: var(--gold);
+            transition: color 0.3s ease;
+        }
+
+        .event-card:hover .icon-wrapper svg {
+            color: #fff;
+        }
+
+        .btn-black {
+            position: relative;
+            background: #111111;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            overflow: hidden;
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .btn-black::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transform: translateX(-101%);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: -1;
+            border-radius: 30px;
+        }
+
+        .btn-black svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .btn-black:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-black:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-black:hover svg {
+            transform: translate(4px, -4px) scale(1.1);
+        }
 
         @media (max-width: 768px) {
-            .glass-tray { grid-template-columns: 1fr; padding: 15px; }
-            .event-card { padding: 40px 20px; }
+            .glass-tray {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .event-card {
+                padding: 40px 20px;
+            }
         }
 
         /* =========================================
            ESTILOS CÓDIGO DE VESTIMENTA
            ========================================= */
-        .dress-code-card { width: 100%; max-width: 600px; margin: 0 auto; padding: 50px 40px; border-radius: 20px; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column; align-items: center; text-align: center; box-sizing: border-box; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .dress-code-card:hover { transform: translateY(-5px); }
-        .dc-inner-panel { width: 100%; background: rgba(255, 255, 255, 0.65); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 16px; padding: 30px 25px; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5); transition: all 0.3s ease; }
-        .dc-inner-panel:hover { background: rgba(255, 255, 255, 0.8); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02), inset 0 0 20px rgba(255, 255, 255, 0.8); }
-        
-        .dc-colors-wrapper { display: flex; justify-content: center; gap: 20px; }
-        .color-sphere { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: inset 0 -4px 8px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease; cursor: default; }
-        .color-sphere:hover { transform: scale(1.1); }
-        .color-sphere::after { content: ''; position: absolute; width: 1.5px; height: 130%; background-color: rgba(220, 53, 69, 0.6); transform: rotate(45deg); }
-        .sphere-red::after { background-color: rgba(255, 180, 180, 0.95); box-shadow: 0 0 3px rgba(0,0,0,0.2); }
-        .sphere-white { background-color: #ffffff; }
-        .sphere-red { background-color: #d32f2f; }
-        .sphere-beige { background-color: #e3d5c1; }
+        .dress-code-card {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .dress-code-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dc-inner-panel {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 30px 25px;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .dc-inner-panel:hover {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02), inset 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .dc-colors-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .color-sphere {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        .color-sphere:hover {
+            transform: scale(1.1);
+        }
+
+        .color-sphere::after {
+            content: '';
+            position: absolute;
+            width: 1.5px;
+            height: 130%;
+            background-color: rgba(220, 53, 69, 0.6);
+            transform: rotate(45deg);
+        }
+
+        .sphere-red::after {
+            background-color: rgba(255, 180, 180, 0.95);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .sphere-white {
+            background-color: #ffffff;
+        }
+
+        .sphere-red {
+            background-color: #d32f2f;
+        }
+
+        .sphere-beige {
+            background-color: #e3d5c1;
+        }
 
         @media (max-width: 600px) {
-            .dress-code-card { padding: 40px 25px; }
-            .dc-inner-panel { padding: 25px 20px; }
+            .dress-code-card {
+                padding: 40px 25px;
+            }
+
+            .dc-inner-panel {
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
+
 <body class="antialiased bg-[var(--marfil)] text-[var(--text-main)] font-subtitle text-base overflow-x-hidden">
 
     <!-- Loading Screen -->
@@ -190,32 +888,45 @@
     </div>
 
     <!-- Canvas (Animated Pink Petals) -->
-    <canvas id="petalos-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10;"></canvas>
+    <canvas id="petalos-canvas"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10;"></canvas>
 
     <!-- Scroll to Top Button -->
     <button id="btn-petalo-reverso" aria-label="Volver arriba">
-        <iconify-icon icon="solar:alt-arrow-up-linear" width="24" stroke-width="1.5" class="transition-transform duration-300"></iconify-icon>
+        <iconify-icon icon="solar:alt-arrow-up-linear" width="24" stroke-width="1.5"
+            class="transition-transform duration-300"></iconify-icon>
     </button>
 
     <!-- Welcome Modal -->
-    <div id="welcome-modal" class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[var(--marfil)]/90 backdrop-blur-md transition-all duration-700 opacity-0 hidden">
-        <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-[var(--gold-light)] transition-transform">
+    <div id="welcome-modal"
+        class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[var(--marfil)]/90 backdrop-blur-md transition-all duration-700 opacity-0 hidden">
+        <div
+            class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-[var(--gold-light)] transition-transform">
             <div class="beam-border"></div>
             <div class="relative z-10 bg-white m-[1px] rounded-[23px] h-full flex flex-col overflow-hidden p-10">
                 <div class="text-center mb-8">
-                    <h3 class="font-title font-medium text-4xl md:text-5xl tracking-tight text-[var(--text-main)] mb-3 leading-tight">Ivon &amp; Osvaldo</h3>
-                    <p class="font-subtitle font-normal text-base text-[var(--text-muted)] leading-relaxed mb-4">Te dan la más cordial bienvenida.</p>
-                    <p class="font-subtitle font-normal text-sm md:text-base text-[var(--text-muted)] leading-relaxed">Por favor ingresa tu nombre completo para personalizar tu experiencia.</p>
+                    <h3
+                        class="font-title font-medium text-4xl md:text-5xl tracking-tight text-[var(--text-main)] mb-3 leading-tight">
+                        Ivon &amp; Osvaldo</h3>
+                    <p class="font-subtitle font-normal text-base text-[var(--text-muted)] leading-relaxed mb-4">Te dan
+                        la más cordial bienvenida.</p>
+                    <p class="font-subtitle font-normal text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
+                        Por favor ingresa tu nombre completo para personalizar tu experiencia.</p>
                 </div>
-                
+
                 <form id="welcome-form" onsubmit="event.preventDefault(); submitWelcome();" class="space-y-6">
                     <div class="relative mt-4">
-                        <input id="input-name" required="" class="w-full border-b border-[var(--gold-light)] bg-transparent py-3 text-base md:text-lg font-subtitle text-[var(--text-main)] focus:outline-none focus:border-[var(--text-main)] transition-colors" placeholder="Tu nombre completo" autocomplete="off">
-                        <label class="absolute -top-3 left-0 text-xs font-medium uppercase tracking-widest text-[var(--gold)]">Invitado</label>
+                        <input id="input-name" required=""
+                            class="w-full border-b border-[var(--gold-light)] bg-transparent py-3 text-base md:text-lg font-subtitle text-[var(--text-main)] focus:outline-none focus:border-[var(--text-main)] transition-colors"
+                            placeholder="Tu nombre completo" autocomplete="off">
+                        <label
+                            class="absolute -top-3 left-0 text-xs font-medium uppercase tracking-widest text-[var(--gold)]">Invitado</label>
                     </div>
-                    <button type="submit" class="group w-full inline-flex items-center justify-center gap-2 rounded-xl text-xs font-medium transition-all bg-[var(--text-main)] text-[var(--marfil)] shadow-md hover:bg-[var(--gold)] hover:shadow-xl h-12 uppercase tracking-widest focus:outline-none focus:ring-0">
+                    <button type="submit"
+                        class="group w-full inline-flex items-center justify-center gap-2 rounded-xl text-xs font-medium transition-all bg-[var(--text-main)] text-[var(--marfil)] shadow-md hover:bg-[var(--gold)] hover:shadow-xl h-12 uppercase tracking-widest focus:outline-none focus:ring-0">
                         <span>Entrar</span>
-                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5" class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
+                            class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
                     </button>
                 </form>
             </div>
@@ -224,19 +935,25 @@
 
     <!-- Intermediate Screen -->
     <div id="intermediate-screen">
-        <h1 class="font-title font-medium text-4xl md:text-6xl text-[var(--text-main)] mb-8 tracking-tight scale-90 opacity-0 transition-all duration-700 text-center px-4 leading-tight" id="nos-casamos-text">
+        <h1 class="font-title font-medium text-4xl md:text-6xl text-[var(--text-main)] mb-8 tracking-tight scale-90 opacity-0 transition-all duration-700 text-center px-4 leading-tight"
+            id="nos-casamos-text">
             ¡Hola <span id="guest-name-display" class="text-[var(--gold)]"></span>!<br>Nos Casamos
         </h1>
-        <button onclick="fireConfetti()" class="group scale-0 opacity-0 transition-all duration-500 delay-300 px-8 py-3 rounded-full border border-[var(--gold)] text-[var(--text-main)] font-medium text-xs uppercase tracking-widest bg-white/50 backdrop-blur hover:bg-white hover:shadow-lg active:scale-95 flex items-center gap-2 focus:outline-none focus:ring-0" id="confetti-btn">
+        <button onclick="fireConfetti()"
+            class="group scale-0 opacity-0 transition-all duration-500 delay-300 px-8 py-3 rounded-full border border-[var(--gold)] text-[var(--text-main)] font-medium text-xs uppercase tracking-widest bg-white/50 backdrop-blur hover:bg-white hover:shadow-lg active:scale-95 flex items-center gap-2 focus:outline-none focus:ring-0"
+            id="confetti-btn">
             <span>Celebra con nosotros</span>
-            <iconify-icon icon="solar:arrow-right-up-linear" width="14" stroke-width="1.5" class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+            <iconify-icon icon="solar:arrow-right-up-linear" width="14" stroke-width="1.5"
+                class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
         </button>
     </div>
 
     <!-- Floating Countdown -->
-    <div id="floating-bar" class="rainbow-container opacity-0 translate-y-20 duration-1000 transition-all hidden md:block">
+    <div id="floating-bar"
+        class="rainbow-container opacity-0 translate-y-20 duration-1000 transition-all hidden md:block">
         <div class="rainbow-inner shadow-sm">
-            <div class="font-subtitle text-xs uppercase font-medium tracking-widest text-[var(--text-main)] mr-2">Faltan</div>
+            <div class="font-subtitle text-xs uppercase font-medium tracking-widest text-[var(--text-main)] mr-2">Faltan
+            </div>
             <div class="flex flex-col items-center leading-none w-8">
                 <span class="ticker-float-d font-title font-medium text-xl text-[var(--text-main)]">0</span>
                 <span class="text-xs uppercase tracking-widest text-[var(--text-muted)] mt-1">Días</span>
@@ -251,7 +968,7 @@
                 <span class="ticker-float-m font-title font-medium text-xl text-[var(--text-main)]">00</span>
                 <span class="text-xs uppercase tracking-widest text-[var(--text-muted)] mt-1">Min</span>
             </div>
-             <div class="text-[var(--gold)] font-title font-normal opacity-50 text-xl">:</div>
+            <div class="text-[var(--gold)] font-title font-normal opacity-50 text-xl">:</div>
             <div class="flex flex-col items-center leading-none w-8">
                 <span class="ticker-float-s font-title font-medium text-xl text-[var(--text-main)]">00</span>
                 <span class="text-xs uppercase tracking-widest text-[var(--text-muted)] mt-1">Seg</span>
@@ -261,59 +978,80 @@
 
     <!-- Main Content -->
     <div id="main-content" class="opacity-0 transition-opacity duration-1000 hidden">
-        
+
         <!-- Navbar -->
-        <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[70] bg-white/60 backdrop-blur-xl border border-[var(--gold-light)] rounded-full px-8 py-3 flex items-center gap-10 shadow-sm transition-colors hover:bg-white/90">
-            <a href="#" class="font-title font-medium text-2xl tracking-tight text-[var(--gold)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">I&amp;O</a>
-            <div class="hidden md:flex gap-8 font-subtitle text-xs font-medium text-[var(--text-muted)] uppercase tracking-widest">
-                <a href="#itinerario" class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Itinerario</a>
-                <a href="#vestimenta" class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Vestimenta</a>
-                <a href="#rsvp" class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Confirmar</a>
+        <nav
+            class="fixed top-6 left-1/2 -translate-x-1/2 z-[70] bg-white/60 backdrop-blur-xl border border-[var(--gold-light)] rounded-full px-8 py-3 flex items-center gap-10 shadow-sm transition-colors hover:bg-white/90">
+            <a href="#"
+                class="font-title font-medium text-2xl tracking-tight text-[var(--gold)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">I&amp;O</a>
+            <div
+                class="hidden md:flex gap-8 font-subtitle text-xs font-medium text-[var(--text-muted)] uppercase tracking-widest">
+                <a href="#itinerario"
+                    class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Itinerario</a>
+                <a href="#vestimenta"
+                    class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Vestimenta</a>
+                <a href="#rsvp"
+                    class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Confirmar</a>
             </div>
         </nav>
 
         <!-- 1. Hero / Portada -->
         <header class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-20">
             <div class="absolute inset-0 z-0 hero-img-mask">
-                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&amp;w=2000&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover opacity-30 grayscale mix-blend-multiply" alt="Fondo Boda">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&amp;w=2000&amp;auto=format&amp;fit=crop"
+                    class="w-full h-full object-cover opacity-30 grayscale mix-blend-multiply" alt="Fondo Boda">
             </div>
 
             <div class="relative z-10 flex flex-col items-center text-center px-4 w-full pt-20">
                 <div class="mb-12 flex flex-col items-center gap-2">
-                    <h1 class="font-title font-medium text-[var(--text-main)] text-5xl md:text-7xl tracking-tight leading-tight" id="hero-name-1"></h1>
-                    <h1 class="font-title font-medium text-[var(--text-main)] text-5xl md:text-7xl tracking-tight leading-tight" id="hero-name-2"></h1>
+                    <h1 class="font-title font-medium text-[var(--text-main)] text-5xl md:text-7xl tracking-tight leading-tight"
+                        id="hero-name-1"></h1>
+                    <h1 class="font-title font-medium text-[var(--text-main)] text-5xl md:text-7xl tracking-tight leading-tight"
+                        id="hero-name-2"></h1>
                 </div>
 
-                <div id="static-ticker-container" class="flex flex-wrap gap-6 md:gap-10 items-center justify-center mb-8 opacity-0 translate-y-4 transition-all duration-1000">
+                <div id="static-ticker-container"
+                    class="flex flex-wrap gap-6 md:gap-10 items-center justify-center mb-8 opacity-0 translate-y-4 transition-all duration-1000">
                     <div class="flex flex-col items-center w-16 md:w-20">
-                        <span class="ticker-d text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
-                        <span class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Días</span>
+                        <span
+                            class="ticker-d text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Días</span>
                     </div>
                     <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
                     <div class="flex flex-col items-center w-16 md:w-20">
-                        <span class="ticker-h text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
-                        <span class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Horas</span>
+                        <span
+                            class="ticker-h text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Horas</span>
                     </div>
                     <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
                     <div class="flex flex-col items-center w-16 md:w-20">
-                        <span class="ticker-m text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
-                        <span class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Min</span>
+                        <span
+                            class="ticker-m text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Min</span>
                     </div>
                     <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
                     <div class="flex flex-col items-center w-16 md:w-24">
-                        <span class="ticker-s text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)] text-center">0</span>
-                        <span class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Seg</span>
+                        <span
+                            class="ticker-s text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)] text-center">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Seg</span>
                     </div>
                 </div>
 
-                <p class="text-base font-subtitle font-normal text-[var(--text-muted)] max-w-md mx-auto mb-12 opacity-0 translate-y-4 transition-all duration-1000 delay-300 leading-relaxed" id="hero-subtitle">
+                <p class="text-base font-subtitle font-normal text-[var(--text-muted)] max-w-md mx-auto mb-12 opacity-0 translate-y-4 transition-all duration-1000 delay-300 leading-relaxed"
+                    id="hero-subtitle">
                     Estamos contando los días para el comienzo de un recuerdo eterno.
                 </p>
 
                 <div class="opacity-0 translate-y-4 transition-all duration-1000 delay-500" id="hero-btn">
-                    <a href="#rsvp" class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--text-main)] text-[var(--marfil)] text-xs font-medium uppercase tracking-widest hover:bg-[var(--gold)] transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-0">
+                    <a href="#rsvp"
+                        class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--text-main)] text-[var(--marfil)] text-xs font-medium uppercase tracking-widest hover:bg-[var(--gold)] transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-0">
                         <span>Confirmar Asistencia</span>
-                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5" class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
+                            class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
                     </a>
                 </div>
             </div>
@@ -321,21 +1059,27 @@
 
         <!-- 2. Nos Casamos -->
         <section class="py-24 md:py-32 text-center max-w-3xl mx-auto px-6 relative z-20">
-            <h2 class="font-title font-medium text-4xl md:text-6xl tracking-tight mb-8 text-[var(--text-main)] leading-tight">Nos casamos</h2>
+            <h2
+                class="font-title font-medium text-4xl md:text-6xl tracking-tight mb-8 text-[var(--text-main)] leading-tight">
+                Nos casamos</h2>
             <p class="font-subtitle font-normal text-base md:text-lg text-[var(--text-muted)] leading-relaxed">
-                Hay momentos que no solo se esperan: se guardan en el alma incluso antes de llegar. <br class="hidden md:block"> El nuestro está por comenzar.
+                Hay momentos que no solo se esperan: se guardan en el alma incluso antes de llegar. <br
+                    class="hidden md:block"> El nuestro está por comenzar.
             </p>
         </section>
 
         <!-- 3. Padres y Padrinos -->
-        <section id="padres" class="relative w-full z-20 py-24 md:py-32 flex flex-col items-center" style="background-color: var(--bg-light); border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light);">
-            
+        <section id="padres" class="relative w-full z-20 py-24 md:py-32 flex flex-col items-center"
+            style="background-color: var(--bg-light); border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light);">
+
             <div class="text-center max-w-3xl mx-auto relative z-10 px-6">
-                <h2 class="font-title text-4xl md:text-5xl font-medium tracking-tight text-[var(--text-dark)] leading-tight mb-6">
+                <h2
+                    class="font-title text-4xl md:text-5xl font-medium tracking-tight text-[var(--text-dark)] leading-tight mb-6">
                     Con la bendición de Dios,<br>nuestros padres y padrinos
                 </h2>
                 <p class="font-subtitle text-base md:text-lg font-normal text-[var(--text-gray)] leading-relaxed mb-0">
-                    Nos llena de alegría celebrar este día acompañados por quienes han sembrado amor, ejemplo y guía en nuestro camino.
+                    Nos llena de alegría celebrar este día acompañados por quienes han sembrado amor, ejemplo y guía en
+                    nuestro camino.
                 </p>
             </div>
 
@@ -348,22 +1092,42 @@
                 <div class="cards-row px-6">
                     <div class="glass-card card-left">
                         <div class="icon-circle">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
                         </div>
-                        <div class="font-subtitle text-xs font-medium text-[var(--text-gray)] tracking-widest uppercase mb-4">Padres de la Novia</div>
-                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">Norma García Ruiz</p>
-                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">Eugenio García Díaz</p>
+                        <div
+                            class="font-subtitle text-xs font-medium text-[var(--text-gray)] tracking-widest uppercase mb-4">
+                            Padres de la Novia</div>
+                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">Norma García
+                            Ruiz</p>
+                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">Eugenio
+                            García Díaz</p>
                     </div>
 
                     <div class="glass-card card-right">
                         <div class="icon-circle">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
                         </div>
-                        <div class="font-subtitle text-xs font-medium text-[var(--text-gray)] tracking-widest uppercase mb-4">Padres del Novio</div>
-                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">María Hortencia García Ventura</p>
-                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2 flex items-center justify-center gap-1">
-                            Mateo Guadalupe Colin Hernández 
-                            <span class="memorial-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></span>
+                        <div
+                            class="font-subtitle text-xs font-medium text-[var(--text-gray)] tracking-widest uppercase mb-4">
+                            Padres del Novio</div>
+                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">María
+                            Hortencia García Ventura</p>
+                        <p
+                            class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2 flex items-center justify-center gap-1">
+                            Mateo Guadalupe Colin Hernández
+                            <span class="memorial-star"><svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                    </path>
+                                </svg></span>
                         </p>
                     </div>
                 </div>
@@ -371,25 +1135,39 @@
                 <div class="godparents-row px-6">
                     <div class="glass-card godparent-card">
                         <div class="icon-circle">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                </polygon>
+                            </svg>
                         </div>
-                        <div class="font-subtitle text-xs font-medium text-[var(--text-gray)] tracking-widest uppercase mb-4">Padrinos de Velación</div>
-                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">Felipe Gabriel García Díaz</p>
-                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">María Adaluz Oliva Hernández</p>
+                        <div
+                            class="font-subtitle text-xs font-medium text-[var(--text-gray)] tracking-widest uppercase mb-4">
+                            Padrinos de Velación</div>
+                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">Felipe
+                            Gabriel García Díaz</p>
+                        <p class="font-title text-base md:text-lg font-medium text-[var(--text-dark)] my-2">María Adaluz
+                            Oliva Hernández</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 4. Itinerario -->
-        <section id="itinerario" class="relative z-20 w-full flex flex-col items-center py-24 md:py-32 px-6" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100\' height=\'100\' filter=\'url(%23noise)\' opacity=\'0.03\'/%3E%3C/svg%3E'); background-color: var(--bg-light);">
-            
+        <section id="itinerario" class="relative z-20 w-full flex flex-col items-center py-24 md:py-32 px-6"
+            style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100\' height=\'100\' filter=\'url(%23noise)\' opacity=\'0.03\'/%3E%3C/svg%3E'); background-color: var(--bg-light);">
+
             <div class="text-center mb-12 animate-[fadeUp_1s_cubic-bezier(0.16,1,0.3,1)_forwards] max-w-2xl mx-auto">
-                <h2 class="font-title text-4xl md:text-5xl font-medium tracking-tight text-[var(--text-dark)] leading-tight mb-4">El Gran Día</h2>
-                <p class="font-subtitle text-base md:text-lg font-normal text-[var(--text-gray)] leading-relaxed mb-8">Ha llegado la hora de encontrarnos, celebrar y atesorar juntos este comienzo.</p>
-                
-                <div class="inline-flex items-center gap-3 px-6 py-2 border border-[var(--gold)] rounded-full text-[var(--text-dark)] bg-[rgba(212,175,55,0.05)] transition-all hover:bg-[rgba(212,175,55,0.15)] hover:scale-105">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <h2
+                    class="font-title text-4xl md:text-5xl font-medium tracking-tight text-[var(--text-dark)] leading-tight mb-4">
+                    El Gran Día</h2>
+                <p class="font-subtitle text-base md:text-lg font-normal text-[var(--text-gray)] leading-relaxed mb-8">
+                    Ha llegado la hora de encontrarnos, celebrar y atesorar juntos este comienzo.</p>
+
+                <div
+                    class="inline-flex items-center gap-3 px-6 py-2 border border-[var(--gold)] rounded-full text-[var(--text-dark)] bg-[rgba(212,175,55,0.05)] transition-all hover:bg-[rgba(212,175,55,0.15)] hover:scale-105">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                         <line x1="16" y1="2" x2="16" y2="6"></line>
                         <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -405,16 +1183,21 @@
 
                 <div class="event-card">
                     <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
                     </div>
-                    <h3 class="font-title text-2xl md:text-3xl font-medium tracking-tight text-[var(--text-dark)] mb-3">Ceremonia Religiosa</h3>
-                    <p class="font-subtitle text-base font-normal text-[var(--text-gray)] leading-relaxed flex-grow mb-8">Iglesia de Nuestra Señora de<br>la Merced</p>
+                    <h3 class="font-title text-2xl md:text-3xl font-medium tracking-tight text-[var(--text-dark)] mb-3">
+                        Ceremonia Religiosa</h3>
+                    <p
+                        class="font-subtitle text-base font-normal text-[var(--text-gray)] leading-relaxed flex-grow mb-8">
+                        Iglesia de Nuestra Señora de<br>la Merced</p>
                     <a href="#" class="btn-black font-subtitle text-xs font-medium tracking-widest uppercase">
                         Ver Ubicación
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <line x1="7" y1="17" x2="17" y2="7"></line>
                             <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -423,18 +1206,24 @@
 
                 <div class="event-card">
                     <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <path d="M8 22h8"></path>
                             <path d="M12 15v7"></path>
-                            <path d="M12 15a7.5 7.5 0 0 0 7.5-7.5C19.5 5.5 16 2 12 2S4.5 5.5 4.5 7.5 8.5 15 12 15z"></path>
+                            <path d="M12 15a7.5 7.5 0 0 0 7.5-7.5C19.5 5.5 16 2 12 2S4.5 5.5 4.5 7.5 8.5 15 12 15z">
+                            </path>
                             <path d="M4.5 7.5h15"></path>
                         </svg>
                     </div>
-                    <h3 class="font-title text-2xl md:text-3xl font-medium tracking-tight text-[var(--text-dark)] mb-3">Recepción</h3>
-                    <p class="font-subtitle text-base font-normal text-[var(--text-gray)] leading-relaxed flex-grow mb-8">Las Brisas Centro de<br>Convenciones</p>
+                    <h3 class="font-title text-2xl md:text-3xl font-medium tracking-tight text-[var(--text-dark)] mb-3">
+                        Recepción</h3>
+                    <p
+                        class="font-subtitle text-base font-normal text-[var(--text-gray)] leading-relaxed flex-grow mb-8">
+                        Las Brisas Centro de<br>Convenciones</p>
                     <a href="#" class="btn-black font-subtitle text-xs font-medium tracking-widest uppercase">
                         Ver Ubicación
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <line x1="7" y1="17" x2="17" y2="7"></line>
                             <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -444,17 +1233,25 @@
         </section>
 
         <!-- 5. Código de Vestimenta -->
-        <section id="vestimenta" class="relative z-20 w-full py-24 px-6 flex flex-col items-center" style="background-color: #f4f3ef;">
+        <section id="vestimenta" class="relative z-20 w-full py-24 px-6 flex flex-col items-center"
+            style="background-color: #f4f3ef;">
             <div class="dress-code-card">
-                <h2 class="font-title text-4xl md:text-5xl font-medium tracking-tight text-[#1a1a1a] mb-4 leading-tight">Código de Vestimenta</h2>
-                <div class="bg-[#2a2a2a] text-white font-subtitle text-xs font-medium tracking-widest uppercase px-4 py-1.5 rounded mb-8">Formal</div>
-                
-                <p class="font-subtitle text-lg md:text-xl font-normal text-[#1a1a1a] mb-3 leading-relaxed">Queremos que esta celebración también se vista de armonía.</p>
-                <p class="font-subtitle text-base font-normal text-[#4a4a4a] mb-8 leading-relaxed">Por eso, con cariño, te pedimos evitar algunos tonos muy especiales para este día.</p>
-                
+                <h2
+                    class="font-title text-4xl md:text-5xl font-medium tracking-tight text-[#1a1a1a] mb-4 leading-tight">
+                    Código de Vestimenta</h2>
+                <div
+                    class="bg-[#2a2a2a] text-white font-subtitle text-xs font-medium tracking-widest uppercase px-4 py-1.5 rounded mb-8">
+                    Formal</div>
+
+                <p class="font-subtitle text-lg md:text-xl font-normal text-[#1a1a1a] mb-3 leading-relaxed">Queremos que
+                    esta celebración también se vista de armonía.</p>
+                <p class="font-subtitle text-base font-normal text-[#4a4a4a] mb-8 leading-relaxed">Por eso, con cariño,
+                    te pedimos evitar algunos tonos muy especiales para este día.</p>
+
                 <div class="dc-inner-panel">
-                    <p class="font-subtitle text-base font-normal text-[#333] mb-6 leading-relaxed">El blanco se lo dejamos a la novia, el rojo al amor y el beige… al olvido por un día.</p>
-                    
+                    <p class="font-subtitle text-base font-normal text-[#333] mb-6 leading-relaxed">El blanco se lo
+                        dejamos a la novia, el rojo al amor y el beige… al olvido por un día.</p>
+
                     <div class="dc-colors-wrapper">
                         <div class="color-sphere sphere-white" title="Evitar Blanco"></div>
                         <div class="color-sphere sphere-red" title="Evitar Rojo"></div>
@@ -465,36 +1262,51 @@
         </section>
 
         <!-- 6. RSVP -->
-        <section id="rsvp" class="relative z-20 py-24 px-6 min-h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&amp;fit=crop&amp;w=2070&amp;q=80')] bg-center bg-cover bg-fixed font-subtitle">
+        <section id="rsvp"
+            class="relative z-20 py-24 px-6 min-h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&amp;fit=crop&amp;w=2070&amp;q=80')] bg-center bg-cover bg-fixed font-subtitle">
             <div class="absolute inset-0 bg-black/20 backdrop-blur-[2px]"></div>
 
-            <div class="relative z-10 w-full max-w-lg p-10 md:p-12 rounded-[24px] backdrop-blur-[20px] bg-gradient-to-br from-white/60 to-white/20 border border-white/40 border-t-white/80 border-l-white/60 shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
-                
+            <div
+                class="relative z-10 w-full max-w-lg p-10 md:p-12 rounded-[24px] backdrop-blur-[20px] bg-gradient-to-br from-white/60 to-white/20 border border-white/40 border-t-white/80 border-l-white/60 shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+
                 <form onsubmit="handleRSVPSubmit(event)">
-                    
-                    <div class="font-subtitle text-xs text-[var(--text-main)] tracking-widest text-center uppercase mb-8 relative font-medium before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-1/5 before:h-px before:bg-black/15 after:content-[''] after:absolute after:top-1/2 after:right-0 after:w-1/5 after:h-px after:bg-black/15 mt-0">Tus Detalles</div>
+
+                    <div
+                        class="font-subtitle text-xs text-[var(--text-main)] tracking-widest text-center uppercase mb-8 relative font-medium before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-1/5 before:h-px before:bg-black/15 after:content-[''] after:absolute after:top-1/2 after:right-0 after:w-1/5 after:h-px after:bg-black/15 mt-0">
+                        Tus Detalles</div>
 
                     <!-- Nombre -->
                     <div class="mb-6">
-                        <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide" for="rsvp-name">Nombre Completo</label>
-                        <input type="text" id="rsvp-name" class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic" placeholder="Ej. Francisco Manuel Lopez Gutierrez" required="">
+                        <label
+                            class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="rsvp-name">Nombre Completo</label>
+                        <input type="text" id="rsvp-name" name="nombre"
+                            class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic"
+                            placeholder="Ej. Francisco Manuel Lopez Gutierrez" required="">
                     </div>
 
                     <!-- Asistencia -->
                     <div class="mb-6">
-                        <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide">¿Nos acompañarás?</label>
+                        <label
+                            class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide">¿Nos
+                            acompañarás?</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <label class="relative block group">
-                                <input type="radio" name="attending" value="yes" class="peer absolute opacity-0" checked="">
-                                <div class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
-                                    <span class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                <input type="radio" name="attending" value="yes" class="peer absolute opacity-0"
+                                    checked="">
+                                <div
+                                    class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                    <span
+                                        class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
                                     Sí, ahí estaré
                                 </div>
                             </label>
                             <label class="relative block group">
                                 <input type="radio" name="attending" value="no" class="peer absolute opacity-0">
-                                <div class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
-                                    <span class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                <div
+                                    class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                    <span
+                                        class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
                                     No podré asistir
                                 </div>
                             </label>
@@ -503,77 +1315,108 @@
 
                     <!-- Asistentes -->
                     <div class="mb-6">
-                        <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide" for="personas">Asistentes</label>
+                        <label
+                            class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="personas">Asistentes</label>
                         <div class="relative">
-                            <select id="personas" class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 appearance-none relative z-10 cursor-pointer">
+                            <select id="personas" name="asistentes"
+                                class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 appearance-none relative z-10 cursor-pointer">
                                 <option value="1" class="bg-white text-gray-800">1 Persona</option>
                                 <option value="2" class="bg-white text-gray-800">2 Personas</option>
                                 <option value="3" class="bg-white text-gray-800">3 Personas</option>
                                 <option value="4" class="bg-white text-gray-800">4 Personas</option>
                                 <option value="5" class="bg-white text-gray-800">5 Personas</option>
                             </select>
-                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16" stroke-width="1.5" class="absolute right-0 top-1/2 -translate-y-1/2 text-black/50 z-0 pointer-events-none"></iconify-icon>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16" stroke-width="1.5"
+                                class="absolute right-0 top-1/2 -translate-y-1/2 text-black/50 z-0 pointer-events-none"></iconify-icon>
                         </div>
                     </div>
 
-                    <div class="font-subtitle text-xs text-[var(--text-main)] tracking-widest text-center uppercase my-8 relative font-medium before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-1/5 before:h-px before:bg-black/15 after:content-[''] after:absolute after:top-1/2 after:right-0 after:w-1/5 after:h-px after:bg-black/15">Detalles Adicionales</div>
+                    <div
+                        class="font-subtitle text-xs text-[var(--text-main)] tracking-widest text-center uppercase my-8 relative font-medium before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-1/5 before:h-px before:bg-black/15 after:content-[''] after:absolute after:top-1/2 after:right-0 after:w-1/5 after:h-px after:bg-black/15">
+                        Detalles Adicionales</div>
 
                     <!-- Niños -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-end mb-6">
                         <div class="sm:col-span-2">
-                            <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide">Niños</label>
+                            <label
+                                class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide">Niños</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <label class="relative block group">
-                                    <input type="radio" name="ninos" value="yes" class="peer absolute opacity-0" onchange="toggleKidsInput(true)">
-                                    <div class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
-                                        <span class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                    <input type="radio" name="ninos" value="yes" class="peer absolute opacity-0"
+                                        onchange="toggleKidsInput(true)">
+                                    <div
+                                        class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                        <span
+                                            class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
                                         Sí
                                     </div>
                                 </label>
                                 <label class="relative block group">
-                                    <input type="radio" name="ninos" value="no" class="peer absolute opacity-0" checked="" onchange="toggleKidsInput(false)">
-                                    <div class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
-                                        <span class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                    <input type="radio" name="ninos" value="no" class="peer absolute opacity-0"
+                                        checked="" onchange="toggleKidsInput(false)">
+                                    <div
+                                        class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 font-subtitle text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                        <span
+                                            class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
                                         No
                                     </div>
                                 </label>
                             </div>
                         </div>
                         <div>
-                            <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide" for="cant_ninos">¿Cuántos?</label>
-                            <input type="number" id="cant_ninos" class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic disabled:opacity-50 disabled:cursor-not-allowed" placeholder="0" min="0" max="10" disabled="">
+                            <label
+                                class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                                for="cant_ninos">¿Cuántos?</label>
+                            <input type="number" id="cant_ninos" name="cantidad_ninos"
+                                class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic disabled:opacity-50 disabled:cursor-not-allowed"
+                                placeholder="0" min="0" max="10" disabled="">
                         </div>
                     </div>
 
                     <!-- Bebida -->
                     <div class="mb-6">
-                        <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide" for="bebida">Bebida Preferida</label>
+                        <label
+                            class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="bebida">Bebida Preferida</label>
                         <div class="relative">
-                            <select id="bebida" class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 appearance-none relative z-10 cursor-pointer">
+                            <select id="bebida" name="bebida"
+                                class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 appearance-none relative z-10 cursor-pointer">
                                 <option value="tequila" class="bg-white text-gray-800">Tequila</option>
                                 <option value="vino" class="bg-white text-gray-800">Vino Tinto</option>
                                 <option value="mezcal" class="bg-white text-gray-800">Mezcal / Cerveza</option>
                                 <option value="refresco" class="bg-white text-gray-800">Refresco / Sin alcohol</option>
                             </select>
-                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16" stroke-width="1.5" class="absolute right-0 top-1/2 -translate-y-1/2 text-black/50 z-0 pointer-events-none"></iconify-icon>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16" stroke-width="1.5"
+                                class="absolute right-0 top-1/2 -translate-y-1/2 text-black/50 z-0 pointer-events-none"></iconify-icon>
                         </div>
                     </div>
 
                     <!-- Alergias -->
                     <div class="mb-6">
-                        <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide" for="alergias">¿Alergias o Intolerancias?</label>
-                        <input type="text" id="alergias" class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic" placeholder="Ninguna (O especifica)">
+                        <label
+                            class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="alergias">¿Alergias o Intolerancias?</label>
+                        <input type="text" id="alergias" name="alergias"
+                            class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic"
+                            placeholder="Ninguna (O especifica)">
                     </div>
 
                     <!-- Cancion -->
                     <div class="mb-8">
-                        <label class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide" for="cancion">Canción que no puede faltar</label>
-                        <input type="text" id="cancion" class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic" placeholder="♫ Título y Artista">
+                        <label
+                            class="block font-subtitle text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="cancion">Canción que no puede faltar</label>
+                        <input type="text" id="cancion" name="cancion"
+                            class="w-full py-2.5 border-b border-black/20 bg-transparent font-subtitle text-base font-normal text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic"
+                            placeholder="♫ Título y Artista">
                     </div>
 
-                    <button type="submit" class="w-full bg-[var(--gold)] text-white border-none py-4 font-subtitle text-sm font-medium tracking-[1px] rounded-full transition-all duration-300 shadow-[0_4px_15px_rgba(197,160,89,0.3)] hover:bg-[#AA7F2A] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(197,160,89,0.5)] focus:outline-none uppercase flex justify-center items-center gap-2 group/btn cursor-pointer">
+                    <button type="submit"
+                        class="w-full bg-[var(--gold)] text-white border-none py-4 font-subtitle text-sm font-medium tracking-[1px] rounded-full transition-all duration-300 shadow-[0_4px_15px_rgba(197,160,89,0.3)] hover:bg-[#AA7F2A] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(197,160,89,0.5)] focus:outline-none uppercase flex justify-center items-center gap-2 group/btn cursor-pointer">
                         <span>Enviar Confirmación</span>
-                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5" class="transition-transform duration-500 group-hover/btn:rotate-45"></iconify-icon>
+                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
+                            class="transition-transform duration-500 group-hover/btn:rotate-45"></iconify-icon>
                     </button>
 
                 </form>
@@ -583,41 +1426,56 @@
         <!-- 7. Hashtag -->
         <section class="py-24 text-center px-6 relative z-20">
             <div class="max-w-2xl mx-auto flex flex-col items-center">
-                <iconify-icon icon="solar:camera-minimalistic-linear" width="36" stroke-width="1.5" class="text-[var(--gold)] mb-6"></iconify-icon>
-                <h3 class="font-title font-medium text-2xl md:text-4xl tracking-tight text-[var(--text-main)] mb-6 leading-tight">
+                <iconify-icon icon="solar:camera-minimalistic-linear" width="36" stroke-width="1.5"
+                    class="text-[var(--gold)] mb-6"></iconify-icon>
+                <h3
+                    class="font-title font-medium text-2xl md:text-4xl tracking-tight text-[var(--text-main)] mb-6 leading-tight">
                     Cada sonrisa, cada abrazo y cada instante será parte de un recuerdo que atesoraremos siempre.
                 </h3>
-                <p class="font-subtitle text-base font-normal text-[var(--text-muted)] mb-8 leading-relaxed">Si compartes fotografías o videos, nos encantará encontrarlos en</p>
-                
+                <p class="font-subtitle text-base font-normal text-[var(--text-muted)] mb-8 leading-relaxed">Si
+                    compartes fotografías o videos, nos encantará encontrarlos en</p>
+
                 <div class="relative group cursor-pointer">
-                    <div class="absolute inset-0 bg-[var(--gold-light)] rounded-full blur opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative bg-white border border-[var(--gold-light)] px-10 py-3 rounded-full flex items-center gap-3">
-                        <span class="font-title font-medium text-2xl md:text-3xl tracking-tight text-[var(--text-main)]">#bodapichis</span>
+                    <div
+                        class="absolute inset-0 bg-[var(--gold-light)] rounded-full blur opacity-50 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div
+                        class="relative bg-white border border-[var(--gold-light)] px-10 py-3 rounded-full flex items-center gap-3">
+                        <span
+                            class="font-title font-medium text-2xl md:text-3xl tracking-tight text-[var(--text-main)]">#bodapichis</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 8. Footer -->
-        <footer class="py-20 text-center relative z-20 mt-10 border-t border-[var(--gold-light)]/50 bg-white/30 backdrop-blur-sm">
+        <footer
+            class="py-20 text-center relative z-20 mt-10 border-t border-[var(--gold-light)]/50 bg-white/30 backdrop-blur-sm">
             <div class="font-title font-medium text-4xl tracking-tight text-[var(--gold)] mb-6">I&amp;O</div>
-            <h3 class="font-title text-base font-medium tracking-widest uppercase text-[var(--text-main)] mb-2">Ivon García &amp; Osvaldo Colin</h3>
-            <p class="font-subtitle text-xs uppercase tracking-widest text-[var(--text-muted)] font-medium mb-10">11 de Abril de 2026</p>
-            
-            <p class="font-subtitle font-normal text-base text-[var(--text-main)] max-w-sm mx-auto mb-10 leading-relaxed">
+            <h3 class="font-title text-base font-medium tracking-widest uppercase text-[var(--text-main)] mb-2">Ivon
+                García &amp; Osvaldo Colin</h3>
+            <p class="font-subtitle text-xs uppercase tracking-widest text-[var(--text-muted)] font-medium mb-10">11 de
+                Abril de 2026</p>
+
+            <p
+                class="font-subtitle font-normal text-base text-[var(--text-main)] max-w-sm mx-auto mb-10 leading-relaxed">
                 Con amor, ilusión y gratitud,<br>te esperamos para celebrar este día con nosotros.
             </p>
-            
-            <a href="#itinerario" class="group inline-flex items-center gap-2 font-subtitle text-xs font-medium uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">
+
+            <a href="#itinerario"
+                class="group inline-flex items-center gap-2 font-subtitle text-xs font-medium uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">
                 <span>Ver Mapa</span>
-                <iconify-icon icon="solar:arrow-right-up-linear" width="14" stroke-width="1.5" class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" width="14" stroke-width="1.5"
+                    class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
             </a>
         </footer>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast-notification" class="fixed top-6 left-1/2 z-[110] flex items-center gap-4 bg-white/95 backdrop-blur-xl border border-[var(--gold-light)] px-6 py-4 rounded-full shadow-2xl opacity-0 pointer-events-none transform -translate-x-1/2 -translate-y-full transition-all duration-500">
-        <div id="toast-icon" class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--text-main)] text-white text-xs">
+    <div id="toast-notification"
+        class="fixed top-6 left-1/2 z-[110] flex items-center gap-4 bg-white/95 backdrop-blur-xl border border-[var(--gold-light)] px-6 py-4 rounded-full shadow-2xl opacity-0 pointer-events-none transform -translate-x-1/2 -translate-y-full transition-all duration-500">
+        <div id="toast-icon"
+            class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--text-main)] text-white text-xs">
             <iconify-icon icon="solar:check-read-linear" width="14" stroke-width="1.5"></iconify-icon>
         </div>
         <span id="toast-message" class="text-sm font-medium font-subtitle text-[var(--text-main)] pr-2">Mensaje</span>
@@ -632,7 +1490,7 @@
         window.addEventListener('load', () => {
             const loader = document.getElementById('loading-screen');
             const welcomeModal = document.getElementById('welcome-modal');
-            
+
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
@@ -648,7 +1506,7 @@
 
         function initTreeAnimation() {
             const tree = document.getElementById('animated-straight-tree');
-            if(!tree) return;
+            if (!tree) return;
             const line1 = document.getElementById('line-1');
             const line2a = document.getElementById('line-2a');
             const line2b = document.getElementById('line-2b');
@@ -659,7 +1517,7 @@
                 if (window.innerWidth <= 768) return;
                 const rect = tree.getBoundingClientRect();
                 const winH = window.innerHeight;
-                
+
                 let visiblePx = winH * 0.85 - rect.top;
                 let progress = visiblePx / (rect.height * 0.9);
                 progress = Math.max(0, Math.min(1, progress));
@@ -670,7 +1528,7 @@
                 let pHoriz = Math.max(0, Math.min(1, (progress - 0.3) / 0.3));
                 line2a.style.transform = `scaleX(${pHoriz})`;
                 line2b.style.transform = `scaleX(${pHoriz})`;
-                
+
                 if (cards[0] && cards[1]) {
                     cards[0].style.opacity = pHoriz;
                     cards[0].style.transform = `translateY(${20 * (1 - pHoriz)}px)`;
@@ -748,10 +1606,10 @@
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 const s = this.size;
-                if (this.shapeType === 0) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s, s*0.5, -s*0.5, s*1.5, 0, s*2); ctx.bezierCurveTo(s*0.5, s*1.5, s, s*0.5, 0, 0); } 
-                else if (this.shapeType === 1) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s*1.3, s*0.8, -s*0.9, s*1.8, 0, s*2.2); ctx.bezierCurveTo(s*0.9, s*1.8, s*1.3, s*0.8, 0, 0); } 
-                else if (this.shapeType === 2) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s*1.5, s, -s*0.2, s*1.5, s*0.4, s*2); ctx.bezierCurveTo(s*0.7, s*1.2, s*0.9, s*0.5, 0, 0); } 
-                else { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s*0.7, s, -s*0.4, s*2.5, 0, s*3); ctx.bezierCurveTo(s*0.4, s*2.5, s*0.7, s, 0, 0); }
+                if (this.shapeType === 0) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s, s * 0.5, -s * 0.5, s * 1.5, 0, s * 2); ctx.bezierCurveTo(s * 0.5, s * 1.5, s, s * 0.5, 0, 0); }
+                else if (this.shapeType === 1) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s * 1.3, s * 0.8, -s * 0.9, s * 1.8, 0, s * 2.2); ctx.bezierCurveTo(s * 0.9, s * 1.8, s * 1.3, s * 0.8, 0, 0); }
+                else if (this.shapeType === 2) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s * 1.5, s, -s * 0.2, s * 1.5, s * 0.4, s * 2); ctx.bezierCurveTo(s * 0.7, s * 1.2, s * 0.9, s * 0.5, 0, 0); }
+                else { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s * 0.7, s, -s * 0.4, s * 2.5, 0, s * 3); ctx.bezierCurveTo(s * 0.4, s * 2.5, s * 0.7, s, 0, 0); }
                 ctx.fill(); ctx.restore();
             }
         }
@@ -759,7 +1617,7 @@
         class PetaloExplosion {
             constructor(startX, startY) {
                 this.x = startX; this.y = startY;
-                this.size = (Math.random() * 15 + 8) * 0.8; 
+                this.size = (Math.random() * 15 + 8) * 0.8;
                 this.speedY = (Math.random() * -12) - 6;
                 this.speedX = (Math.random() * -8) - 2;
                 this.rotation = Math.random() * 360;
@@ -787,10 +1645,10 @@
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 const s = this.size;
-                if (this.shapeType === 0) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s, s*0.5, -s*0.5, s*1.5, 0, s*2); ctx.bezierCurveTo(s*0.5, s*1.5, s, s*0.5, 0, 0); } 
-                else if (this.shapeType === 1) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s*1.3, s*0.8, -s*0.9, s*1.8, 0, s*2.2); ctx.bezierCurveTo(s*0.9, s*1.8, s*1.3, s*0.8, 0, 0); } 
-                else if (this.shapeType === 2) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s*1.5, s, -s*0.2, s*1.5, s*0.4, s*2); ctx.bezierCurveTo(s*0.7, s*1.2, s*0.9, s*0.5, 0, 0); } 
-                else { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s*0.7, s, -s*0.4, s*2.5, 0, s*3); ctx.bezierCurveTo(s*0.4, s*2.5, s*0.7, s, 0, 0); }
+                if (this.shapeType === 0) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s, s * 0.5, -s * 0.5, s * 1.5, 0, s * 2); ctx.bezierCurveTo(s * 0.5, s * 1.5, s, s * 0.5, 0, 0); }
+                else if (this.shapeType === 1) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s * 1.3, s * 0.8, -s * 0.9, s * 1.8, 0, s * 2.2); ctx.bezierCurveTo(s * 0.9, s * 1.8, s * 1.3, s * 0.8, 0, 0); }
+                else if (this.shapeType === 2) { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s * 1.5, s, -s * 0.2, s * 1.5, s * 0.4, s * 2); ctx.bezierCurveTo(s * 0.7, s * 1.2, s * 0.9, s * 0.5, 0, 0); }
+                else { ctx.moveTo(0, 0); ctx.bezierCurveTo(-s * 0.7, s, -s * 0.4, s * 2.5, 0, s * 3); ctx.bezierCurveTo(s * 0.4, s * 2.5, s * 0.7, s, 0, 0); }
                 ctx.fill(); ctx.restore();
             }
         }
@@ -798,7 +1656,7 @@
         const petalosCaida = [];
         const totalPetalos = 50;
         for (let i = 0; i < totalPetalos; i++) petalosCaida.push(new Petalo());
-        
+
         let petalosRafaga = [];
         function dispararExplosion() {
             const rect = btnReverso.getBoundingClientRect();
@@ -830,9 +1688,9 @@
         function submitWelcome() {
             const inputName = document.getElementById('input-name').value.trim();
             guestNameFull = inputName || "Invitado Especial";
-            
+
             const parts = guestNameFull.split(/\s+/);
-            if(parts.length >= 2) { guestNameShort = parts[0] + ' ' + parts[1]; } 
+            if (parts.length >= 2) { guestNameShort = parts[0] + ' ' + parts[1]; }
             else { guestNameShort = parts[0] || "Invitado Especial"; }
 
             document.getElementById('guest-name-display').innerText = guestNameShort;
@@ -841,26 +1699,26 @@
             const modal = document.getElementById('welcome-modal');
             const intermediate = document.getElementById('intermediate-screen');
             const main = document.getElementById('main-content');
-            
+
             modal.style.opacity = '0';
             setTimeout(() => modal.classList.add('hidden'), 500);
             intermediate.classList.add('visible');
-            
+
             setTimeout(() => {
                 document.getElementById('nos-casamos-text').classList.remove('scale-90', 'opacity-0');
                 document.getElementById('confetti-btn').classList.remove('scale-0', 'opacity-0');
                 fireConfetti();
-                
+
                 setTimeout(() => {
                     intermediate.style.opacity = '0';
                     setTimeout(() => intermediate.classList.remove('visible'), 500);
                     main.classList.remove('hidden');
-                    
+
                     setTimeout(() => {
                         main.classList.remove('opacity-0');
                         typeWriter("hero-name-1", "Ivon García", 80);
                         setTimeout(() => { typeWriter("hero-name-2", "& Osvaldo Colin", 80); }, 1000);
-                        
+
                         setTimeout(() => {
                             document.getElementById('static-ticker-container').classList.remove('opacity-0', 'translate-y-4');
                             document.getElementById('hero-subtitle').classList.remove('opacity-0', 'translate-y-4');
@@ -874,18 +1732,18 @@
                         animateTicker('.ticker-s', time.seconds);
                         setupScrollTicker(time);
                     }, 100);
-                }, 3500); 
+                }, 3500);
             }, 100);
         }
 
         function animateTicker(selector, endVal) {
             document.querySelectorAll(selector).forEach(el => {
-                gsap.to({val: 0}, {
+                gsap.to({ val: 0 }, {
                     val: endVal, duration: 2, ease: "power2.out",
-                    onUpdate: function() { 
+                    onUpdate: function () {
                         let numStr = Math.floor(this.targets()[0].val).toString();
-                        if(selector !== '.ticker-d' && selector !== '.ticker-float-d') { numStr = numStr.padStart(2, '0'); }
-                        el.innerText = numStr; 
+                        if (selector !== '.ticker-d' && selector !== '.ticker-float-d') { numStr = numStr.padStart(2, '0'); }
+                        el.innerText = numStr;
                     }
                 });
             });
@@ -912,13 +1770,13 @@
                 onEnter: () => document.getElementById('floating-bar').classList.remove('opacity-0', 'translate-y-20'),
                 onLeaveBack: () => document.getElementById('floating-bar').classList.add('opacity-0', 'translate-y-20')
             });
-            
+
             setInterval(() => {
                 const t = calculateTime();
                 document.querySelectorAll('.ticker-d, .ticker-float-d').forEach(el => el.innerText = String(t.days));
                 document.querySelectorAll('.ticker-h, .ticker-float-h').forEach(el => el.innerText = String(t.hours).padStart(2, '0'));
                 document.querySelectorAll('.ticker-m, .ticker-float-m').forEach(el => el.innerText = String(t.minutes).padStart(2, '0'));
-                document.querySelectorAll('.ticker-s, .ticker-float-s').forEach(el => el.innerText = String(t.seconds).padStart(2, '0'));            
+                document.querySelectorAll('.ticker-s, .ticker-float-s').forEach(el => el.innerText = String(t.seconds).padStart(2, '0'));
             }, 1000);
         }
 
@@ -926,7 +1784,7 @@
             const el = document.getElementById(elementId);
             el.innerHTML = ''; el.classList.add('typing-cursor'); let i = 0;
             function type() {
-                if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(type, speed); } 
+                if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(type, speed); }
                 else { el.classList.remove('typing-cursor'); }
             }
             type();
@@ -937,7 +1795,7 @@
             const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
             function randomInRange(min, max) { return Math.random() * (max - min) + min; }
 
-            const interval = setInterval(function() {
+            const interval = setInterval(function () {
                 const timeLeft = animationEnd - Date.now();
                 if (timeLeft <= 0) return clearInterval(interval);
 
@@ -949,7 +1807,7 @@
 
         function toggleKidsInput(show) {
             const input = document.getElementById('cant_ninos');
-            if (show) { input.disabled = false; input.focus(); } 
+            if (show) { input.disabled = false; input.focus(); }
             else { input.disabled = true; input.value = ''; }
         }
 
@@ -957,17 +1815,44 @@
             e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
             const originalHTML = btn.innerHTML;
-            
+
             btn.innerHTML = '<iconify-icon icon="line-md:loading-twotone-loop" width="20"></iconify-icon> <span>Enviando...</span>';
             btn.disabled = true; btn.classList.add('opacity-80', 'cursor-not-allowed');
 
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.disabled = false; btn.classList.remove('opacity-80', 'cursor-not-allowed');
-                e.target.reset(); toggleKidsInput(false); 
-                if (guestNameFull) { document.getElementById('rsvp-name').value = guestNameFull; }
-                showToast(`¡Gracias ${guestNameShort}! Hemos recibido tu confirmación.`);
-            }, 2000);
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            const dataObj = Object.fromEntries(formData.entries());
+
+            // Ahora apuntamos a nuestra Vercel Serverless Function interna
+            const scriptURL = '/api/rsvp';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataObj)
+            })
+                .then(async response => {
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Error al comunicarse con el servidor.');
+                    }
+
+                    // Manejo real de respuesta exitosa (HTTP 200 OK)
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false; btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    form.reset(); toggleKidsInput(false);
+                    if (guestNameFull) { document.getElementById('rsvp-name').value = guestNameFull; }
+                    showToast(`¡Gracias ${guestNameShort}! Hemos recibido tu confirmación.`);
+                })
+                .catch(error => {
+                    // Manejo de errores reales controlados por el backend (ej. 500 Server Error)
+                    console.error('Error enviando RSVP:', error.message);
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false; btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    showToast('Hubo un error al enviar. Por favor intenta de nuevo.');
+                });
         }
 
         function showToast(message) {
@@ -975,7 +1860,7 @@
             const msgEl = document.getElementById('toast-message');
             msgEl.textContent = message;
             toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-full');
-            toast.classList.add('translate-y-4'); 
+            toast.classList.add('translate-y-4');
             setTimeout(() => {
                 toast.classList.remove('translate-y-4');
                 toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-full');
@@ -983,4 +1868,6 @@
         }
     </script>
 
-</body></html>
+</body>
+
+</html>
