@@ -998,7 +998,7 @@
         <!-- 1. Hero / Portada -->
         <header class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-20">
             <div class="absolute inset-0 z-0 hero-img-mask">
-                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&amp;w=2000&amp;auto=format&amp;fit=crop"
+                <img src="images/hero-background.webp"
                     class="w-full h-full object-cover opacity-30 grayscale mix-blend-multiply" alt="Fondo Boda">
             </div>
 
@@ -1821,7 +1821,7 @@
 
             const form = e.target;
             const formData = new FormData(form);
-            
+
             const dataObj = Object.fromEntries(formData.entries());
 
             // Ahora apuntamos a nuestra Vercel Serverless Function interna
