@@ -1,0 +1,598 @@
+﻿<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivon &amp; Osvaldo | Boda</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body class="antialiased font-subtitle text-sm">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="magic-loader">
+            <div class="main-figure">
+                <div class="part tier-top"></div>
+                <div class="part tier-middle"></div>
+                <div class="part tier-base-left"></div>
+                <div class="part tier-base-right"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas (Animated Pink Petals) -->
+    <canvas id="petalos-canvas"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10;"></canvas>
+
+    <!-- Scroll to Top Button -->
+    <button id="btn-petalo-reverso" aria-label="Volver arriba">
+        <iconify-icon icon="solar:alt-arrow-up-linear" width="24" stroke-width="1.5"
+            class="transition-transform duration-300"></iconify-icon>
+    </button>
+
+    <!-- Welcome Modal -->
+    <div id="welcome-modal"
+        class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[var(--marfil)]/90 backdrop-blur-md transition-all duration-700 opacity-0 hidden">
+        <div
+            class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-[var(--gold-light)] transition-transform">
+            <div class="beam-border"></div>
+            <div class="relative z-10 bg-white m-[1px] rounded-[23px] h-full flex flex-col overflow-hidden p-10">
+                <div class="text-center mb-8">
+                    <h3 class="font-title font-medium text-4xl md:text-5xl tracking-tight text-[var(--text-main)] mb-3">
+                        Ivon &amp; Osvaldo</h3>
+                    <p class="font-subtitle font-normal text-sm text-[var(--text-muted)] leading-relaxed mb-4">Te dan la
+                        más cordial bienvenida.</p>
+                    <p class="font-subtitle font-normal text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">Por
+                        favor ingresa tu nombre completo para personalizar tu experiencia.</p>
+                </div>
+
+                <form id="welcome-form" onsubmit="event.preventDefault(); submitWelcome();" class="space-y-6">
+                    <div class="relative mt-4">
+                        <input id="input-name" required=""
+                            class="w-full border-b border-[var(--gold-light)] bg-transparent py-3 text-sm md:text-base font-subtitle text-[var(--text-main)] focus:outline-none focus:border-[var(--text-main)] transition-colors"
+                            placeholder="Tu nombre completo" autocomplete="off">
+                        <label
+                            class="absolute -top-3 left-0 text-xs font-medium uppercase tracking-widest text-[var(--gold)]">Invitado</label>
+                    </div>
+                    <button type="submit"
+                        class="group w-full inline-flex items-center justify-center gap-2 rounded-xl text-xs font-medium transition-all bg-[var(--text-main)] text-[var(--marfil)] shadow-md hover:bg-[var(--gold)] hover:shadow-xl h-12 uppercase tracking-widest focus:outline-none focus:ring-0">
+                        <span>Entrar</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
+                            class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intermediate Screen -->
+    <div id="intermediate-screen">
+        <h1 class="font-title font-medium text-4xl md:text-6xl text-[var(--text-main)] mb-8 tracking-tight scale-90 opacity-0 transition-all duration-700 text-center px-4 leading-tight"
+            id="nos-casamos-text">
+            ¡Hola <span id="guest-name-display" class="text-[var(--gold)]"></span>!<br>Nos Casamos
+        </h1>
+        <button onclick="fireConfetti()"
+            class="group scale-0 opacity-0 transition-all duration-500 delay-300 px-8 py-3 rounded-full border border-[var(--gold)] text-[var(--text-main)] font-medium text-xs uppercase tracking-widest bg-white/50 backdrop-blur hover:bg-white hover:shadow-lg active:scale-95 flex items-center gap-2 focus:outline-none focus:ring-0"
+            id="confetti-btn">
+            <span>Celebra con nosotros</span>
+            <iconify-icon icon="solar:arrow-right-up-linear" width="14" stroke-width="1.5"
+                class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+        </button>
+    </div>
+
+    <!-- Floating Countdown -->
+    <div id="floating-bar"
+        class="rainbow-container opacity-0 translate-y-20 duration-1000 transition-all hidden md:block">
+        <div class="rainbow-inner shadow-sm">
+            <div class="font-subtitle text-xs uppercase font-medium tracking-widest text-[var(--text-main)] mr-2">Faltan
+            </div>
+            <div class="flex flex-col items-center leading-none w-8">
+                <span class="ticker-float-d font-title font-medium text-lg text-[var(--text-main)]">0</span>
+                <span class="text-xs uppercase tracking-widest text-[var(--text-muted)] mt-1">Días</span>
+            </div>
+            <div class="text-[var(--gold)] font-title font-light opacity-50">:</div>
+            <div class="flex flex-col items-center leading-none w-8">
+                <span class="ticker-float-h font-title font-medium text-lg text-[var(--text-main)]">00</span>
+                <span class="text-xs uppercase tracking-widest text-[var(--text-muted)] mt-1">Hrs</span>
+            </div>
+            <div class="text-[var(--gold)] font-title font-light opacity-50">:</div>
+            <div class="flex flex-col items-center leading-none w-8">
+                <span class="ticker-float-m font-title font-medium text-lg text-[var(--text-main)]">00</span>
+                <span class="text-xs uppercase tracking-widest text-[var(--text-muted)] mt-1">Min</span>
+            </div>
+            <div class="text-[var(--gold)] font-title font-light opacity-50">:</div>
+            <div class="flex flex-col items-center leading-none w-8">
+                <span class="ticker-float-s font-title font-medium text-lg text-[var(--text-main)]">00</span>
+                <span class="text-xs uppercase tracking-widest text-[var(--text-muted)] mt-1">Seg</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000 hidden">
+
+        <!-- Navbar -->
+        <nav
+            class="fixed top-6 left-1/2 -translate-x-1/2 z-[70] bg-white/60 backdrop-blur-xl border border-[var(--gold-light)] rounded-full px-8 py-3 flex items-center gap-10 shadow-sm transition-colors hover:bg-white/90">
+            <a href="#"
+                class="font-title font-medium text-2xl tracking-tighter text-[var(--gold)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">I&amp;O</a>
+            <div
+                class="hidden md:flex gap-8 font-subtitle text-xs font-medium text-[var(--text-muted)] uppercase tracking-widest">
+                <a href="#itinerario"
+                    class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Itinerario</a>
+                <a href="#vestimenta"
+                    class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Vestimenta</a>
+                <a href="#rsvp"
+                    class="hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">Confirmar</a>
+            </div>
+        </nav>
+
+        <!-- 1. Hero / Portada -->
+        <header class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-20">
+            <div class="absolute inset-0 z-0 hero-img-mask">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&amp;w=2000&amp;auto=format&amp;fit=crop"
+                    class="w-full h-full object-cover opacity-30 grayscale mix-blend-multiply" alt="Fondo Boda">
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center text-center px-4 w-full pt-20">
+                <div class="mb-12 flex flex-col items-center gap-2">
+                    <h1 class="font-title font-medium text-[var(--text-main)] text-5xl md:text-7xl tracking-tight leading-none"
+                        id="hero-name-1"></h1>
+                    <h1 class="font-title font-medium text-[var(--text-main)] text-5xl md:text-7xl tracking-tight leading-none"
+                        id="hero-name-2"></h1>
+                </div>
+
+                <div id="static-ticker-container"
+                    class="flex flex-wrap gap-6 md:gap-10 items-center justify-center mb-8 opacity-0 translate-y-4 transition-all duration-1000">
+                    <div class="flex flex-col items-center w-16 md:w-20">
+                        <span
+                            class="ticker-d text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Días</span>
+                    </div>
+                    <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-light mb-4">/</div>
+                    <div class="flex flex-col items-center w-16 md:w-20">
+                        <span
+                            class="ticker-h text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Horas</span>
+                    </div>
+                    <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-light mb-4">/</div>
+                    <div class="flex flex-col items-center w-16 md:w-20">
+                        <span
+                            class="ticker-m text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)]">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Min</span>
+                    </div>
+                    <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-light mb-4">/</div>
+                    <div class="flex flex-col items-center w-16 md:w-24">
+                        <span
+                            class="ticker-s text-4xl md:text-5xl font-title font-medium tracking-tight text-[var(--text-main)] text-center">0</span>
+                        <span
+                            class="text-xs font-subtitle uppercase tracking-widest text-[var(--text-muted)] mt-2 font-medium">Seg</span>
+                    </div>
+                </div>
+
+                <p class="text-sm font-subtitle font-normal text-[var(--text-muted)] max-w-md mx-auto mb-12 opacity-0 translate-y-4 transition-all duration-1000 delay-300"
+                    id="hero-subtitle">
+                    Estamos contando los días para el comienzo de un recuerdo eterno.
+                </p>
+
+                <div class="opacity-0 translate-y-4 transition-all duration-1000 delay-500" id="hero-btn">
+                    <a href="#rsvp"
+                        class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--text-main)] text-[var(--marfil)] text-xs font-medium uppercase tracking-widest hover:bg-[var(--gold)] transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-0">
+                        <span>Confirmar Asistencia</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
+                            class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Nos Casamos -->
+        <section class="py-24 md:py-32 text-center max-w-3xl mx-auto px-6 relative z-20">
+            <h2 class="font-title font-medium text-4xl md:text-6xl tracking-tight mb-8 text-[var(--text-main)]">Nos
+                casamos</h2>
+            <p class="font-subtitle font-normal text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
+                Hay momentos que no solo se esperan: se guardan en el alma incluso antes de llegar. <br
+                    class="hidden md:block"> El nuestro está por comenzar.
+            </p>
+        </section>
+
+        <!-- 3. Padres y Padrinos (Actualizado: Líneas Rectas y Scroll) -->
+        <section id="padres" class="relative w-full z-20 py-24 md:py-32 flex flex-col items-center"
+            style="background-color: var(--bg-light); border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light);">
+            <div class="text-center max-w-3xl mx-auto px-6 mb-2 relative z-[2]">
+                <h2
+                    class="font-title font-medium text-4xl md:text-6xl tracking-tight mb-6 text-[var(--text-main)] leading-tight">
+                    Con la bendición de Dios,<br>nuestros padres y padrinos</h2>
+                <p class="font-subtitle font-normal text-sm md:text-base text-[var(--text-muted)] leading-relaxed">Nos
+                    llena de alegría celebrar este día acompañados por quienes han sembrado amor, ejemplo y guía en
+                    nuestro camino.</p>
+            </div>
+
+            <div class="tree-container" id="animated-straight-tree">
+                <div class="glow-line line-v-top" id="line-1"></div>
+                <div class="glow-line line-h-left" id="line-2a"></div>
+                <div class="glow-line line-h-right" id="line-2b"></div>
+                <div class="glow-line line-v-bottom" id="line-3"></div>
+
+                <div class="cards-row px-6">
+                    <div class="glass-card card-left">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="role-title">Padres de la Novia</div>
+                        <p class="name">Norma García Ruiz</p>
+                        <p class="name">Eugenio García Díaz</p>
+                    </div>
+
+                    <div class="glass-card card-right">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="role-title">Padres del Novio</div>
+                        <p class="name">María Hortencia García Ventura</p>
+                        <p class="name">Mateo Guadalupe Colin Hernández
+                            <span class="memorial-star"><svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                    </path>
+                                </svg></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="godparents-row px-6">
+                    <div class="glass-card godparent-card">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                </polygon>
+                            </svg>
+                        </div>
+                        <div class="role-title">Padrinos de Velación</div>
+                        <p class="name">Felipe Gabriel García Díaz</p>
+                        <p class="name">María Adaluz Oliva Hernández</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Itinerario (Actualizado: El Gran Día Con Flow) -->
+        <section id="itinerario" class="relative z-20 w-full flex flex-col items-center py-24 md:py-32 px-6"
+            style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100\' height=\'100\' filter=\'url(%23noise)\' opacity=\'0.03\'/%3E%3C/svg%3E'); background-color: var(--bg-light);">
+
+            <div class="itinerary-header">
+                <h2>El Gran Día</h2>
+                <p>Ha llegado la hora de encontrarnos, celebrar y atesorar juntos este comienzo.</p>
+                <div class="date-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    11 DE ABRIL DE 2026
+                </div>
+            </div>
+
+            <div class="glass-tray">
+                <div class="light-orb orb-1"></div>
+                <div class="light-orb orb-2"></div>
+
+                <div class="event-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </div>
+                    <h3>Ceremonia Religiosa</h3>
+                    <p>Iglesia de Nuestra Señora de<br>la Merced</p>
+                    <a href="#" class="btn-black">
+                        VER UBICACIÓN
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="event-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 22h8"></path>
+                            <path d="M12 15v7"></path>
+                            <path d="M12 15a7.5 7.5 0 0 0 7.5-7.5C19.5 5.5 16 2 12 2S4.5 5.5 4.5 7.5 8.5 15 12 15z">
+                            </path>
+                            <path d="M4.5 7.5h15"></path>
+                        </svg>
+                    </div>
+                    <h3>Recepción</h3>
+                    <p>Las Brisas Centro de<br>Convenciones</p>
+                    <a href="#" class="btn-black">
+                        VER UBICACIÓN
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Código de Vestimenta (Actualizado: Componente Puro) -->
+        <section id="vestimenta" class="relative z-20 w-full py-24 px-6 flex flex-col items-center"
+            style="background-color: #f4f3ef;">
+            <div class="dress-code-card">
+                <h2 class="dc-title">Código de Vestimenta</h2>
+                <div class="dc-badge">FORMAL</div>
+
+                <p class="dc-subtitle">Queremos que esta celebración también se vista de armonía.</p>
+                <p class="dc-intro">Por eso, con cariño, te pedimos evitar algunos tonos muy especiales para este día.
+                </p>
+
+                <div class="dc-inner-panel">
+                    <p class="dc-panel-text">El blanco se lo dejamos a la novia, el rojo al amor y el beige… al olvido
+                        por un día.</p>
+
+                    <div class="dc-colors-wrapper">
+                        <div class="color-sphere sphere-white" title="Evitar Blanco"></div>
+                        <div class="color-sphere sphere-red" title="Evitar Rojo"></div>
+                        <div class="color-sphere sphere-beige" title="Evitar Beige"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. RSVP -->
+        <section id="rsvp"
+            class="relative z-20 py-24 px-6 min-h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&amp;fit=crop&amp;w=2070&amp;q=80')] bg-center bg-cover bg-fixed font-subtitle">
+            <div class="absolute inset-0 bg-black/20 backdrop-blur-[2px]"></div>
+
+            <div
+                class="relative z-10 w-full max-w-lg p-10 md:p-12 rounded-[24px] backdrop-blur-[20px] bg-gradient-to-br from-white/60 to-white/20 border border-white/40 border-t-white/80 border-l-white/60 shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+
+                <form onsubmit="handleRSVPSubmit(event)">
+
+                    <div
+                        class="text-[0.8rem] text-[var(--text-main)] tracking-widest text-center uppercase mb-8 relative font-semibold before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-1/5 before:h-px before:bg-black/15 after:content-[''] after:absolute after:top-1/2 after:right-0 after:w-1/5 after:h-px after:bg-black/15 mt-0">
+                        Tus Detalles</div>
+
+                    <!-- Nombre -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="rsvp-name">Nombre Completo</label>
+                        <input type="text" id="rsvp-name"
+                            class="w-full py-2.5 border-b border-black/20 bg-transparent text-base text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic"
+                            placeholder="Ej. Francisco Manuel Lopez Gutierrez" required="">
+                    </div>
+
+                    <!-- Asistencia -->
+                    <div class="mb-6">
+                        <label
+                            class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide">¿Nos
+                            acompañarás?</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="relative block group">
+                                <input type="radio" name="attending" value="yes" class="peer absolute opacity-0"
+                                    checked="">
+                                <div
+                                    class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                    <span
+                                        class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                    Sí, ahí estaré
+                                </div>
+                            </label>
+                            <label class="relative block group">
+                                <input type="radio" name="attending" value="no" class="peer absolute opacity-0">
+                                <div
+                                    class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                    <span
+                                        class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                    No podré asistir
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Asistentes -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="personas">Asistentes</label>
+                        <div class="relative">
+                            <select id="personas"
+                                class="w-full py-2.5 border-b border-black/20 bg-transparent text-base text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 appearance-none relative z-10 cursor-pointer">
+                                <option value="1" class="bg-white text-gray-800">1 Persona</option>
+                                <option value="2" class="bg-white text-gray-800">2 Personas</option>
+                                <option value="3" class="bg-white text-gray-800">3 Personas</option>
+                                <option value="4" class="bg-white text-gray-800">4 Personas</option>
+                                <option value="5" class="bg-white text-gray-800">5 Personas</option>
+                            </select>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"
+                                class="absolute right-0 top-1/2 -translate-y-1/2 text-black/50 z-0 pointer-events-none"></iconify-icon>
+                        </div>
+                    </div>
+
+                    <div
+                        class="text-[0.8rem] text-[var(--text-main)] tracking-widest text-center uppercase my-8 relative font-semibold before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-1/5 before:h-px before:bg-black/15 after:content-[''] after:absolute after:top-1/2 after:right-0 after:w-1/5 after:h-px after:bg-black/15">
+                        Detalles Adicionales</div>
+
+                    <!-- Niños -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-end mb-6">
+                        <div class="sm:col-span-2">
+                            <label
+                                class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide">Niños</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="relative block group">
+                                    <input type="radio" name="ninos" value="yes" class="peer absolute opacity-0"
+                                        onchange="toggleKidsInput(true)">
+                                    <div
+                                        class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                        <span
+                                            class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                        Sí
+                                    </div>
+                                </label>
+                                <label class="relative block group">
+                                    <input type="radio" name="ninos" value="no" class="peer absolute opacity-0"
+                                        checked="" onchange="toggleKidsInput(false)">
+                                    <div
+                                        class="flex items-center justify-center py-3.5 px-3 bg-white/30 border border-white/50 rounded-lg transition-all duration-300 text-sm font-medium text-[var(--text-main)] text-center peer-checked:border-[var(--gold)] peer-checked:bg-[rgba(197,160,89,0.15)] peer-checked:text-[#8c6e33] peer-checked:[&amp;_span]:bg-[var(--gold)] peer-checked:[&amp;_span]:border-[var(--gold)] peer-checked:[&amp;_span]:shadow-[inset_0_0_0_3px_rgba(255,255,255,0.8)] cursor-pointer">
+                                        <span
+                                            class="inline-block w-3.5 h-3.5 border border-black/30 rounded-full mr-2.5 transition-all duration-300"></span>
+                                        No
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                                for="cant_ninos">¿Cuántos?</label>
+                            <input type="number" id="cant_ninos"
+                                class="w-full py-2.5 border-b border-black/20 bg-transparent text-base text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic disabled:opacity-50 disabled:cursor-not-allowed"
+                                placeholder="0" min="0" max="10" disabled="">
+                        </div>
+                    </div>
+
+                    <!-- Bebida -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="bebida">Bebida Preferida</label>
+                        <div class="relative">
+                            <select id="bebida"
+                                class="w-full py-2.5 border-b border-black/20 bg-transparent text-base text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 appearance-none relative z-10 cursor-pointer">
+                                <option value="tequila" class="bg-white text-gray-800">Tequila</option>
+                                <option value="vino" class="bg-white text-gray-800">Vino Tinto</option>
+                                <option value="mezcal" class="bg-white text-gray-800">Mezcal / Cerveza</option>
+                                <option value="refresco" class="bg-white text-gray-800">Refresco / Sin alcohol</option>
+                            </select>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"
+                                class="absolute right-0 top-1/2 -translate-y-1/2 text-black/50 z-0 pointer-events-none"></iconify-icon>
+                        </div>
+                    </div>
+
+                    <!-- Alergias -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="alergias">¿Alergias o Intolerancias?</label>
+                        <input type="text" id="alergias"
+                            class="w-full py-2.5 border-b border-black/20 bg-transparent text-base text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic"
+                            placeholder="Ninguna (O especifica)">
+                    </div>
+
+                    <!-- Cancion -->
+                    <div class="mb-8">
+                        <label class="block text-xs font-medium text-[var(--text-main)] mb-2 uppercase tracking-wide"
+                            for="cancion">Canción que no puede faltar</label>
+                        <input type="text" id="cancion"
+                            class="w-full py-2.5 border-b border-black/20 bg-transparent text-base text-[var(--text-main)] transition-all duration-300 focus:outline-none focus:border-b-2 focus:border-[var(--gold)] focus:bg-white/10 placeholder:text-black/40 placeholder:font-light placeholder:italic"
+                            placeholder="♫ Título y Artista">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-[var(--gold)] text-white border-none py-4 text-sm font-medium tracking-[1px] rounded-full transition-all duration-300 shadow-[0_4px_15px_rgba(197,160,89,0.3)] hover:bg-[#AA7F2A] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(197,160,89,0.5)] focus:outline-none uppercase flex justify-center items-center gap-2 group/btn cursor-pointer">
+                        <span>Enviar Confirmación</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
+                            class="transition-transform duration-500 group-hover/btn:rotate-45"></iconify-icon>
+                    </button>
+
+                </form>
+            </div>
+        </section>
+
+        <!-- 7. Hashtag -->
+        <section class="py-24 text-center px-6 relative z-20">
+            <div class="max-w-2xl mx-auto flex flex-col items-center">
+                <iconify-icon icon="solar:camera-minimalistic-linear" width="36" stroke-width="1.5"
+                    class="text-[var(--gold)] mb-6"></iconify-icon>
+                <h3
+                    class="font-title font-medium text-2xl md:text-3xl tracking-tight text-[var(--text-main)] mb-6 leading-relaxed">
+                    Cada sonrisa, cada abrazo y cada instante será parte de un recuerdo que atesoraremos siempre.
+                </h3>
+                <p class="font-subtitle text-sm font-normal text-[var(--text-muted)] mb-8">Si compartes fotografías o
+                    videos, nos encantará encontrarlos en</p>
+
+                <div class="relative group cursor-pointer">
+                    <div
+                        class="absolute inset-0 bg-[var(--gold-light)] rounded-full blur opacity-50 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div
+                        class="relative bg-white border border-[var(--gold-light)] px-10 py-3 rounded-full flex items-center gap-3">
+                        <span
+                            class="font-title font-medium text-xl md:text-2xl tracking-tight text-[var(--text-main)]">#bodapichis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Footer -->
+        <footer
+            class="py-20 text-center relative z-20 mt-10 border-t border-[var(--gold-light)]/50 bg-white/30 backdrop-blur-sm">
+            <div class="font-title font-medium text-4xl tracking-tighter text-[var(--gold)] mb-6">I&amp;O</div>
+            <h3 class="font-title text-base font-medium tracking-widest uppercase text-[var(--text-main)] mb-2">Ivon
+                García &amp; Osvaldo Colin</h3>
+            <p class="text-xs uppercase tracking-widest text-[var(--text-muted)] font-medium mb-10">11 de Abril de 2026
+            </p>
+
+            <p
+                class="font-subtitle font-normal text-sm md:text-base text-[var(--text-main)] max-w-sm mx-auto mb-10 leading-relaxed">
+                Con amor, ilusión y gratitud,<br>te esperamos para celebrar este día con nosotros.
+            </p>
+
+            <a href="#itinerario"
+                class="group inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">
+                <span>Ver Mapa</span>
+                <iconify-icon icon="solar:arrow-right-up-linear" width="14"
+                    class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+            </a>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification"
+        class="fixed top-6 left-1/2 z-[110] flex items-center gap-4 bg-white/95 backdrop-blur-xl border border-[var(--gold-light)] px-6 py-4 rounded-full shadow-2xl opacity-0 pointer-events-none transform -translate-x-1/2 -translate-y-full transition-all duration-500">
+        <div id="toast-icon"
+            class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--text-main)] text-white text-xs">
+            <iconify-icon icon="solar:check-read-linear" width="14" stroke-width="1.5"></iconify-icon>
+        </div>
+        <span id="toast-message" class="text-sm font-medium font-subtitle text-[var(--text-main)] pr-2">Mensaje</span>
+    </div>
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>
