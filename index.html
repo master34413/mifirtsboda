@@ -13,7 +13,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -38,12 +38,26 @@
             overflow-x: hidden;
         }
 
+        @font-face {
+            font-family: 'Vale Font';
+            src: url('/fonts/vale-font.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         .font-title {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: 'Vale Font', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+            font-weight: normal !important;
         }
 
         .font-subtitle {
             font-family: 'Open Sans', sans-serif;
+        }
+
+        .font-names {
+            font-family: 'Vale Font', cursive !important;
+            font-weight: normal !important;
         }
 
         input:focus,
@@ -905,8 +919,7 @@
             <div class="beam-border"></div>
             <div class="relative z-10 bg-white m-[1px] rounded-[23px] h-full flex flex-col overflow-hidden p-10">
                 <div class="text-center mb-8">
-                    <h3
-                        class="font-title font-medium text-4xl md:text-5xl tracking-tight text-[var(--text-main)] mb-3 leading-tight">
+                    <h3 class="font-names text-6xl md:text-7xl tracking-normal text-[var(--gold)] mb-1 leading-tight">
                         Ivon &amp; Osvaldo</h3>
                     <p class="font-subtitle font-normal text-base text-[var(--text-muted)] leading-relaxed mb-4">Te dan
                         la más cordial bienvenida.</p>
@@ -983,7 +996,7 @@
         <nav
             class="fixed top-6 left-1/2 -translate-x-1/2 z-[70] bg-white/60 backdrop-blur-xl border border-[var(--gold-light)] rounded-full px-8 py-3 flex items-center gap-10 shadow-sm transition-colors hover:bg-white/90">
             <a href="#"
-                class="font-title font-medium text-2xl tracking-tight text-[var(--gold)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">I&amp;O</a>
+                class="font-names text-4xl tracking-normal text-[var(--gold)] hover:text-[var(--text-main)] transition-colors focus:outline-none focus:ring-0">I&amp;O</a>
             <div
                 class="hidden md:flex gap-8 font-subtitle text-xs font-medium text-[var(--text-muted)] uppercase tracking-widest">
                 <a href="#itinerario"
@@ -999,14 +1012,14 @@
         <header class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-20">
             <div class="absolute inset-0 z-0 hero-img-mask">
                 <img src="images/hero-background.webp"
-                    class="w-full h-full object-cover opacity-60 grayscale mix-blend-multiply" alt="Fondo Boda">
+                    class="w-full h-full object-cover object-[70%_center] md:object-center" alt="Fondo Boda">
             </div>
 
             <div class="relative z-10 flex flex-col items-center text-center px-4 w-full pt-20">
                 <div class="mb-12 flex flex-col items-center gap-2">
-                    <h1 class="font-title font-medium text-[var(--text-main)] text-7xl md:text-9xl tracking-tight leading-tight"
+                    <h1 class="font-names text-[var(--gold)] text-7xl md:text-9xl tracking-normal leading-tight drop-shadow-md"
                         id="hero-name-1"></h1>
-                    <h1 class="font-title font-medium text-[var(--text-main)] text-7xl md:text-9xl tracking-tight leading-tight"
+                    <h1 class="font-names text-[var(--gold)] text-7xl md:text-9xl tracking-normal leading-tight drop-shadow-md"
                         id="hero-name-2"></h1>
                 </div>
 
@@ -1258,8 +1271,7 @@
 
         <!-- 6. RSVP -->
         <section id="rsvp"
-            class="relative z-20 py-24 px-6 min-h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&amp;fit=crop&amp;w=2070&amp;q=80')] bg-center bg-cover bg-fixed font-subtitle">
-            <div class="absolute inset-0 bg-black/20 backdrop-blur-[2px]"></div>
+            class="relative z-20 py-24 px-6 min-h-screen flex items-center justify-center font-subtitle w-full">
 
             <div
                 class="relative z-10 w-full max-w-lg p-10 md:p-12 rounded-[24px] backdrop-blur-[20px] bg-gradient-to-br from-white/60 to-white/20 border border-white/40 border-t-white/80 border-l-white/60 shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
@@ -1446,7 +1458,7 @@
         <!-- 8. Footer -->
         <footer
             class="py-20 text-center relative z-20 mt-10 border-t border-[var(--gold-light)]/50 bg-white/30 backdrop-blur-sm">
-            <div class="font-title font-medium text-4xl tracking-tight text-[var(--gold)] mb-6">I&amp;O</div>
+            <div class="font-names text-6xl tracking-normal text-[var(--gold)] mb-6">I&amp;O</div>
             <h3 class="font-title text-base font-medium tracking-widest uppercase text-[var(--text-main)] mb-2">Ivon
                 García &amp; Osvaldo Colin</h3>
             <p class="font-subtitle text-xs uppercase tracking-widest text-[var(--text-muted)] font-medium mb-10">11 de
