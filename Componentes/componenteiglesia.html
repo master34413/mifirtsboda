@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarjeta elegante - Templo de la Merced - Nivel Superior</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --card-bg: rgba(255, 255, 255, 0.55);
+      --card-border: rgba(255, 255, 255, 0.8);
+      --stroke: rgba(197, 160, 89, 0.25);
+      --gold: #bd964e;
+      --gold-hover: #a6823f;
+      --text: #1a1918;
+      --muted: #645f56;
+      --shadow-soft: 0 30px 60px -10px rgba(44, 42, 40, 0.08);
+      --shadow-inner: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background: 
+        radial-gradient(circle at top left, rgba(197, 160, 89, 0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(197, 160, 89, 0.12), transparent 30%),
+        var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Animación de entrada elegante */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    .venue-card {
+      width: min(1120px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 32px;
+      padding: 32px;
+      border-radius: 36px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: var(--shadow-soft), var(--shadow-inner);
+      position: relative;
+      animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 10px 10px 16px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      margin: 0 0 16px;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .address {
+      margin: 0 0 32px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 42ch;
+      font-weight: 300;
+    }
+
+    .details {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 36px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .detail {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .detail svg {
+      width: 20px;
+      height: 20px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .btn {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      padding: 16px 28px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: #151413;
+      color: white;
+      box-shadow: 0 12px 24px rgba(21, 20, 19, 0.2);
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
+      transform: skewX(-20deg);
+      transition: 0.6s;
+    }
+
+    .btn-primary:hover::after {
+      left: 150%;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      box-shadow: 0 16px 32px rgba(189, 150, 78, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--text);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      border-color: var(--gold);
+      box-shadow: 0 12px 24px rgba(44, 42, 40, 0.05);
+      transform: translateY(-3px);
+    }
+
+    .map-wrap {
+      min-height: 500px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      background: #e9e3d8;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    }
+
+    .map-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.4);
+      pointer-events: none;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      border: 0;
+      display: block;
+      filter: grayscale(20%) contrast(1.1);
+      transition: filter 0.5s ease;
+    }
+
+    .map-wrap:hover iframe {
+      filter: grayscale(0%) contrast(1);
+    }
+
+    @media (max-width: 960px) {
+      body { padding: 16px; }
+      .venue-card {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px;
+        border-radius: 30px;
+      }
+      .content { padding: 0; text-align: center; align-items: center; }
+      .eyebrow::before { display: none; }
+      .address { max-width: 100%; }
+      .details { text-align: left; margin-bottom: 28px; }
+      .actions { justify-content: center; width: 100%; }
+      .map-wrap, .map-wrap iframe { min-height: 400px; }
+    }
+    
+    @media (max-width: 480px) {
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <section class="venue-card">
+    <div class="content">
+      <span class="eyebrow">Ceremonia</span>
+      <h2>Templo de<br>La Merced</h2>
+      <p class="address">Barrio de La Merced, San Cristóbal de las Casas, Chiapas, México.</p>
+
+      <div class="details">
+        <div class="detail">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>Sábado 11 de abril de 2026 · 4:00 PM</span>
+        </div>
+        <div class="detail">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Ubicado en San Cristóbal de las Casas, en el entorno del Barrio y Plaza de La Merced.</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/search?q=templo+de+la+merced+san+crist%C3%B3bal+de+las+casas">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+          </svg>
+          Ver ubicación
+        </a>
+
+        <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Templo+de+La+Merced+San+Cristobal+de+las+Casas+Chiapas">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="19" r="2"></circle>
+            <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path>
+            <circle cx="19" cy="5" r="2"></circle>
+          </svg>
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+
+    <div class="map-wrap">
+      <iframe
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Templo%20de%20La%20Merced%20San%20Cristobal%20de%20las%20Casas%20Chiapas&z=16&output=embed">
+      </iframe>
+    </div>
+  </section>
+</body>
+</html>
