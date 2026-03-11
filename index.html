@@ -893,6 +893,256 @@
                 padding: 25px 20px;
             }
         }
+
+        .venue-wrapper {
+            --v-card-bg: rgba(255, 255, 255, 0.55);
+            --v-card-border: rgba(255, 255, 255, 0.8);
+            --v-stroke: rgba(197, 160, 89, 0.25);
+            --v-gold: #976E38;
+            --v-text: #1a1918;
+            --v-muted: #645f56;
+            --v-shadow-soft: 0 30px 60px -10px rgba(44, 42, 40, 0.08);
+            --v-shadow-inner: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .venue-card {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 32px;
+            padding: 32px;
+            border-radius: 36px;
+            background: var(--v-card-bg);
+            border: 1px solid var(--v-card-border);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: var(--v-shadow-soft), var(--v-shadow-inner);
+            position: relative;
+        }
+
+        .venue-card .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px 10px 10px 16px;
+            text-align: left;
+        }
+
+        .venue-card .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--v-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .venue-card .eyebrow::before {
+            content: "";
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--v-gold));
+        }
+
+        .venue-card h2 {
+            margin: 0 0 20px;
+            font-size: clamp(2.3rem, 4.5vw, 4rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            font-weight: normal;
+            color: #000;
+        }
+
+        .venue-card .address {
+            margin: 0 0 32px;
+            color: var(--v-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 42ch;
+            font-weight: normal;
+        }
+
+        .venue-card .details {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 36px;
+            font-size: 0.95rem;
+            color: var(--v-text);
+        }
+
+        .venue-card .detail {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .venue-card .detail svg {
+            width: 20px;
+            height: 20px;
+            color: var(--v-gold);
+            flex-shrink: 0;
+        }
+
+        .venue-card .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: auto;
+        }
+
+        .venue-card .btn {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            padding: 16px 28px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: normal;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .venue-card .btn-primary {
+            background: var(--v-gold);
+            color: white;
+            box-shadow: 0 12px 24px rgba(151, 110, 56, 0.2);
+            border: none;
+        }
+
+        .venue-card .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transform: skewX(-20deg);
+            transition: 0.6s;
+        }
+
+        .venue-card .btn-primary:hover::after {
+            left: 150%;
+        }
+
+        .venue-card .btn-primary:hover {
+            background: #835f2f;
+            box-shadow: 0 16px 32px rgba(151, 110, 56, 0.3);
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .venue-card .btn-secondary {
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--v-text);
+            border: 1px solid var(--v-stroke);
+            backdrop-filter: blur(10px);
+        }
+
+        .venue-card .btn-secondary:hover {
+            background: white;
+            border-color: var(--v-gold);
+            box-shadow: 0 12px 24px rgba(44, 42, 40, 0.05);
+            transform: translateY(-3px);
+            color: var(--v-text);
+        }
+
+        .venue-card .map-wrap {
+            min-height: 500px;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            background: #e9e3d8;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .venue-card .map-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+
+        .venue-card .map-wrap iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border: 0;
+            display: block;
+            filter: grayscale(20%) contrast(1.1);
+            transition: filter 0.5s ease;
+        }
+
+        .venue-card .map-wrap:hover iframe {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        @media (max-width: 960px) {
+            .venue-card {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 24px;
+                border-radius: 30px;
+            }
+
+            .venue-card .content {
+                padding: 0;
+                text-align: center;
+                align-items: center;
+            }
+
+            .venue-card .eyebrow::before {
+                display: none;
+            }
+
+            .venue-card .address {
+                max-width: 100%;
+            }
+
+            .venue-card .details {
+                text-align: left;
+                margin-bottom: 28px;
+            }
+
+            .venue-card .actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .venue-card .map-wrap,
+            .venue-card .map-wrap iframe {
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .venue-card .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .venue-card .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -1194,58 +1444,126 @@
                 </div>
             </div>
 
-            <div class="glass-tray">
-                <div class="light-orb orb-1"></div>
-                <div class="light-orb orb-2"></div>
+            <div class="venue-wrapper">
+                <section class="venue-card">
+                    <div class="content">
+                        <span class="eyebrow font-subtitle">Ceremonia</span>
+                        <h2 class="font-title">Templo de<br>La Merced</h2>
+                        <p class="address font-subtitle">Barrio de La Merced, San Cristóbal de las Casas, Chiapas,
+                            México.</p>
 
-                <div class="event-card">
-                    <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-title text-2xl md:text-3xl font-medium tracking-tight text-[var(--text-dark)] mb-3">
-                        Ceremonia Religiosa</h3>
-                    <p
-                        class="font-subtitle text-base font-normal text-[var(--text-gray)] leading-relaxed flex-grow mb-8">
-                        Iglesia de Nuestra Señora de<br>la Merced</p>
-                    <a href="#" class="btn-black font-subtitle text-xs font-medium tracking-widest uppercase">
-                        Ver Ubicación
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </a>
-                </div>
+                        <div class="details font-subtitle">
+                            <div class="detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>Sábado 11 de abril de 2026 · 4:00 PM</span>
+                            </div>
+                            <div class="detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>Ubicado en San Cristóbal de las Casas, en el entorno del Barrio y Plaza de La
+                                    Merced.</span>
+                            </div>
+                        </div>
 
-                <div class="event-card">
-                    <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M8 22h8"></path>
-                            <path d="M12 15v7"></path>
-                            <path d="M12 15a7.5 7.5 0 0 0 7.5-7.5C19.5 5.5 16 2 12 2S4.5 5.5 4.5 7.5 8.5 15 12 15z">
-                            </path>
-                            <path d="M4.5 7.5h15"></path>
-                        </svg>
+                        <div class="actions">
+                            <a class="btn btn-primary font-subtitle" target="_blank" rel="noopener"
+                                href="https://www.google.com/search?q=templo+de+la+merced+san+crist%C3%B3bal+de+las+casas">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                                </svg>
+                                Ver ubicación
+                            </a>
+
+                            <a class="btn btn-secondary font-subtitle" target="_blank" rel="noopener"
+                                href="https://www.google.com/maps/dir/?api=1&destination=Templo+de+La+Merced+San+Cristobal+de+las+Casas+Chiapas">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="5" cy="19" r="2"></circle>
+                                    <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path>
+                                    <circle cx="19" cy="5" r="2"></circle>
+                                </svg>
+                                Cómo llegar
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="font-title text-2xl md:text-3xl font-medium tracking-tight text-[var(--text-dark)] mb-3">
-                        Recepción</h3>
-                    <p
-                        class="font-subtitle text-base font-normal text-[var(--text-gray)] leading-relaxed flex-grow mb-8">
-                        Las Brisas Centro de<br>Convenciones</p>
-                    <a href="#" class="btn-black font-subtitle text-xs font-medium tracking-widest uppercase">
-                        Ver Ubicación
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </a>
-                </div>
+
+                    <div class="map-wrap">
+                        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps?q=Templo%20de%20La%20Merced%20San%20Cristobal%20de%20las%20Casas%20Chiapas&z=16&output=embed">
+                        </iframe>
+                    </div>
+                </section>
+
+                <section class="venue-card">
+                    <div class="content">
+                        <span class="eyebrow font-subtitle">Recepción</span>
+                        <h2 class="font-title">Las Brisas<br>Centro de Convenciones</h2>
+                        <p class="address font-subtitle">Tuxtla Gutiérrez, Chiapas, México.</p>
+
+                        <div class="details font-subtitle">
+                            <div class="detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>Sábado 11 de abril de 2026 · 6:00 PM</span>
+                            </div>
+                            <div class="detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>Abre Google Maps para ver la ubicación exacta.</span>
+                            </div>
+                        </div>
+
+                        <div class="actions">
+                            <a class="btn btn-primary font-subtitle" target="_blank" rel="noopener"
+                                href="https://www.google.com/maps/place/Las+Brisas+Centro+de+Convenciones/data=!4m2!3m1!1s0x0:0xe3c697c7a54fcf3f?sa=X&ved=1t:2428&ictx=111">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                                </svg>
+                                Ver ubicación
+                            </a>
+
+                            <a class="btn btn-secondary font-subtitle" target="_blank" rel="noopener"
+                                href="https://www.google.com/maps/dir/?api=1&destination=Las+Brisas+Centro+de+Convenciones+Tuxtla+Gutierrez+Chiapas">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="5" cy="19" r="2"></circle>
+                                    <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path>
+                                    <circle cx="19" cy="5" r="2"></circle>
+                                </svg>
+                                Cómo llegar
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="map-wrap">
+                        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps?q=Las%20Brisas%20Centro%20de%20Convenciones%20Tuxtla%20Gutierrez%20Chiapas&z=15&output=embed">
+                        </iframe>
+                    </div>
+                </section>
             </div>
         </section>
 
