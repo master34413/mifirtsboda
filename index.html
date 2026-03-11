@@ -1369,14 +1369,18 @@
                 width: min(500px, 90%);
                 padding: 60px 40px;
                 border-radius: 40px;
-                background: rgba(255, 255, 255, 0.38);
+                /* Solid fallback for browsers that don't support backdrop-filter (many mobile browsers) */
+                background: rgba(255, 255, 255, 0.75);
                 backdrop-filter: blur(22px);
                 -webkit-backdrop-filter: blur(22px);
-                border: 1px solid rgba(255, 255, 255, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.8);
                 text-align: center;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
                 transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), border-color 1s ease;
                 overflow: hidden;
+                min-height: 260px;
+                /* Ensure it's always visible on all platforms */
+                will-change: transform;
             }
 
             .audio-glass-card.audio-active {
@@ -1453,7 +1457,7 @@
             </div>
         </section>
 
-        <audio id="weddingAudio" loop crossOrigin="anonymous">
+        <audio id="weddingAudio" loop preload="none">
             <source src="audio/veoentilaluz.mp3" type="audio/mpeg">
         </audio>
 
@@ -1477,15 +1481,21 @@
 
             function initAudio() {
                 if (isAudioReady) return;
-                const AC  = window.AudioContext || window.webkitAudioContext;
-                audioCtx  = new AC();
-                analyser  = audioCtx.createAnalyser();
-                const src = audioCtx.createMediaElementSource(audio);
-                src.connect(analyser);
-                analyser.connect(audioCtx.destination);
-                analyser.fftSize = 256;
-                dataArray = new Uint8Array(analyser.frequencyBinCount);
-                isAudioReady = true;
+                try {
+                    const AC  = window.AudioContext || window.webkitAudioContext;
+                    audioCtx  = new AC();
+                    analyser  = audioCtx.createAnalyser();
+                    const src = audioCtx.createMediaElementSource(audio);
+                    src.connect(analyser);
+                    analyser.connect(audioCtx.destination);
+                    analyser.fftSize = 256;
+                    dataArray = new Uint8Array(analyser.frequencyBinCount);
+                    isAudioReady = true;
+                } catch(e) {
+                    // Web Audio API unavailable, play audio without visualizer
+                    console.warn('Web Audio API not available:', e);
+                    isAudioReady = false;
+                }
             }
 
             function drawHeart(cx, x, y, size, opacity) {
