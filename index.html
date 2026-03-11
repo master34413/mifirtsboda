@@ -1280,67 +1280,75 @@
             </div>
         </nav>
 
-        <!-- 1. Hero / Portada -->
-        <header class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-20">
-            <div class="absolute inset-0 z-0 hero-img-mask">
+        <!-- 1. Hero / Portada — Solo imagen a pantalla completa -->
+        <header class="relative min-h-screen flex items-end justify-center overflow-hidden z-20">
+            <div class="absolute inset-0 z-0">
                 <img src="images/hero-ivonb.webp"
-                    class="w-full h-full object-cover object-[center_20%] md:object-[center_15%]" alt="Fondo Boda">
+                    class="w-full h-full object-cover scale-[1.15] object-[center_20%] md:object-[center_15%] md:scale-100" alt="Fondo Boda">
             </div>
-
-            <div class="relative z-10 flex flex-col items-center text-center px-4 w-full pt-16 pb-6">
-                <div class="mb-6 flex flex-col items-center gap-1">
-                    <h1 class="font-names text-[var(--gold)] text-7xl md:text-9xl tracking-normal leading-tight drop-shadow-md"
-                        id="hero-name-1"></h1>
-                    <h1 class="font-names text-[var(--gold)] text-7xl md:text-9xl tracking-normal leading-tight drop-shadow-md"
-                        id="hero-name-2"></h1>
-                </div>
-
-                <div id="static-ticker-container"
-                    class="flex flex-wrap gap-5 md:gap-8 items-center justify-center mb-5 opacity-0 translate-y-4 transition-all duration-1000">
-                    <div class="flex flex-col items-center w-16 md:w-20">
-                        <span
-                            class="ticker-d text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38]">0</span>
-                        <span
-                            class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Días</span>
-                    </div>
-                    <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
-                    <div class="flex flex-col items-center w-16 md:w-20">
-                        <span
-                            class="ticker-h text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38]">0</span>
-                        <span
-                            class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Horas</span>
-                    </div>
-                    <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
-                    <div class="flex flex-col items-center w-16 md:w-20">
-                        <span
-                            class="ticker-m text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38]">0</span>
-                        <span
-                            class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Min</span>
-                    </div>
-                    <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
-                    <div class="flex flex-col items-center w-16 md:w-24">
-                        <span
-                            class="ticker-s text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38] text-center">0</span>
-                        <span
-                            class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Seg</span>
-                    </div>
-                </div>
-
-                <p class="text-sm font-subtitle font-normal text-[#976E38] max-w-sm mx-auto mb-8 opacity-0 translate-y-4 transition-all duration-1000 delay-300 leading-relaxed"
-                    id="hero-subtitle">
-                    Estamos contando los días para el comienzo de un recuerdo eterno.
-                </p>
-
-                <div class="opacity-0 translate-y-4 transition-all duration-1000 delay-500" id="hero-btn">
-                    <a href="#rsvp"
-                        class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#976E38] text-[var(--marfil)] text-xs font-medium uppercase tracking-widest hover:bg-[#835f2f] transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-0">
-                        <span>Confirmar Asistencia</span>
-                        <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
-                            class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
-                    </a>
-                </div>
-            </div>
+            <!-- Degradado inferior suave para transición a la sección de abajo -->
+            <div class="absolute bottom-0 left-0 right-0 h-40 z-10"
+                 style="background: linear-gradient(to top, var(--marfil), transparent);"></div>
         </header>
+
+        <!-- 1b. Nombres & Contador — Sección independiente -->
+        <section class="relative z-20 text-center px-6 -mt-12 md:-mt-20 pb-16">
+            <!-- Nombres de los novios -->
+            <div class="mb-8 flex flex-col items-center gap-0">
+                <h1 class="font-names text-[var(--gold)] text-7xl md:text-9xl tracking-normal leading-tight drop-shadow-md"
+                    id="hero-name-1"></h1>
+                <h1 class="font-names text-[var(--gold)] text-7xl md:text-9xl tracking-normal leading-tight drop-shadow-md"
+                    id="hero-name-2"></h1>
+            </div>
+
+            <!-- Contador -->
+            <div id="static-ticker-container"
+                class="flex flex-wrap gap-5 md:gap-8 items-center justify-center mb-6 opacity-0 translate-y-4 transition-all duration-1000">
+                <div class="flex flex-col items-center w-16 md:w-20">
+                    <span
+                        class="ticker-d text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38]">0</span>
+                    <span
+                        class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Días</span>
+                </div>
+                <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
+                <div class="flex flex-col items-center w-16 md:w-20">
+                    <span
+                        class="ticker-h text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38]">0</span>
+                    <span
+                        class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Horas</span>
+                </div>
+                <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
+                <div class="flex flex-col items-center w-16 md:w-20">
+                    <span
+                        class="ticker-m text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38]">0</span>
+                    <span
+                        class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Min</span>
+                </div>
+                <div class="text-2xl md:text-3xl text-[var(--gold-light)] font-title font-normal mb-4">/</div>
+                <div class="flex flex-col items-center w-16 md:w-24">
+                    <span
+                        class="ticker-s text-4xl md:text-5xl font-title font-medium tracking-tight text-[#976E38] text-center">0</span>
+                    <span
+                        class="text-xs font-subtitle uppercase tracking-widest text-[#976E38] mt-2 font-medium opacity-70">Seg</span>
+                </div>
+            </div>
+
+            <!-- Subtítulo -->
+            <p class="text-sm font-subtitle font-normal text-[#976E38] max-w-sm mx-auto mb-10 opacity-0 translate-y-4 transition-all duration-1000 delay-300 leading-relaxed"
+                id="hero-subtitle">
+                Estamos contando los días para el comienzo de un recuerdo eterno.
+            </p>
+
+            <!-- Botón CTA -->
+            <div class="opacity-0 translate-y-4 transition-all duration-1000 delay-500" id="hero-btn">
+                <a href="#rsvp"
+                    class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#976E38] text-[var(--marfil)] text-xs font-medium uppercase tracking-widest hover:bg-[#835f2f] transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-0">
+                    <span>Confirmar Asistencia</span>
+                    <iconify-icon icon="solar:arrow-right-up-linear" width="16" stroke-width="1.5"
+                        class="transition-transform duration-500 group-hover:rotate-45"></iconify-icon>
+                </a>
+            </div>
+        </section>
 
         <!-- 2. Nos Casamos -->
         <section class="py-24 md:py-32 text-center max-w-3xl mx-auto px-6 relative z-20">
