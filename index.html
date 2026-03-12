@@ -405,19 +405,24 @@
                     <input type="text" id="nombre" name="nombre" placeholder=" " required=""
                         class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent">
                     <label for="nombre"
-                        class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not                <!-- Asistencia -->
+                        class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                        Nombre completo
+                    </label>
+                </div>
+
+                <!-- Asistencia -->
                 <fieldset class="flex flex-col gap-4 border-0 p-0">
                     <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Nos acompañas?</legend>
                     <div class="flex gap-4">
                         <label class="cursor-pointer flex-1">
-                            <input type="radio" name="attending" value="yes" class="peer sr-only" checked="" onchange="handleAttendanceChange('yes')">
+                            <input type="radio" name="attending" value="yes" class="peer sr-only" checked="">
                             <div
                                 class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#9f7c65] peer-checked:text-white peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
                                 Sí, confirmo
                             </div>
                         </label>
                         <label class="cursor-pointer flex-1">
-                            <input type="radio" name="attending" value="no" class="peer sr-only" onchange="handleAttendanceChange('no')">
+                            <input type="radio" name="attending" value="no" class="peer sr-only">
                             <div
                                 class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
                                 No podré
@@ -426,125 +431,117 @@
                     </div>
                 </fieldset>
 
-                <!-- Campos dinámicos -->
-                <div id="dynamic-fields" class="flex flex-col gap-10 transition-all duration-500 overflow-hidden max-h-[2500px] opacity-100">
-                    <!-- Asistentes -->
+                <!-- Asistentes -->
+                <fieldset class="flex flex-col gap-4 border-0 p-0">
+                    <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">Número de asistentes</legend>
+                    <div class="flex flex-wrap md:flex-nowrap justify-between gap-2 md:gap-3">
+                        <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="1 persona">
+                            <input type="radio" name="asistentes" value="1" class="peer sr-only" checked="">
+                            <div
+                                class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                1</div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="2 personas">
+                            <input type="radio" name="asistentes" value="2" class="peer sr-only">
+                            <div
+                                class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                2</div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="3 personas">
+                            <input type="radio" name="asistentes" value="3" class="peer sr-only">
+                            <div
+                                class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                3</div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="4 personas">
+                            <input type="radio" name="asistentes" value="4" class="peer sr-only">
+                            <div
+                                class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                4</div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="5 personas">
+                            <input type="radio" name="asistentes" value="5" class="peer sr-only">
+                            <div
+                                class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                5</div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="6 personas">
+                            <input type="radio" name="asistentes" value="6" class="peer sr-only">
+                            <div
+                                class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                6</div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="7 personas">
+                            <input type="radio" name="asistentes" value="7" class="peer sr-only">
+                            <div
+                                class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                7</div>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Niños -->
+                <div class="grid grid-cols-2 gap-8">
                     <fieldset class="flex flex-col gap-4 border-0 p-0">
-                        <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">Número de asistentes</legend>
-                        <div class="flex flex-wrap md:flex-nowrap justify-between gap-2 md:gap-3">
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="1 persona">
-                                <input type="radio" name="asistentes" value="1" class="peer sr-only" checked="">
+                        <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Llevan niños?</legend>
+                        <div class="flex border border-[#d8cabc] rounded-md overflow-hidden h-12">
+                            <label class="cursor-pointer flex-1 border-r border-[#d8cabc]">
+                                <input type="radio" name="ninos" value="yes" class="peer sr-only" onchange="toggleKidsInput(true)">
                                 <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    1</div>
+                                    class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
+                                    Sí</div>
                             </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="2 personas">
-                                <input type="radio" name="asistentes" value="2" class="peer sr-only">
+                            <label class="cursor-pointer flex-1">
+                                <input type="radio" name="ninos" value="no" class="peer sr-only" checked="" onchange="toggleKidsInput(false)">
                                 <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    2</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="3 personas">
-                                <input type="radio" name="asistentes" value="3" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    3</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="4 personas">
-                                <input type="radio" name="asistentes" value="4" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    4</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="5 personas">
-                                <input type="radio" name="asistentes" value="5" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    5</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="6 personas">
-                                <input type="radio" name="asistentes" value="6" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    6</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="7 personas">
-                                <input type="radio" name="asistentes" value="7" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    7</div>
+                                    class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
+                                    No</div>
                             </label>
                         </div>
                     </fieldset>
-
-                    <!-- Niños -->
-                    <div class="grid grid-cols-2 gap-8">
-                        <fieldset class="flex flex-col gap-4 border-0 p-0">
-                            <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Llevan niños?</legend>
-                            <div class="flex border border-[#d8cabc] rounded-md overflow-hidden h-12">
-                                <label class="cursor-pointer flex-1 border-r border-[#d8cabc]">
-                                    <input type="radio" name="ninos" value="yes" class="peer sr-only"
-                                        onchange="toggleKidsInput(true)">
-                                    <div
-                                        class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
-                                        Sí</div>
-                                </label>
-                                <label class="cursor-pointer flex-1">
-                                    <input type="radio" name="ninos" value="no" class="peer sr-only" checked=""
-                                        onchange="toggleKidsInput(false)">
-                                    <div
-                                        class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
-                                        No</div>
-                                </label>
-                            </div>
-                        </fieldset>
-                        <div class="flex flex-col gap-4">
-                            <label for="cant_ninos" class="text-xs tracking-widest uppercase text-[#7a6b5d]">Cantidad</label>
-                            <input type="number" id="cant_ninos" name="cant_ninos" min="0" max="10" placeholder="0"
-                                disabled=""
-                                class="h-12 bg-transparent border border-[#d8cabc] rounded-md px-4 text-center text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] focus:ring-1 focus:ring-[#9f7c65] transition-all disabled:opacity-50">
-                        </div>
+                    <div class="flex flex-col gap-4">
+                        <label for="cant_ninos" class="text-xs tracking-widest uppercase text-[#7a6b5d]">Cantidad</label>
+                        <input type="number" id="cant_ninos" name="cant_ninos" min="0" max="10" placeholder="0" disabled=""
+                            class="h-12 bg-transparent border border-[#d8cabc] rounded-md px-4 text-center text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] focus:ring-1 focus:ring-[#9f7c65] transition-all disabled:opacity-50">
                     </div>
+                </div>
 
-                    <!-- Bebida -->
-                    <div class="relative w-full mt-2">
-                        <label for="bebida"
-                            class="absolute -top-5 left-0 text-xs tracking-widest uppercase text-[#7a6b5d]">Bebida de
-                            preferencia</label>
-                        <select id="bebida" name="bebida"
-                            class="w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] appearance-none focus:outline-none focus:border-[#9f7c65] transition-colors cursor-pointer pr-8">
-                            <option value="" disabled="" selected="">Selecciona una opción</option>
-                            <option value="tequila">Tequila</option>
-                            <option value="vino">Vino tinto</option>
-                            <option value="mezcal">Mezcal / Cerveza</option>
-                            <option value="refresco">Refresco / Sin alcohol</option>
-                        </select>
-                        <iconify-icon icon="solar:alt-arrow-down-linear" width="20"
-                            class="absolute right-0 top-1/2 -translate-y-1/2 text-[#9f7c65] pointer-events-none"></iconify-icon>
-                    </div>
+                <!-- Bebida -->
+                <div class="relative w-full mt-2">
+                    <label for="bebida"
+                        class="absolute -top-5 left-0 text-xs tracking-widest uppercase text-[#7a6b5d]">Bebida de
+                        preferencia</label>
+                    <select id="bebida" name="bebida"
+                        class="w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] appearance-none focus:outline-none focus:border-[#9f7c65] transition-colors cursor-pointer pr-8">
+                        <option value="" disabled="" selected="">Selecciona una opción</option>
+                        <option value="tequila">Tequila</option>
+                        <option value="vino">Vino tinto</option>
+                        <option value="mezcal">Mezcal / Cerveza</option>
+                        <option value="refresco">Refresco / Sin alcohol</option>
+                    </select>
+                    <iconify-icon icon="solar:alt-arrow-down-linear" width="20"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 text-[#9f7c65] pointer-events-none"></iconify-icon>
+                </div>
 
-                    <!-- Alergias -->
-                    <div class="relative w-full mt-4">
-                        <input type="text" id="alergias" name="alergias" placeholder=" "
-                            class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent">
-                        <label for="alergias"
-                            class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
-                            Alergias o dieta especial
-                        </label>
-                    </div>
+                <!-- Alergias -->
+                <div class="relative w-full mt-4">
+                    <input type="text" id="alergias" name="alergias" placeholder=" "
+                        class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent">
+                    <label for="alergias"
+                        class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                        Alergias o dieta especial
+                    </label>
+                </div>
 
-                    <!-- Canción -->
-                    <div class="relative w-full mt-4">
-                        <input type="text" id="cancion" name="cancion" placeholder=" "
-                            class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent pr-8">
-                        <label for="cancion"
-                            class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
-                            Una canción que no puede faltar
-                        </label>
-                        <iconify-icon icon="solar:music-notes-linear" width="20"
-                            class="absolute right-0 top-1/2 -translate-y-1/2 text-[#d8cabc] pointer-events-none"></iconify-icon>
-                    </div>
-                </div>ify-icon icon="solar:music-notes-linear" width="20"
+                <!-- Canción -->
+                <div class="relative w-full mt-4">
+                    <input type="text" id="cancion" name="cancion" placeholder=" "
+                        class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent pr-8">
+                    <label for="cancion"
+                        class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                        Una canción que no puede faltar
+                    </label>
+                    <iconify-icon icon="solar:music-notes-linear" width="20"
                         class="absolute right-0 top-1/2 -translate-y-1/2 text-[#d8cabc] pointer-events-none"></iconify-icon>
                 </div>
 
@@ -680,18 +677,6 @@
             const input = document.getElementById('cant_ninos');
             if (show) { input.disabled = false; input.focus(); }
             else { input.disabled = true; input.value = ''; }
-        }
-
-        function handleAttendanceChange(value) {
-            const fields = document.getElementById('dynamic-fields');
-            if (value === 'no') {
-                fields.classList.add('max-h-0', 'opacity-0', 'pointer-events-none');
-                fields.classList.remove('max-h-[2500px]', 'opacity-100');
-                showToast('Te extrañaremos 😔');
-            } else {
-                fields.classList.remove('max-h-0', 'opacity-0', 'pointer-events-none');
-                fields.classList.add('max-h-[2500px]', 'opacity-100');
-            }
         }
 
         function handleRSVPSubmit(e) {
