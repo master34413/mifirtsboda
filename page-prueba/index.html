@@ -29,7 +29,7 @@
             <!-- Foto -->
             <div class="absolute inset-0">
                 <img src="../images/fotonewhero.webp" alt="Ivon &amp; Osvaldo" class="w-full h-full object-cover"
-                    style="object-position: center 5%;">
+                    style="object-position: center top;">
             </div>
 
             <!-- Contenido en la parte superior -->
@@ -49,38 +49,16 @@
         </header>
 
         <!-- ── Reproductor ── -->
-        <section class="py-12 px-8 flex flex-col items-center text-center bg-[#f3ece6] border-b border-[#d8cabc]/40">
+        <section class="py-10 px-8 flex flex-col items-center text-center bg-[#f3ece6] border-b border-[#d8cabc]/40">
             <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-6">Nuestra canción</p>
 
             <audio id="wedding-audio" preload="metadata" src="../audio/veoentilaluz.mp3"></audio>
 
-            <div class="w-full max-w-sm flex flex-col items-center gap-5">
-
-                <!-- Botón play/pause -->
-                <button id="play-btn" onclick="togglePlay()"
-                    aria-label="Play"
-                    class="w-16 h-16 rounded-full border-2 border-[#9f7c65] flex items-center justify-center text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300 group">
-                    <iconify-icon id="play-icon" icon="solar:play-bold" width="28"></iconify-icon>
-                </button>
-
-                <!-- Título -->
-                <div class="flex flex-col items-center gap-1">
-                    <p class="text-lg font-light text-[#53463a] tracking-wide">Veo en ti la luz</p>
-                    <p class="text-xs tracking-widest uppercase text-[#9f7c65] opacity-70">Nuestra canción</p>
-                </div>
-
-                <!-- Barra de progreso -->
-                <div class="w-full flex items-center gap-3">
-                    <span id="audio-current" class="text-xs text-[#9f7c65] tabular-nums w-10 text-right">0:00</span>
-                    <div id="progress-bar"
-                        class="flex-1 h-1 bg-[#d8cabc] rounded-full cursor-pointer relative overflow-hidden"
-                        onclick="seekAudio(event)">
-                        <div id="progress-fill" class="h-full bg-[#9f7c65] rounded-full w-0 transition-all duration-300"></div>
-                    </div>
-                    <span id="audio-total" class="text-xs text-[#9f7c65] tabular-nums w-10">0:00</span>
-                </div>
-
-            </div>
+            <button id="play-btn" onclick="togglePlay()"
+                aria-label="Play"
+                class="w-16 h-16 rounded-full border-2 border-[#9f7c65] flex items-center justify-center text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300">
+                <iconify-icon id="play-icon" icon="solar:play-bold" width="28"></iconify-icon>
+            </button>
         </section>
 
         <!-- ── Intro ── -->
