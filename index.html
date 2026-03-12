@@ -692,13 +692,16 @@
         function handleAttendanceChange(isAttending) {
             const details = document.getElementById('attendance-details');
             const msg = document.getElementById('not-attending-msg');
+            const btnText = document.querySelector('#submit-btn span');
             
             if (isAttending) {
                 details.classList.remove('hidden');
                 msg.classList.add('hidden');
+                btnText.textContent = 'Confirmar Asistencia';
             } else {
                 details.classList.add('hidden');
                 msg.classList.remove('hidden');
+                btnText.textContent = 'Confirmar Elección';
             }
         }
 
