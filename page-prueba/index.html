@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 
@@ -24,22 +25,27 @@
     <main class="w-full max-w-2xl bg-white/40 shadow-2xl">
 
         <!-- ── Hero ── -->
-        <header class="relative w-full h-screen min-h-[700px] flex flex-col justify-between overflow-hidden">
+        <header class="relative w-full h-screen min-h-[700px] flex flex-col items-center justify-center overflow-hidden">
+            <!-- Foto -->
             <div class="absolute inset-0">
                 <img src="../images/fotonewhero.webp" alt="Ivon &amp; Osvaldo"
-                    class="w-full h-full object-cover object-top scale-105 origin-top transition-transform duration-1000 ease-in-out">
+                    class="w-full h-full object-cover"
+                    style="object-position: center 20%;">
             </div>
 
-            <div class="relative z-10 w-full pt-20 px-6 flex flex-col items-center text-center">
-                <p class="text-xs tracking-widest uppercase font-light mb-8 text-black">Nuestra Boda</p>
+            <!-- Contenido centrado -->
+            <div class="relative z-10 flex flex-col items-center text-center px-6 gap-4">
+                <p class="text-xs tracking-[0.35em] uppercase font-light text-black/80">Nuestra Boda</p>
                 <h1
-                    class="text-7xl md:text-8xl tracking-tight text-black drop-shadow-sm font-['Pinyon_Script',cursive]">
+                    class="whitespace-nowrap text-black drop-shadow-sm font-['Pinyon_Script',cursive] leading-none"
+                    style="font-size: clamp(3.5rem, 14vw, 6.5rem);">
                     Ivon &amp; Osvaldo
                 </h1>
             </div>
 
-            <div class="relative z-10 w-full pb-16 px-6 flex flex-col items-center text-center">
-                <iconify-icon icon="solar:round-alt-arrow-down-linear" width="24"
+            <!-- Flecha scroll -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                <iconify-icon icon="solar:round-alt-arrow-down-linear" width="28"
                     class="text-[#9f7c65] animate-bounce"></iconify-icon>
             </div>
         </header>
