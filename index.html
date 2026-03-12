@@ -415,14 +415,14 @@
                     <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Nos acompañas?</legend>
                     <div class="flex gap-4">
                         <label class="cursor-pointer flex-1">
-                            <input type="radio" name="attending" value="yes" class="peer sr-only" checked="">
+                            <input type="radio" name="attending" value="yes" class="peer sr-only" checked="" onchange="handleAttendanceChange(true)">
                             <div
                                 class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#9f7c65] peer-checked:text-white peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
                                 Sí, confirmo
                             </div>
                         </label>
                         <label class="cursor-pointer flex-1">
-                            <input type="radio" name="attending" value="no" class="peer sr-only">
+                            <input type="radio" name="attending" value="no" class="peer sr-only" onchange="handleAttendanceChange(false)">
                             <div
                                 class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
                                 No podré
@@ -430,6 +430,15 @@
                         </label>
                     </div>
                 </fieldset>
+
+                <!-- Mensaje para cuando no asisten -->
+                <div id="not-attending-msg" class="hidden text-center py-10 animate-fade-in">
+                    <p class="text-2xl font-['Pinyon_Script',cursive] text-[#9f7c65]">Te extrañaremos 🙁</p>
+                    <p class="text-sm font-light text-[#7a6b5d] mt-2">Gracias por avisarnos.</p>
+                </div>
+
+                <!-- Detalles de asistencia (se ocultan si no asisten) -->
+                <div id="attendance-details" class="flex flex-col gap-10">
 
                 <!-- Asistentes -->
                 <fieldset class="flex flex-col gap-4 border-0 p-0">
@@ -544,6 +553,7 @@
                     <iconify-icon icon="solar:music-notes-linear" width="20"
                         class="absolute right-0 top-1/2 -translate-y-1/2 text-[#d8cabc] pointer-events-none"></iconify-icon>
                 </div>
+                </div> <!-- Cierre de attendance-details -->
 
                 <!-- Submit -->
                 <button id="submit-btn" type="submit"
@@ -677,6 +687,19 @@
             const input = document.getElementById('cant_ninos');
             if (show) { input.disabled = false; input.focus(); }
             else { input.disabled = true; input.value = ''; }
+        }
+
+        function handleAttendanceChange(isAttending) {
+            const details = document.getElementById('attendance-details');
+            const msg = document.getElementById('not-attending-msg');
+            
+            if (isAttending) {
+                details.classList.remove('hidden');
+                msg.classList.add('hidden');
+            } else {
+                details.classList.add('hidden');
+                msg.classList.remove('hidden');
+            }
         }
 
         function handleRSVPSubmit(e) {
