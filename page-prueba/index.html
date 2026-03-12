@@ -48,6 +48,41 @@
             </div>
         </header>
 
+        <!-- ── Reproductor ── -->
+        <section class="py-12 px-8 flex flex-col items-center text-center bg-[#f3ece6] border-b border-[#d8cabc]/40">
+            <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-6">Nuestra canción</p>
+
+            <audio id="wedding-audio" preload="metadata" src="../audio/veoentilaluz.mp3"></audio>
+
+            <div class="w-full max-w-sm flex flex-col items-center gap-5">
+
+                <!-- Botón play/pause -->
+                <button id="play-btn" onclick="togglePlay()"
+                    aria-label="Play"
+                    class="w-16 h-16 rounded-full border-2 border-[#9f7c65] flex items-center justify-center text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300 group">
+                    <iconify-icon id="play-icon" icon="solar:play-bold" width="28"></iconify-icon>
+                </button>
+
+                <!-- Título -->
+                <div class="flex flex-col items-center gap-1">
+                    <p class="text-lg font-light text-[#53463a] tracking-wide">Veo en ti la luz</p>
+                    <p class="text-xs tracking-widest uppercase text-[#9f7c65] opacity-70">Nuestra canción</p>
+                </div>
+
+                <!-- Barra de progreso -->
+                <div class="w-full flex items-center gap-3">
+                    <span id="audio-current" class="text-xs text-[#9f7c65] tabular-nums w-10 text-right">0:00</span>
+                    <div id="progress-bar"
+                        class="flex-1 h-1 bg-[#d8cabc] rounded-full cursor-pointer relative overflow-hidden"
+                        onclick="seekAudio(event)">
+                        <div id="progress-fill" class="h-full bg-[#9f7c65] rounded-full w-0 transition-all duration-300"></div>
+                    </div>
+                    <span id="audio-total" class="text-xs text-[#9f7c65] tabular-nums w-10">0:00</span>
+                </div>
+
+            </div>
+        </section>
+
         <!-- ── Intro ── -->
         <section class="py-20 px-8 text-center flex flex-col items-center bg-[#f8f5f0]">
             <h2 class="text-3xl tracking-tight uppercase font-light text-[#9f7c65]">Nos Casamos</h2>
@@ -518,6 +553,53 @@
     </main>
 
     <script>
+        // ── Reproductor de audio ──
+        (function () {
+            const audio    = document.getElementById('wedding-audio');
+            const playIcon = document.getElementById('play-icon');
+            const fill     = document.getElementById('progress-fill');
+            const cur      = document.getElementById('audio-current');
+            const tot      = document.getElementById('audio-total');
+
+            function fmt(s) {
+                const m = Math.floor(s / 60);
+                const ss = Math.floor(s % 60);
+                return m + ':' + String(ss).padStart(2, '0');
+            }
+
+            audio.addEventListener('loadedmetadata', () => {
+                tot.textContent = fmt(audio.duration);
+            });
+
+            audio.addEventListener('timeupdate', () => {
+                if (!audio.duration) return;
+                const pct = (audio.currentTime / audio.duration) * 100;
+                fill.style.width = pct + '%';
+                cur.textContent  = fmt(audio.currentTime);
+            });
+
+            audio.addEventListener('ended', () => {
+                playIcon.setAttribute('icon', 'solar:play-bold');
+            });
+
+            window.togglePlay = function () {
+                if (audio.paused) {
+                    audio.play();
+                    playIcon.setAttribute('icon', 'solar:pause-bold');
+                } else {
+                    audio.pause();
+                    playIcon.setAttribute('icon', 'solar:play-bold');
+                }
+            };
+
+            window.seekAudio = function (e) {
+                const bar = document.getElementById('progress-bar');
+                const pct = e.offsetX / bar.offsetWidth;
+                audio.currentTime = pct * audio.duration;
+            };
+        })();
+
+
         // ── Galería ──
         (function () {
             const track = document.getElementById('gallery-track');
