@@ -119,6 +119,33 @@
             </p>
         </section>
 
+        <!-- ── Countdown ── -->
+        <section class="py-16 px-8 flex flex-col items-center text-center bg-[#f8f5f0] border-y border-[#d8cabc]/30">
+            <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-8">Faltan para nuestra boda</p>
+            <div class="flex gap-4 md:gap-8 justify-center" id="countdown">
+                <div class="flex flex-col items-center min-w-[64px]">
+                    <span id="cd-days" class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
+                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Días</span>
+                </div>
+                <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
+                <div class="flex flex-col items-center min-w-[64px]">
+                    <span id="cd-hours" class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
+                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Horas</span>
+                </div>
+                <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
+                <div class="flex flex-col items-center min-w-[64px]">
+                    <span id="cd-minutes" class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
+                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Minutos</span>
+                </div>
+                <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
+                <div class="flex flex-col items-center min-w-[64px]">
+                    <span id="cd-seconds" class="text-5xl md:text-6xl font-light text-[#9f7c65] tabular-nums">00</span>
+                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Segundos</span>
+                </div>
+            </div>
+            <div id="cd-message" class="hidden mt-6 text-2xl font-light text-[#9f7c65] font-['Pinyon_Script',cursive]">¡Hoy es el gran día! 🎉</div>
+        </section>
+
         <!-- ── Foto divisora ── -->
         <div class="w-full h-[50vh] min-h-[400px]">
             <img src="../images/fotosantesdelaboda/image4.webp"
@@ -394,6 +421,38 @@
     </main>
 
     <script>
+        // ── Countdown ──
+        (function () {
+            // Fecha de la boda: 11 de abril de 2026 a las 16:00 (hora de Chiapas, UTC-6)
+            const weddingDate = new Date('2026-04-11T16:00:00-06:00');
+
+            function pad(n) { return String(n).padStart(2, '0'); }
+
+            function tick() {
+                const now = new Date();
+                const diff = weddingDate - now;
+
+                if (diff <= 0) {
+                    document.getElementById('countdown').classList.add('hidden');
+                    document.getElementById('cd-message').classList.remove('hidden');
+                    return;
+                }
+
+                const days    = Math.floor(diff / 86400000);
+                const hours   = Math.floor((diff % 86400000) / 3600000);
+                const minutes = Math.floor((diff % 3600000)  / 60000);
+                const seconds = Math.floor((diff % 60000)    / 1000);
+
+                document.getElementById('cd-days').textContent    = days;
+                document.getElementById('cd-hours').textContent   = pad(hours);
+                document.getElementById('cd-minutes').textContent = pad(minutes);
+                document.getElementById('cd-seconds').textContent = pad(seconds);
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        })();
+
         function handleSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
