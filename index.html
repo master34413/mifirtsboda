@@ -15,6 +15,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&amp;family=Pinyon+Script&amp;display=swap"
         rel="stylesheet">
+    
+    <!-- GSAP / ScrollSmoother -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="Componentes/Gsap/ScrollSmoother.min.js"></script>
 
     <style>
         /* Estilos personalizados para el Toast y transiciones */
@@ -50,18 +55,21 @@
 </head>
 
 <body
-    class="bg-[#f8f5f0] text-[#53463a] antialiased min-h-screen flex flex-col items-center font-['Cormorant_Garamond',serif] font-light selection:bg-[#d8cabc]/40 selection:text-[#53463a]">
+    class="bg-[#f8f5f0] text-[#53463a] antialiased min-h-screen font-['Cormorant_Garamond',serif] font-light selection:bg-[#d8cabc]/40 selection:text-[#53463a]">
 
-    <!-- Main Container -->
-    <main class="w-full max-w-2xl bg-white/40 shadow-2xl relative">
+  <div id="smooth-wrapper">
+    <div id="smooth-content" class="w-full flex flex-col items-center">
+      <!-- Main Container -->
+      <main class="w-full max-w-2xl bg-white/40 shadow-2xl relative overflow-hidden">
 
         <!-- ── Hero ── -->
         <header
             class="relative w-full h-screen min-h-[700px] flex flex-col items-center justify-center overflow-hidden">
             <!-- Foto -->
+            <!-- Foto con efecto Parallax local (data-speed) -->
             <div class="absolute inset-0">
-                <img src="images/fotonewhero.webp" alt="Ivon &amp; Osvaldo" class="w-full h-full object-cover"
-                    style="object-position: center top;">
+                <img src="images/fotonewhero.webp" alt="Ivon &amp; Osvaldo" class="w-full h-[120%] object-cover"
+                    data-speed="0.8" style="object-position: center top;">
             </div>
 
             <!-- Contenido en la parte superior -->
@@ -589,15 +597,6 @@
                 </p>
             </form>
 
-            <!-- Toast Notification -->
-            <div id="toast-notification"
-                class="fixed bottom-6 left-1/2 z-[110] flex items-center gap-4 bg-white/95 backdrop-blur-xl border border-[#d8cabc]/30 px-6 py-4 rounded-full shadow-2xl opacity-0 pointer-events-none transform -translate-x-1/2 translate-y-20 transition-all duration-500">
-                <div id="toast-icon"
-                    class="flex items-center justify-center w-6 h-6 rounded-full bg-[#9f7c65] text-white text-xs">
-                    <iconify-icon icon="solar:check-read-linear" width="14" stroke-width="1.5"></iconify-icon>
-                </div>
-                <span id="toast-message" class="text-sm font-medium text-[#53463a] pr-2">Mensaje</span>
-            </div>
         </section>
 
         <!-- ── Footer ── -->
@@ -608,9 +607,47 @@
             <p class="text-xs tracking-widest uppercase text-[#7a6b5d]">Gracias por ser parte de nuestra historia</p>
         </footer>
 
-    </main>
+      </main>
+    </div> <!-- /#smooth-content -->
+  </div> <!-- /#smooth-wrapper -->
+
+  <!-- Toast Notification movido afuera del wrapper para no afectar 'position: fixed' -->
+  <div id="toast-notification"
+      class="fixed bottom-6 left-1/2 z-[110] flex items-center gap-4 bg-white/95 backdrop-blur-xl border border-[#d8cabc]/30 px-6 py-4 rounded-full shadow-2xl opacity-0 pointer-events-none transform -translate-x-1/2 translate-y-20 transition-all duration-500">
+      <div id="toast-icon"
+          class="flex items-center justify-center w-6 h-6 rounded-full bg-[#9f7c65] text-white text-xs">
+          <iconify-icon icon="solar:check-read-linear" width="14" stroke-width="1.5"></iconify-icon>
+      </div>
+      <span id="toast-message" class="text-sm font-medium text-[#53463a] pr-2">Mensaje</span>
+  </div>
 
     <script>
+        // ── Smooth Scroll setup ──
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+        let smoother = ScrollSmoother.create({
+            wrapper: "#smooth-wrapper",
+            content: "#smooth-content",
+            smooth: 1.5,
+            effects: true,     // enables data-speed and data-lag effects
+            smoothTouch: 0.1   // just a little easing on mobile
+        });
+        
+        // Efecto para los párrafos (entradas suaves al scrollear)
+        gsap.utils.toArray('section h2, section h3, section p.italic').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%", // Cuando el top del elemento llegue al 85% de la ventana
+                    toggleActions: "play none none reverse"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
         // ── Reproductor de audio ──
         (function () {
             const audio = document.getElementById('wedding-audio');
