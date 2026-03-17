@@ -531,7 +531,7 @@
                         <div class="flex flex-col gap-4">
                             <label for="cant_ninos"
                                 class="text-xs tracking-widest uppercase text-[#7a6b5d]">Cantidad</label>
-                            <input type="number" id="cant_ninos" name="cant_ninos" min="0" max="10" placeholder="0"
+                            <input type="number" id="cant_ninos" name="cantidad_ninos" min="0" max="10" placeholder="0"
                                 disabled=""
                                 class="h-12 bg-transparent border border-[#d8cabc] rounded-md px-4 text-center text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] focus:ring-1 focus:ring-[#9f7c65] transition-all disabled:opacity-50">
                         </div>
@@ -741,6 +741,13 @@
             const form = e.target;
             const formData = new FormData(form);
             const dataObj = Object.fromEntries(formData.entries());
+
+            // --- MANEJO CORRECTO DEL CAMPO CANTIDAD DE NIÑOS ---
+            // Si no llevan niños (o si el input está disabled), forzamos a que se envíe '0'
+            if (!dataObj.ninos || dataObj.ninos === 'no') {
+                dataObj.cantidad_ninos = '0';
+            }
+            // ----------------------------------------------------
 
             // Endpoint Vercel
             const scriptURL = '/api/rsvp';
