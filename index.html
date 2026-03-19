@@ -15,7 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&amp;family=Pinyon+Script&amp;display=swap"
         rel="stylesheet">
-    
+
     <!-- GSAP / ScrollSmoother -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -57,569 +57,592 @@
 <body
     class="bg-[#f8f5f0] text-[#53463a] antialiased min-h-screen font-['Cormorant_Garamond',serif] font-light selection:bg-[#d8cabc]/40 selection:text-[#53463a]">
 
-  <div id="smooth-wrapper">
-    <div id="smooth-content" class="w-full flex flex-col items-center">
-      <!-- Main Container -->
-      <main class="w-full max-w-2xl bg-white/40 shadow-2xl relative overflow-hidden">
+    <div id="smooth-wrapper">
+        <div id="smooth-content" class="w-full flex flex-col items-center">
+            <!-- Main Container -->
+            <main class="w-full max-w-2xl bg-white/40 shadow-2xl relative overflow-hidden">
 
-        <!-- ── Hero ── -->
-        <header
-            class="relative w-full h-screen min-h-[700px] flex flex-col items-center justify-center overflow-hidden">
-            <!-- Foto -->
-            <!-- Foto con efecto Parallax local (data-speed) -->
-            <div class="absolute inset-0">
-                <img src="images/fotonewhero.webp" alt="Ivon &amp; Osvaldo" class="w-full h-[120%] object-cover"
-                    data-speed="0.8" style="object-position: center top;">
-            </div>
-
-            <!-- Contenido en la parte superior -->
-            <div class="absolute top-14 left-0 right-0 z-10 flex flex-col items-center text-center px-6 gap-3">
-                <p class="text-xs tracking-[0.35em] uppercase font-light text-black/80">Nuestra Boda</p>
-                <h1 class="whitespace-nowrap text-black drop-shadow-sm font-['Pinyon_Script',cursive] leading-none"
-                    style="font-size: clamp(3.5rem, 14vw, 6.5rem);">
-                    Ivon &amp; Osvaldo
-                </h1>
-            </div>
-
-            <!-- Flecha scroll -->
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
-                <iconify-icon icon="solar:round-alt-arrow-down-linear" width="28"
-                    class="text-[#9f7c65] animate-bounce"></iconify-icon>
-            </div>
-        </header>
-
-        <!-- ── Reproductor ── -->
-        <section class="py-10 px-8 flex flex-col items-center text-center bg-[#f3ece6] border-b border-[#d8cabc]/40">
-            <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-6">Nuestra canción</p>
-
-            <audio id="wedding-audio" preload="metadata" src="audio/veoentilaluz.mp3"></audio>
-
-            <button id="play-btn" onclick="togglePlay()" aria-label="Play"
-                class="w-16 h-16 rounded-full border-2 border-[#9f7c65] flex items-center justify-center text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300">
-                <iconify-icon id="play-icon" icon="solar:play-bold" width="28"></iconify-icon>
-            </button>
-        </section>
-
-        <!-- ── Intro ── -->
-        <section class="py-20 px-8 text-center flex flex-col items-center bg-[#f8f5f0]">
-            <h2 class="text-3xl tracking-tight uppercase font-light text-[#9f7c65]">Nos Casamos</h2>
-            <p class="text-sm tracking-widest uppercase font-light text-[#9f7c65] mt-3">11 · Abril · 2026</p>
-
-            <div class="flex items-center justify-center gap-4 my-10 opacity-60">
-                <div class="h-px bg-[#d8cabc] w-16"></div>
-                <iconify-icon icon="solar:stars-linear" width="16" class="text-[#9f7c65]"></iconify-icon>
-                <div class="h-px bg-[#d8cabc] w-16"></div>
-            </div>
-
-            <p class="text-xl italic font-light leading-relaxed max-w-md text-[#7a6b5d]">
-                "Reencontrarnos fue casualidad del destino pero amarnos para siempre es donde Dios hizo nuestra unión.
-                <br><br>
-                Él nos ha guiado a encontrarnos, a amarnos y a soñar juntos este día.
-                Hoy celebramos el amor que Dios sembró en nuestros corazones."
-            </p>
-            <p class="text-xs tracking-widest uppercase text-[#9f7c65] mt-6 opacity-80">Proverbios 16:9</p>
-        </section>
-
-        <!-- ── Foto antes de Padres ── -->
-        <div class="w-full h-[50vh] min-h-[380px]">
-            <img src="images/fotosantesdelaboda/image15.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
-                class="w-full h-full object-cover">
-        </div>
-
-        <!-- ── Padres y Padrinos ── -->
-        <section class="px-6 py-12 bg-white/60">
-            <div
-                class="border border-[#d8cabc]/60 p-12 text-center flex flex-col items-center rounded-xl bg-white/80 shadow-sm">
-                <h3
-                    class="text-4xl md:text-5xl tracking-tight text-[#9f7c65] mb-12 font-['Pinyon_Script',cursive] leading-tight">
-                    Con la bendición de<br>nuestros padres y padrinos
-                </h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
-                    <div class="flex flex-col gap-4">
-                        <p
-                            class="text-sm italic font-light text-[#9f7c65] border-b border-[#d8cabc]/40 pb-2 mb-2 inline-block mx-auto">
-                            Padres de la novia</p>
-                        <p class="text-base font-normal uppercase tracking-widest">Norma García Ruiz</p>
-                        <p class="text-base font-normal uppercase tracking-widest">Eugenio García Díaz</p>
+                <!-- ── Hero ── -->
+                <header
+                    class="relative w-full h-screen min-h-[700px] flex flex-col items-center justify-center overflow-hidden">
+                    <!-- Foto -->
+                    <!-- Foto con efecto Parallax local (data-speed) -->
+                    <div class="absolute inset-0">
+                        <img src="images/fotonewhero.webp" alt="Ivon &amp; Osvaldo" class="w-full h-[120%] object-cover"
+                            data-speed="0.8" style="object-position: center top;">
                     </div>
-                    <div class="flex flex-col gap-4">
+
+                    <!-- Contenido en la parte superior -->
+                    <div class="absolute top-14 left-0 right-0 z-10 flex flex-col items-center text-center px-6 gap-3">
+                        <p class="text-xs tracking-[0.35em] uppercase font-light text-black/80">Nuestra Boda</p>
+                        <h1 class="whitespace-nowrap text-black drop-shadow-sm font-['Pinyon_Script',cursive] leading-none"
+                            style="font-size: clamp(3.5rem, 14vw, 6.5rem);">
+                            Ivon &amp; Osvaldo
+                        </h1>
+                    </div>
+
+                    <!-- Flecha scroll -->
+                    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                        <iconify-icon icon="solar:round-alt-arrow-down-linear" width="28"
+                            class="text-[#9f7c65] animate-bounce"></iconify-icon>
+                    </div>
+                </header>
+
+                <!-- ── Reproductor ── -->
+                <section
+                    class="py-10 px-8 flex flex-col items-center text-center bg-[#f3ece6] border-b border-[#d8cabc]/40">
+                    <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-6">Nuestra canción</p>
+
+                    <audio id="wedding-audio" preload="metadata" src="audio/veoentilaluz.mp3"></audio>
+
+                    <button id="play-btn" onclick="togglePlay()" aria-label="Play"
+                        class="w-16 h-16 rounded-full border-2 border-[#9f7c65] flex items-center justify-center text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300">
+                        <iconify-icon id="play-icon" icon="solar:play-bold" width="28"></iconify-icon>
+                    </button>
+                </section>
+
+                <!-- ── Intro ── -->
+                <section class="py-20 px-8 text-center flex flex-col items-center bg-[#f8f5f0]">
+                    <h2 class="text-3xl tracking-tight uppercase font-light text-[#9f7c65]">Nos Casamos</h2>
+                    <p class="text-sm tracking-widest uppercase font-light text-[#9f7c65] mt-3">11 · Abril · 2026</p>
+
+                    <div class="flex items-center justify-center gap-4 my-10 opacity-60">
+                        <div class="h-px bg-[#d8cabc] w-16"></div>
+                        <iconify-icon icon="solar:stars-linear" width="16" class="text-[#9f7c65]"></iconify-icon>
+                        <div class="h-px bg-[#d8cabc] w-16"></div>
+                    </div>
+
+                    <p class="text-xl italic font-light leading-relaxed max-w-md text-[#7a6b5d]">
+                        "Reencontrarnos fue casualidad del destino pero amarnos para siempre es donde Dios hizo nuestra
+                        unión.
+                        <br><br>
+                        Él nos ha guiado a encontrarnos, a amarnos y a soñar juntos este día.
+                        Hoy celebramos el amor que Dios sembró en nuestros corazones."
+                    </p>
+                    <p class="text-xs tracking-widest uppercase text-[#9f7c65] mt-6 opacity-80">Proverbios 16:9</p>
+                </section>
+
+                <!-- ── Foto antes de Padres ── -->
+                <div class="w-full h-[50vh] min-h-[380px]">
+                    <img src="images/fotosantesdelaboda/image15.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <!-- ── Padres y Padrinos ── -->
+                <section class="px-6 py-12 bg-white/60">
+                    <div
+                        class="border border-[#d8cabc]/60 p-12 text-center flex flex-col items-center rounded-xl bg-white/80 shadow-sm">
+                        <h3
+                            class="text-4xl md:text-5xl tracking-tight text-[#9f7c65] mb-12 font-['Pinyon_Script',cursive] leading-tight">
+                            Con la bendición de<br>nuestros padres y padrinos
+                        </h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+                            <div class="flex flex-col gap-4">
+                                <p
+                                    class="text-sm italic font-light text-[#9f7c65] border-b border-[#d8cabc]/40 pb-2 mb-2 inline-block mx-auto">
+                                    Padres de la novia</p>
+                                <p class="text-base font-normal uppercase tracking-widest">Norma García Ruiz</p>
+                                <p class="text-base font-normal uppercase tracking-widest">Eugenio García Díaz</p>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <p
+                                    class="text-sm italic font-light text-[#9f7c65] border-b border-[#d8cabc]/40 pb-2 mb-2 inline-block mx-auto">
+                                    Padres del novio</p>
+                                <p class="text-base font-normal uppercase tracking-widest">María H. García Ventura</p>
+                                <p
+                                    class="text-base font-normal uppercase tracking-widest inline-flex items-center justify-center gap-1">
+                                    Mateo G. Colin Hernández<span title="En memoria" aria-label="en memoria"
+                                        class="text-[#9f7c65] text-lg">✝</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex flex-col gap-4 mt-16 pt-10 border-t border-[#d8cabc]/40 w-full max-w-sm mx-auto">
+                            <p class="text-sm italic font-light text-[#9f7c65]">Padrinos de velación</p>
+                            <p class="text-base font-normal uppercase tracking-widest">Gabriel Felipe García Diaz</p>
+                            <p class="text-base font-normal uppercase tracking-widest">María Adaluz Olva Hernández</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ── Foto divisora ── -->
+                <div class="w-full h-[50vh] min-h-[400px]">
+                    <img src="images/fotosantesdelaboda/image4.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <!-- ── Countdown ── -->
+                <section
+                    class="py-16 px-8 flex flex-col items-center text-center bg-[#f8f5f0] border-y border-[#d8cabc]/30">
+                    <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-8">Faltan para nuestra boda</p>
+                    <div class="flex gap-4 md:gap-8 justify-center" id="countdown">
+                        <div class="flex flex-col items-center min-w-[64px]">
+                            <span id="cd-days"
+                                class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
+                            <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Días</span>
+                        </div>
+                        <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
+                        <div class="flex flex-col items-center min-w-[64px]">
+                            <span id="cd-hours"
+                                class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
+                            <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Horas</span>
+                        </div>
+                        <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
+                        <div class="flex flex-col items-center min-w-[64px]">
+                            <span id="cd-minutes"
+                                class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
+                            <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Minutos</span>
+                        </div>
+                        <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
+                        <div class="flex flex-col items-center min-w-[64px]">
+                            <span id="cd-seconds"
+                                class="text-5xl md:text-6xl font-light text-[#9f7c65] tabular-nums">00</span>
+                            <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Segundos</span>
+                        </div>
+                    </div>
+                    <div id="cd-message"
+                        class="hidden mt-6 text-2xl font-light text-[#9f7c65] font-['Pinyon_Script',cursive]">
+                        ¡Hoy es el gran día! 🎉</div>
+                </section>
+
+                <!-- ── Fecha ── -->
+                <section class="py-24 px-8 flex flex-col items-center text-center bg-[#f8f5f0]">
+                    <h3 class="text-4xl tracking-tight text-[#9f7c65] mb-10 font-['Pinyon_Script',cursive]">Reserva la
+                        fecha
+                    </h3>
+
+                    <div class="flex items-center justify-center gap-8 py-10 w-full max-w-md relative">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-[#d8cabc]"></div>
+                        <span class="text-sm tracking-widest uppercase font-normal text-[#7a6b5d]">Sábado</span>
+                        <span class="text-7xl tracking-tight text-[#9f7c65] font-light">11</span>
+                        <span class="text-sm tracking-widest uppercase font-normal text-[#7a6b5d]">Abril</span>
+                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-px bg-[#d8cabc]"></div>
+                    </div>
+
+                    <p class="text-4xl tracking-tight mt-10 text-[#53463a] font-['Pinyon_Script',cursive]">dos mil
+                        veintiséis
+                    </p>
+                </section>
+
+
+                <!-- ── Dónde y Cuándo ── -->
+                <section class="py-24 px-8 flex flex-col items-center bg-white/60">
+                    <h2 class="text-3xl tracking-tight uppercase font-light text-[#9f7c65] mb-16">Dónde y Cuándo</h2>
+
+                    <div class="flex flex-col md:flex-row gap-16 w-full justify-center">
+
+                        <!-- Ceremonia -->
+                        <div class="flex flex-col items-center text-center flex-1">
+                            <div
+                                class="w-20 h-20 rounded-full border-2 border-[#d8cabc] flex items-center justify-center mb-8 text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300 hover:scale-105 hover:border-transparent">
+                                <iconify-icon icon="mdi:church" width="32"></iconify-icon>
+                            </div>
+                            <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-3">Ceremonia · 5:00 PM</p>
+                            <h3 class="text-2xl tracking-tight font-normal mb-4 text-[#53463a]">Templo de La Merced</h3>
+                            <p class="text-sm font-light text-[#7a6b5d] leading-relaxed mb-6">
+                                Barrio de La Merced<br>San Cristóbal de las Casas, Chiapas.
+                            </p>
+                            <a href="https://www.google.com/maps/search/Templo+de+La+Merced+San+Crist%C3%B3bal+de+las+Casas"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-[#53463a] hover:text-[#9f7c65] transition-colors border-b border-[#53463a]/30 hover:border-[#9f7c65] pb-1">
+                                Ver mapa <iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+                            </a>
+                        </div>
+
+                        <!-- Divisor móvil -->
+                        <div class="w-full h-px bg-[#d8cabc]/50 md:hidden"></div>
+
+                        <!-- Recepción -->
+                        <div class="flex flex-col items-center text-center flex-1">
+                            <div
+                                class="w-20 h-20 rounded-full border-2 border-[#d8cabc] flex items-center justify-center mb-8 text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300 hover:scale-105 hover:border-transparent">
+                                <iconify-icon icon="solar:wineglass-triangle-linear" width="32"></iconify-icon>
+                            </div>
+                            <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-3">Recepción · 7:00 PM</p>
+                            <h3 class="text-2xl tracking-tight font-normal mb-4 text-[#53463a]">Centro Las Brisas</h3>
+                            <p class="text-sm font-light text-[#7a6b5d] leading-relaxed mb-6">
+                                Carretera Panamericana Km 1168,<br>Bismark, San Cristóbal de las Casas.
+                            </p>
+                            <a href="https://www.google.com/maps/place/Las+Brisas+Centro+de+Convenciones,+29268,+Carretera+Panamericana+Km+1168,+Bismark,+29264+San+Crist%C3%B3bal+de+las+Casas,+Chis./data=!4m2!3m1!1s0x85ed454f2125509d:0xe3c697c7a54fcf3f?entry=gps&amp;coh=192189&amp;g_ep=CAESCDI1LjQ0LjEwGAAgnp0KKqsBLDk0MjY3NzI3LDk0Mjc1NDAzLDk0MjkyMTk1LDk0Mjg0NDY5LDk0MjIzMjk5LDk0MjE2NDEzLDk0MjgwNTc2LDk0MjEyNDk2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE3NTIzLDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc9NjE1LDk0Mjk1NTA0LDQ3MDg0MzkzLDk0MjEzMjAwQgJNWA%3D%3D&amp;skid=e3c33484-5bfe-4fb8-b128-18f141a55756&amp;g_st=aw"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-[#53463a] hover:text-[#9f7c65] transition-colors border-b border-[#53463a]/30 hover:border-[#9f7c65] pb-1">
+                                Ver mapa <iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ── Foto con cita ── -->
+                <div class="relative w-full h-[60vh] min-h-[420px] flex items-center justify-center overflow-hidden">
+                    <img src="images/fotosantesdelaboda/image13.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/45"></div>
+                    <div class="relative z-10 px-8 text-center flex flex-col items-center gap-4 max-w-sm">
                         <p
-                            class="text-sm italic font-light text-[#9f7c65] border-b border-[#d8cabc]/40 pb-2 mb-2 inline-block mx-auto">
-                            Padres del novio</p>
-                        <p class="text-base font-normal uppercase tracking-widest">María H. García Ventura</p>
-                        <p
-                            class="text-base font-normal uppercase tracking-widest inline-flex items-center justify-center gap-1">
-                            Mateo G. Colin Hernández<span title="En memoria" aria-label="en memoria"
-                                class="text-[#9f7c65] text-lg">✝</span>
+                            class="text-2xl md:text-3xl text-white font-['Pinyon_Script',cursive] leading-relaxed drop-shadow-md">
+                            "Encontré al amor de mi vida,<br>lo abracé y no lo solté."
                         </p>
+                        <span class="text-[10px] tracking-widest uppercase text-white/70">Cantares 3:4</span>
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-4 mt-16 pt-10 border-t border-[#d8cabc]/40 w-full max-w-sm mx-auto">
-                    <p class="text-sm italic font-light text-[#9f7c65]">Padrinos de velación</p>
-                    <p class="text-base font-normal uppercase tracking-widest">Felipe Gabriel García Díaz</p>
-                    <p class="text-base font-normal uppercase tracking-widest">María Adaluz Olva Hernández</p>
-                </div>
-            </div>
-        </section>
+                <!-- ── Dress Code ── -->
+                <section class="py-20 px-8 flex flex-col items-center bg-[#f8f5f0] border-y border-[#d8cabc]/30">
+                    <iconify-icon icon="solar:hanger-linear" width="32" class="text-[#9f7c65] mb-6"></iconify-icon>
+                    <h2 class="text-3xl tracking-tight uppercase font-light text-[#53463a] text-center">Código de
+                        Vestimenta
+                    </h2>
 
-        <!-- ── Foto divisora ── -->
-        <div class="w-full h-[50vh] min-h-[400px]">
-            <img src="images/fotosantesdelaboda/image4.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
-                class="w-full h-full object-cover">
-        </div>
+                    <p class="text-6xl tracking-tight text-[#9f7c65] my-8 font-['Pinyon_Script',cursive] text-center">
+                        Formal</p>
 
-        <!-- ── Countdown ── -->
-        <section class="py-16 px-8 flex flex-col items-center text-center bg-[#f8f5f0] border-y border-[#d8cabc]/30">
-            <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-8">Faltan para nuestra boda</p>
-            <div class="flex gap-4 md:gap-8 justify-center" id="countdown">
-                <div class="flex flex-col items-center min-w-[64px]">
-                    <span id="cd-days" class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
-                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Días</span>
-                </div>
-                <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
-                <div class="flex flex-col items-center min-w-[64px]">
-                    <span id="cd-hours" class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
-                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Horas</span>
-                </div>
-                <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
-                <div class="flex flex-col items-center min-w-[64px]">
-                    <span id="cd-minutes" class="text-5xl md:text-6xl font-light text-[#53463a] tabular-nums">00</span>
-                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Minutos</span>
-                </div>
-                <span class="text-4xl font-light text-[#d8cabc] self-start mt-2">:</span>
-                <div class="flex flex-col items-center min-w-[64px]">
-                    <span id="cd-seconds" class="text-5xl md:text-6xl font-light text-[#9f7c65] tabular-nums">00</span>
-                    <span class="text-[10px] tracking-widest uppercase text-[#9f7c65] mt-2">Segundos</span>
-                </div>
-            </div>
-            <div id="cd-message" class="hidden mt-6 text-2xl font-light text-[#9f7c65] font-['Pinyon_Script',cursive]">
-                ¡Hoy es el gran día! 🎉</div>
-        </section>
-
-        <!-- ── Fecha ── -->
-        <section class="py-24 px-8 flex flex-col items-center text-center bg-[#f8f5f0]">
-            <h3 class="text-4xl tracking-tight text-[#9f7c65] mb-10 font-['Pinyon_Script',cursive]">Reserva la fecha
-            </h3>
-
-            <div class="flex items-center justify-center gap-8 py-10 w-full max-w-md relative">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-[#d8cabc]"></div>
-                <span class="text-sm tracking-widest uppercase font-normal text-[#7a6b5d]">Sábado</span>
-                <span class="text-7xl tracking-tight text-[#9f7c65] font-light">11</span>
-                <span class="text-sm tracking-widest uppercase font-normal text-[#7a6b5d]">Abril</span>
-                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-px bg-[#d8cabc]"></div>
-            </div>
-
-            <p class="text-4xl tracking-tight mt-10 text-[#53463a] font-['Pinyon_Script',cursive]">dos mil veintiséis
-            </p>
-        </section>
-
-
-        <!-- ── Dónde y Cuándo ── -->
-        <section class="py-24 px-8 flex flex-col items-center bg-white/60">
-            <h2 class="text-3xl tracking-tight uppercase font-light text-[#9f7c65] mb-16">Dónde y Cuándo</h2>
-
-            <div class="flex flex-col md:flex-row gap-16 w-full justify-center">
-
-                <!-- Ceremonia -->
-                <div class="flex flex-col items-center text-center flex-1">
-                    <div
-                        class="w-20 h-20 rounded-full border-2 border-[#d8cabc] flex items-center justify-center mb-8 text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300 hover:scale-105 hover:border-transparent">
-                        <iconify-icon icon="mdi:church" width="32"></iconify-icon>
-                    </div>
-                    <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-3">Ceremonia · 5:00 PM</p>
-                    <h3 class="text-2xl tracking-tight font-normal mb-4 text-[#53463a]">Templo de La Merced</h3>
-                    <p class="text-sm font-light text-[#7a6b5d] leading-relaxed mb-6">
-                        Barrio de La Merced<br>San Cristóbal de las Casas, Chiapas.
+                    <p class="italic text-lg font-light text-center text-[#7a6b5d] max-w-md mb-10 leading-relaxed">
+                        "El blanco se lo dejamos a la novia, el rojo al amor y el beige… al olvido por un día."
                     </p>
-                    <a href="https://www.google.com/maps/search/Templo+de+La+Merced+San+Crist%C3%B3bal+de+las+Casas"
-                        target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-[#53463a] hover:text-[#9f7c65] transition-colors border-b border-[#53463a]/30 hover:border-[#9f7c65] pb-1">
-                        Ver mapa <iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
-                    </a>
-                </div>
 
-                <!-- Divisor móvil -->
-                <div class="w-full h-px bg-[#d8cabc]/50 md:hidden"></div>
-
-                <!-- Recepción -->
-                <div class="flex flex-col items-center text-center flex-1">
-                    <div
-                        class="w-20 h-20 rounded-full border-2 border-[#d8cabc] flex items-center justify-center mb-8 text-[#9f7c65] hover:bg-[#9f7c65] hover:text-white transition-all duration-300 hover:scale-105 hover:border-transparent">
-                        <iconify-icon icon="solar:wineglass-triangle-linear" width="32"></iconify-icon>
-                    </div>
-                    <p class="text-xs tracking-widest uppercase text-[#9f7c65] mb-3">Recepción · 7:00 PM</p>
-                    <h3 class="text-2xl tracking-tight font-normal mb-4 text-[#53463a]">Centro Las Brisas</h3>
-                    <p class="text-sm font-light text-[#7a6b5d] leading-relaxed mb-6">
-                        Carretera Panamericana Km 1168,<br>Bismark, San Cristóbal de las Casas.
-                    </p>
-                    <a href="https://www.google.com/maps/place/Las+Brisas+Centro+de+Convenciones,+29268,+Carretera+Panamericana+Km+1168,+Bismark,+29264+San+Crist%C3%B3bal+de+las+Casas,+Chis./data=!4m2!3m1!1s0x85ed454f2125509d:0xe3c697c7a54fcf3f?entry=gps&amp;coh=192189&amp;g_ep=CAESCDI1LjQ0LjEwGAAgnp0KKqsBLDk0MjY3NzI3LDk0Mjc1NDAzLDk0MjkyMTk1LDk0Mjg0NDY5LDk0MjIzMjk5LDk0MjE2NDEzLDk0MjgwNTc2LDk0MjEyNDk2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE3NTIzLDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc9NjE1LDk0Mjk1NTA0LDQ3MDg0MzkzLDk0MjEzMjAwQgJNWA%3D%3D&amp;skid=e3c33484-5bfe-4fb8-b128-18f141a55756&amp;g_st=aw"
-                        target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-[#53463a] hover:text-[#9f7c65] transition-colors border-b border-[#53463a]/30 hover:border-[#9f7c65] pb-1">
-                        Ver mapa <iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── Foto con cita ── -->
-        <div class="relative w-full h-[60vh] min-h-[420px] flex items-center justify-center overflow-hidden">
-            <img src="images/fotosantesdelaboda/image13.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
-                class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/45"></div>
-            <div class="relative z-10 px-8 text-center flex flex-col items-center gap-4 max-w-sm">
-                <p
-                    class="text-2xl md:text-3xl text-white font-['Pinyon_Script',cursive] leading-relaxed drop-shadow-md">
-                    "Encontré al amor de mi vida,<br>lo abracé y no lo solté."
-                </p>
-                <span class="text-[10px] tracking-widest uppercase text-white/70">Cantares 3:4</span>
-            </div>
-        </div>
-
-        <!-- ── Dress Code ── -->
-        <section class="py-20 px-8 flex flex-col items-center bg-[#f8f5f0] border-y border-[#d8cabc]/30">
-            <iconify-icon icon="solar:hanger-linear" width="32" class="text-[#9f7c65] mb-6"></iconify-icon>
-            <h2 class="text-3xl tracking-tight uppercase font-light text-[#53463a] text-center">Código de Vestimenta
-            </h2>
-
-            <p class="text-6xl tracking-tight text-[#9f7c65] my-8 font-['Pinyon_Script',cursive] text-center">Formal</p>
-
-            <p class="italic text-lg font-light text-center text-[#7a6b5d] max-w-md mb-10 leading-relaxed">
-                "El blanco se lo dejamos a la novia, el rojo al amor y el beige… al olvido por un día."
-            </p>
-
-            <div class="flex flex-col items-center gap-5">
-                <p class="text-xs tracking-widest uppercase text-[#9f7c65]">Por favor evitar</p>
-                <div class="flex gap-6" role="list" aria-label="Colores a evitar">
-                    <!-- Blanco -->
-                    <div role="listitem" title="Evitar blanco"
-                        class="w-10 h-10 rounded-full bg-white shadow-sm ring-1 ring-black/5 relative overflow-hidden group">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div
-                                class="w-full h-[1.5px] bg-red-400/60 rotate-45 group-hover:scale-110 transition-transform">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Rojo -->
-                    <div role="listitem" title="Evitar rojo"
-                        class="w-10 h-10 rounded-full bg-[#8b0000] shadow-sm relative overflow-hidden group">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div
-                                class="w-full h-[1.5px] bg-white/60 rotate-45 group-hover:scale-110 transition-transform">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Beige -->
-                    <div role="listitem" title="Evitar beige"
-                        class="w-10 h-10 rounded-full bg-[#f5f5dc] shadow-sm ring-1 ring-black/5 relative overflow-hidden group">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div
-                                class="w-full h-[1.5px] bg-red-400/60 rotate-45 group-hover:scale-110 transition-transform">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── Foto ── -->
-        <div class="w-full h-[60vh] min-h-[420px]">
-            <img src="images/fotosantesdelaboda/image5.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
-                class="w-full h-full object-cover">
-        </div>
-
-        <!-- ── Regalo ── -->
-        <section class="py-20 px-8 flex flex-col items-center text-center bg-[#f8f5f0]">
-            <iconify-icon icon="solar:gift-linear" width="36" class="text-[#9f7c65] mb-6"></iconify-icon>
-
-            <div class="flex items-center justify-center gap-4 mb-8 opacity-50">
-                <div class="h-px bg-[#d8cabc] w-12"></div>
-                <iconify-icon icon="solar:heart-linear" width="14" class="text-[#9f7c65]"></iconify-icon>
-                <div class="h-px bg-[#d8cabc] w-12"></div>
-            </div>
-
-            <p class="text-xl font-light leading-relaxed max-w-sm text-[#7a6b5d]">
-                Nuestro mejor regalo será celebrar contigo este día tan especial.
-            </p>
-            <p class="text-base italic font-light leading-relaxed max-w-sm text-[#9f7c65] mt-4">
-                Sin embargo, si deseas hacernos un obsequio, estaremos muy agradecidos.
-            </p>
-        </section>
-
-        <!-- ── Galería ── -->
-        <section class="py-16 bg-[#2a1f1a] flex flex-col items-center">
-            <p class="text-xs tracking-widest uppercase text-[#d8cabc]/70 mb-8">Nuestra Galería</p>
-
-            <div id="gallery" class="relative w-full overflow-hidden">
-
-                <!-- Track -->
-                <div id="gallery-track" class="flex transition-transform duration-500 ease-in-out"
-                    style="will-change:transform">
-                    <img src="images/fotosantesdelaboda/image1.webp" alt="Foto 1"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image2.webp" alt="Foto 2"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image3.webp" alt="Foto 3"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image7.webp" alt="Foto 4"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image9.webp" alt="Foto 5"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image18.webp" alt="Foto 6"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image11.webp" alt="Foto 7"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image12.webp" alt="Foto 8"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image14.webp" alt="Foto 9"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image6.webp" alt="Foto 10"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                    <img src="images/fotosantesdelaboda/image17.webp" alt="Foto 11"
-                        class="gallery-slide w-full flex-shrink-0 object-cover" style="height:70vw;max-height:500px"
-                        loading="lazy">
-                </div>
-
-                <!-- Flecha izquierda -->
-                <button onclick="galleryMove(-1)" aria-label="Anterior"
-                    class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-all">
-                    <iconify-icon icon="solar:alt-arrow-left-linear" width="20"></iconify-icon>
-                </button>
-
-                <!-- Flecha derecha -->
-                <button onclick="galleryMove(1)" aria-label="Siguiente"
-                    class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-all">
-                    <iconify-icon icon="solar:alt-arrow-right-linear" width="20"></iconify-icon>
-                </button>
-            </div>
-
-            <!-- Indicadores -->
-            <div id="gallery-dots" class="flex gap-2 mt-5"></div>
-        </section>
-
-        <!-- ── Hashtags ── -->
-        <section class="py-12 bg-white flex flex-col items-center text-center">
-            <h2 class="text-xs tracking-[0.3em] uppercase font-light text-[#9f7c65] mb-4">Hashtags del evento</h2>
-            <p class="text-4xl md:text-5xl tracking-tight text-[#53463a] font-['Pinyon_Script',cursive]">
-                #bodapichis
-            </p>
-        </section>
-
-        <!-- ── RSVP ── -->
-        <section id="rsvp" class="py-24 px-6 md:px-12 flex flex-col items-center bg-white/80">
-            <h2 class="text-3xl tracking-tight uppercase font-light text-[#9f7c65] text-center mb-3">Formulario de
-                registro</h2>
-            <p class="text-base font-light text-center text-[#7a6b5d] mb-14">Esperamos contar con tu compañía.</p>
-
-            <form id="rsvp-form" class="w-full max-w-md flex flex-col gap-10" onsubmit="handleRSVPSubmit(event)">
-
-                <!-- Nombre -->
-                <div class="relative w-full">
-                    <input type="text" id="nombre" name="nombre" placeholder=" " required=""
-                        class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent">
-                    <label for="nombre"
-                        class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
-                        Nombre completo
-                    </label>
-                </div>
-
-                <!-- Asistencia -->
-                <fieldset class="flex flex-col gap-4 border-0 p-0">
-                    <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Nos acompañas?</legend>
-                    <div class="flex gap-4">
-                        <label class="cursor-pointer flex-1">
-                            <input type="radio" name="attending" value="yes" class="peer sr-only" checked=""
-                                onchange="handleAttendanceChange(true)">
-                            <div
-                                class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#9f7c65] peer-checked:text-white peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
-                                Sí, confirmo
-                            </div>
-                        </label>
-                        <label class="cursor-pointer flex-1">
-                            <input type="radio" name="attending" value="no" class="peer sr-only"
-                                onchange="handleAttendanceChange(false)">
-                            <div
-                                class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
-                                No podré
-                            </div>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <!-- Mensaje para cuando no asisten -->
-                <div id="not-attending-msg" class="hidden text-center py-10 animate-fade-in">
-                    <p class="text-2xl font-['Pinyon_Script',cursive] text-[#9f7c65]">Te extrañaremos 🙁</p>
-                    <p class="text-sm font-light text-[#7a6b5d] mt-2">Gracias por avisarnos.</p>
-                </div>
-
-                <!-- Detalles de asistencia (se ocultan si no asisten) -->
-                <div id="attendance-details" class="flex flex-col gap-10">
-
-                    <!-- Asistentes -->
-                    <fieldset class="flex flex-col gap-4 border-0 p-0">
-                        <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">Número de asistentes</legend>
-                        <div class="flex flex-wrap md:flex-nowrap justify-between gap-2 md:gap-3">
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="1 persona">
-                                <input type="radio" name="asistentes" value="1" class="peer sr-only" checked="">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    1</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="2 personas">
-                                <input type="radio" name="asistentes" value="2" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    2</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="3 personas">
-                                <input type="radio" name="asistentes" value="3" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    3</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="4 personas">
-                                <input type="radio" name="asistentes" value="4" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    4</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="5 personas">
-                                <input type="radio" name="asistentes" value="5" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    5</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="6 personas">
-                                <input type="radio" name="asistentes" value="6" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    6</div>
-                            </label>
-                            <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="7 personas">
-                                <input type="radio" name="asistentes" value="7" class="peer sr-only">
-                                <div
-                                    class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
-                                    7</div>
-                            </label>
-                        </div>
-                    </fieldset>
-
-                    <!-- Niños -->
-                    <div class="grid grid-cols-2 gap-8">
-                        <fieldset class="flex flex-col gap-4 border-0 p-0">
-                            <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Llevan niños?</legend>
-                            <div class="flex border border-[#d8cabc] rounded-md overflow-hidden h-12">
-                                <label class="cursor-pointer flex-1 border-r border-[#d8cabc]">
-                                    <input type="radio" name="ninos" value="yes" class="peer sr-only"
-                                        onchange="toggleKidsInput(true)">
+                    <div class="flex flex-col items-center gap-5">
+                        <p class="text-xs tracking-widest uppercase text-[#9f7c65]">Por favor evitar</p>
+                        <div class="flex gap-6" role="list" aria-label="Colores a evitar">
+                            <!-- Blanco -->
+                            <div role="listitem" title="Evitar blanco"
+                                class="w-10 h-10 rounded-full bg-white shadow-sm ring-1 ring-black/5 relative overflow-hidden group">
+                                <div class="absolute inset-0 flex items-center justify-center">
                                     <div
-                                        class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
-                                        Sí</div>
+                                        class="w-full h-[1.5px] bg-red-400/60 rotate-45 group-hover:scale-110 transition-transform">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Rojo -->
+                            <div role="listitem" title="Evitar rojo"
+                                class="w-10 h-10 rounded-full bg-[#8b0000] shadow-sm relative overflow-hidden group">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div
+                                        class="w-full h-[1.5px] bg-white/60 rotate-45 group-hover:scale-110 transition-transform">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Beige -->
+                            <div role="listitem" title="Evitar beige"
+                                class="w-10 h-10 rounded-full bg-[#f5f5dc] shadow-sm ring-1 ring-black/5 relative overflow-hidden group">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div
+                                        class="w-full h-[1.5px] bg-red-400/60 rotate-45 group-hover:scale-110 transition-transform">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ── Foto ── -->
+                <div class="w-full h-[60vh] min-h-[420px]">
+                    <img src="images/fotosantesdelaboda/image5.webp" alt="Ivon &amp; Osvaldo" loading="lazy"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <!-- ── Regalo ── -->
+                <section class="py-20 px-8 flex flex-col items-center text-center bg-[#f8f5f0]">
+                    <iconify-icon icon="solar:gift-linear" width="36" class="text-[#9f7c65] mb-6"></iconify-icon>
+
+                    <div class="flex items-center justify-center gap-4 mb-8 opacity-50">
+                        <div class="h-px bg-[#d8cabc] w-12"></div>
+                        <iconify-icon icon="solar:heart-linear" width="14" class="text-[#9f7c65]"></iconify-icon>
+                        <div class="h-px bg-[#d8cabc] w-12"></div>
+                    </div>
+
+                    <p class="text-xl font-light leading-relaxed max-w-sm text-[#7a6b5d]">
+                        Nuestro mejor regalo será celebrar contigo este día tan especial.
+                    </p>
+                    <p class="text-base italic font-light leading-relaxed max-w-sm text-[#9f7c65] mt-4">
+                        Sin embargo, si deseas hacernos un obsequio, estaremos muy agradecidos.
+                    </p>
+                </section>
+
+                <!-- ── Galería ── -->
+                <section class="py-16 bg-[#2a1f1a] flex flex-col items-center">
+                    <p class="text-xs tracking-widest uppercase text-[#d8cabc]/70 mb-8">Nuestra Galería</p>
+
+                    <div id="gallery" class="relative w-full overflow-hidden">
+
+                        <!-- Track -->
+                        <div id="gallery-track" class="flex transition-transform duration-500 ease-in-out"
+                            style="will-change:transform">
+                            <img src="images/fotosantesdelaboda/image1.webp" alt="Foto 1"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image2.webp" alt="Foto 2"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image3.webp" alt="Foto 3"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image7.webp" alt="Foto 4"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image9.webp" alt="Foto 5"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image18.webp" alt="Foto 6"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image11.webp" alt="Foto 7"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image12.webp" alt="Foto 8"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image14.webp" alt="Foto 9"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image6.webp" alt="Foto 10"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                            <img src="images/fotosantesdelaboda/image17.webp" alt="Foto 11"
+                                class="gallery-slide w-full flex-shrink-0 object-cover"
+                                style="height:70vw;max-height:500px" loading="lazy">
+                        </div>
+
+                        <!-- Flecha izquierda -->
+                        <button onclick="galleryMove(-1)" aria-label="Anterior"
+                            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-all">
+                            <iconify-icon icon="solar:alt-arrow-left-linear" width="20"></iconify-icon>
+                        </button>
+
+                        <!-- Flecha derecha -->
+                        <button onclick="galleryMove(1)" aria-label="Siguiente"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-all">
+                            <iconify-icon icon="solar:alt-arrow-right-linear" width="20"></iconify-icon>
+                        </button>
+                    </div>
+
+                    <!-- Indicadores -->
+                    <div id="gallery-dots" class="flex gap-2 mt-5"></div>
+                </section>
+
+                <!-- ── Hashtags ── -->
+                <section class="py-12 bg-white flex flex-col items-center text-center">
+                    <h2 class="text-xs tracking-[0.3em] uppercase font-light text-[#9f7c65] mb-4">Hashtags del evento
+                    </h2>
+                    <p class="text-4xl md:text-5xl tracking-tight text-[#53463a] font-['Pinyon_Script',cursive]">
+                        #bodapichis
+                    </p>
+                </section>
+
+                <!-- ── RSVP ── -->
+                <section id="rsvp" class="py-24 px-6 md:px-12 flex flex-col items-center bg-white/80">
+                    <h2 class="text-3xl tracking-tight uppercase font-light text-[#9f7c65] text-center mb-3">Formulario
+                        de
+                        registro</h2>
+                    <p class="text-base font-light text-center text-[#7a6b5d] mb-14">Esperamos contar con tu compañía.
+                    </p>
+
+                    <form id="rsvp-form" class="w-full max-w-md flex flex-col gap-10"
+                        onsubmit="handleRSVPSubmit(event)">
+
+                        <!-- Nombre -->
+                        <div class="relative w-full">
+                            <input type="text" id="nombre" name="nombre" placeholder=" " required=""
+                                class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent">
+                            <label for="nombre"
+                                class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                                Nombre completo
+                            </label>
+                        </div>
+
+                        <!-- Asistencia -->
+                        <fieldset class="flex flex-col gap-4 border-0 p-0">
+                            <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Nos acompañas?</legend>
+                            <div class="flex gap-4">
+                                <label class="cursor-pointer flex-1">
+                                    <input type="radio" name="attending" value="yes" class="peer sr-only" checked=""
+                                        onchange="handleAttendanceChange(true)">
+                                    <div
+                                        class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#9f7c65] peer-checked:text-white peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
+                                        Sí, confirmo
+                                    </div>
                                 </label>
                                 <label class="cursor-pointer flex-1">
-                                    <input type="radio" name="ninos" value="no" class="peer sr-only" checked=""
-                                        onchange="toggleKidsInput(false)">
+                                    <input type="radio" name="attending" value="no" class="peer sr-only"
+                                        onchange="handleAttendanceChange(false)">
                                     <div
-                                        class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
-                                        No</div>
+                                        class="w-full text-center py-3 px-4 border border-[#d8cabc] rounded-md text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] peer-checked:border-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
+                                        No podré
+                                    </div>
                                 </label>
                             </div>
                         </fieldset>
-                        <div class="flex flex-col gap-4">
-                            <label for="cant_ninos"
-                                class="text-xs tracking-widest uppercase text-[#7a6b5d]">Cantidad</label>
-                            <input type="number" id="cant_ninos" name="cantidad_ninos" min="0" max="10" placeholder="0"
-                                disabled=""
-                                class="h-12 bg-transparent border border-[#d8cabc] rounded-md px-4 text-center text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] focus:ring-1 focus:ring-[#9f7c65] transition-all disabled:opacity-50">
+
+                        <!-- Mensaje para cuando no asisten -->
+                        <div id="not-attending-msg" class="hidden text-center py-10 animate-fade-in">
+                            <p class="text-2xl font-['Pinyon_Script',cursive] text-[#9f7c65]">Te extrañaremos 🙁</p>
+                            <p class="text-sm font-light text-[#7a6b5d] mt-2">Gracias por avisarnos.</p>
                         </div>
-                    </div>
 
-                    <!-- Bebida -->
-                    <div class="relative w-full mt-2">
-                        <label for="bebida"
-                            class="absolute -top-5 left-0 text-xs tracking-widest uppercase text-[#7a6b5d]">Bebida de
-                            preferencia</label>
-                        <select id="bebida" name="bebida"
-                            class="w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] appearance-none focus:outline-none focus:border-[#9f7c65] transition-colors cursor-pointer pr-8">
-                            <option value="" disabled="" selected="">Selecciona una opción</option>
-                            <option value="tequila">Tequila</option>
-                            <option value="vino">Vino tinto</option>
-                            <option value="mezcal">Mezcal / Cerveza</option>
-                            <option value="refresco">Refresco / Sin alcohol</option>
-                        </select>
-                        <iconify-icon icon="solar:alt-arrow-down-linear" width="20"
-                            class="absolute right-0 top-1/2 -translate-y-1/2 text-[#9f7c65] pointer-events-none"></iconify-icon>
-                    </div>
+                        <!-- Detalles de asistencia (se ocultan si no asisten) -->
+                        <div id="attendance-details" class="flex flex-col gap-10">
 
-                    <!-- Alergias -->
-                    <div class="relative w-full mt-4">
-                        <input type="text" id="alergias" name="alergias" placeholder=" "
-                            class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent">
-                        <label for="alergias"
-                            class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
-                            Alergias o dieta especial
-                        </label>
-                    </div>
+                            <!-- Asistentes -->
+                            <fieldset class="flex flex-col gap-4 border-0 p-0">
+                                <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">Número de asistentes
+                                </legend>
+                                <div class="flex flex-wrap md:flex-nowrap justify-between gap-2 md:gap-3">
+                                    <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="1 persona">
+                                        <input type="radio" name="asistentes" value="1" class="peer sr-only" checked="">
+                                        <div
+                                            class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                            1</div>
+                                    </label>
+                                    <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="2 personas">
+                                        <input type="radio" name="asistentes" value="2" class="peer sr-only">
+                                        <div
+                                            class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                            2</div>
+                                    </label>
+                                    <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="3 personas">
+                                        <input type="radio" name="asistentes" value="3" class="peer sr-only">
+                                        <div
+                                            class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                            3</div>
+                                    </label>
+                                    <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="4 personas">
+                                        <input type="radio" name="asistentes" value="4" class="peer sr-only">
+                                        <div
+                                            class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                            4</div>
+                                    </label>
+                                    <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="5 personas">
+                                        <input type="radio" name="asistentes" value="5" class="peer sr-only">
+                                        <div
+                                            class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                            5</div>
+                                    </label>
+                                    <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="6 personas">
+                                        <input type="radio" name="asistentes" value="6" class="peer sr-only">
+                                        <div
+                                            class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                            6</div>
+                                    </label>
+                                    <label class="cursor-pointer flex-1 min-w-[40px]" aria-label="7 personas">
+                                        <input type="radio" name="asistentes" value="7" class="peer sr-only">
+                                        <div
+                                            class="w-full aspect-square flex items-center justify-center rounded-md border border-[#d8cabc] text-base font-normal text-[#7a6b5d] peer-checked:border-[#9f7c65] peer-checked:bg-[#9f7c65] peer-checked:text-white transition-all hover:bg-[#f8f5f0]">
+                                            7</div>
+                                    </label>
+                                </div>
+                            </fieldset>
 
-                    <!-- Canción -->
-                    <div class="relative w-full mt-4">
-                        <input type="text" id="cancion" name="cancion" placeholder=" "
-                            class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent pr-8">
-                        <label for="cancion"
-                            class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
-                            Una canción que no puede faltar
-                        </label>
-                        <iconify-icon icon="solar:music-notes-linear" width="20"
-                            class="absolute right-0 top-1/2 -translate-y-1/2 text-[#d8cabc] pointer-events-none"></iconify-icon>
-                    </div>
-                </div> <!-- Cierre de attendance-details -->
+                            <!-- Niños -->
+                            <div class="grid grid-cols-2 gap-8">
+                                <fieldset class="flex flex-col gap-4 border-0 p-0">
+                                    <legend class="text-xs tracking-widest uppercase text-[#7a6b5d]">¿Llevan niños?
+                                    </legend>
+                                    <div class="flex border border-[#d8cabc] rounded-md overflow-hidden h-12">
+                                        <label class="cursor-pointer flex-1 border-r border-[#d8cabc]">
+                                            <input type="radio" name="ninos" value="yes" class="peer sr-only"
+                                                onchange="toggleKidsInput(true)">
+                                            <div
+                                                class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
+                                                Sí</div>
+                                        </label>
+                                        <label class="cursor-pointer flex-1">
+                                            <input type="radio" name="ninos" value="no" class="peer sr-only" checked=""
+                                                onchange="toggleKidsInput(false)">
+                                            <div
+                                                class="w-full h-full flex items-center justify-center text-sm font-normal text-[#7a6b5d] peer-checked:bg-[#f3ece6] peer-checked:text-[#9f7c65] transition-all hover:bg-[#f8f5f0]">
+                                                No</div>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                                <div class="flex flex-col gap-4">
+                                    <label for="cant_ninos"
+                                        class="text-xs tracking-widest uppercase text-[#7a6b5d]">Cantidad</label>
+                                    <input type="number" id="cant_ninos" name="cantidad_ninos" min="0" max="10"
+                                        placeholder="0" disabled=""
+                                        class="h-12 bg-transparent border border-[#d8cabc] rounded-md px-4 text-center text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] focus:ring-1 focus:ring-[#9f7c65] transition-all disabled:opacity-50">
+                                </div>
+                            </div>
 
-                <!-- Submit -->
-                <button id="submit-btn" type="submit"
-                    class="mt-8 bg-[#9f7c65] hover:bg-[#856550] text-white px-8 py-4 rounded-md text-xs tracking-widest uppercase font-normal shadow-sm hover:shadow-md transition-all w-full flex items-center justify-center gap-3 group disabled:opacity-60 disabled:cursor-not-allowed">
-                    <span>Confirmar Asistencia</span>
-                    <iconify-icon icon="solar:arrow-right-linear" width="18"
-                        class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                </button>
-                <p class="text-[17px] tracking-widest uppercase font-light text-center text-[#9f7c65] mt-6 opacity-80">
-                    No olvides confirmar antes del 25 de marzo
-                </p>
-            </form>
+                            <!-- Bebida -->
+                            <div class="relative w-full mt-2">
+                                <label for="bebida"
+                                    class="absolute -top-5 left-0 text-xs tracking-widest uppercase text-[#7a6b5d]">Bebida
+                                    de
+                                    preferencia</label>
+                                <select id="bebida" name="bebida"
+                                    class="w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] appearance-none focus:outline-none focus:border-[#9f7c65] transition-colors cursor-pointer pr-8">
+                                    <option value="" disabled="" selected="">Selecciona una opción</option>
+                                    <option value="tequila">Tequila</option>
+                                    <option value="vino">Vino tinto</option>
+                                    <option value="mezcal">Mezcal / Cerveza</option>
+                                    <option value="refresco">Refresco / Sin alcohol</option>
+                                </select>
+                                <iconify-icon icon="solar:alt-arrow-down-linear" width="20"
+                                    class="absolute right-0 top-1/2 -translate-y-1/2 text-[#9f7c65] pointer-events-none"></iconify-icon>
+                            </div>
 
-        </section>
+                            <!-- Alergias -->
+                            <div class="relative w-full mt-4">
+                                <input type="text" id="alergias" name="alergias" placeholder=" "
+                                    class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent">
+                                <label for="alergias"
+                                    class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                                    Alergias o dieta especial
+                                </label>
+                            </div>
 
-        <!-- ── Footer ── -->
-        <footer class="py-16 flex flex-col items-center gap-6 bg-[#f3ece6] border-t border-[#d8cabc]/40">
-            <p class="text-3xl tracking-tighter text-[#53463a] font-normal uppercase" aria-label="I y O">
-                I<span class="text-[#9f7c65] mx-2 font-['Pinyon_Script',cursive] text-4xl lowercase">&amp;</span>O
-            </p>
-            <p class="text-xs tracking-widest uppercase text-[#7a6b5d]">Gracias por ser parte de nuestra historia</p>
-        </footer>
+                            <!-- Canción -->
+                            <div class="relative w-full mt-4">
+                                <input type="text" id="cancion" name="cancion" placeholder=" "
+                                    class="peer w-full bg-transparent border-b border-[#d8cabc] px-0 py-3 text-lg font-light text-[#53463a] focus:outline-none focus:border-[#9f7c65] transition-colors placeholder-transparent pr-8">
+                                <label for="cancion"
+                                    class="absolute left-0 top-3 text-[#7a6b5d] text-base font-light transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#9f7c65] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                                    Una canción que no puede faltar
+                                </label>
+                                <iconify-icon icon="solar:music-notes-linear" width="20"
+                                    class="absolute right-0 top-1/2 -translate-y-1/2 text-[#d8cabc] pointer-events-none"></iconify-icon>
+                            </div>
+                        </div> <!-- Cierre de attendance-details -->
 
-      </main>
-    </div> <!-- /#smooth-content -->
-  </div> <!-- /#smooth-wrapper -->
+                        <!-- Submit -->
+                        <button id="submit-btn" type="submit"
+                            class="mt-8 bg-[#9f7c65] hover:bg-[#856550] text-white px-8 py-4 rounded-md text-xs tracking-widest uppercase font-normal shadow-sm hover:shadow-md transition-all w-full flex items-center justify-center gap-3 group disabled:opacity-60 disabled:cursor-not-allowed">
+                            <span>Confirmar Asistencia</span>
+                            <iconify-icon icon="solar:arrow-right-linear" width="18"
+                                class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                        </button>
+                        <p
+                            class="text-[17px] tracking-widest uppercase font-light text-center text-[#9f7c65] mt-6 opacity-80">
+                            No olvides confirmar antes del 25 de marzo
+                        </p>
+                    </form>
 
-  <!-- Toast Notification movido afuera del wrapper para no afectar 'position: fixed' -->
-  <div id="toast-notification"
-      class="fixed bottom-6 left-1/2 z-[110] flex items-center gap-4 bg-white/95 backdrop-blur-xl border border-[#d8cabc]/30 px-6 py-4 rounded-full shadow-2xl opacity-0 pointer-events-none transform -translate-x-1/2 translate-y-20 transition-all duration-500">
-      <div id="toast-icon"
-          class="flex items-center justify-center w-6 h-6 rounded-full bg-[#9f7c65] text-white text-xs">
-          <iconify-icon icon="solar:check-read-linear" width="14" stroke-width="1.5"></iconify-icon>
-      </div>
-      <span id="toast-message" class="text-sm font-medium text-[#53463a] pr-2">Mensaje</span>
-  </div>
+                </section>
+
+                <!-- ── Footer ── -->
+                <footer class="py-16 flex flex-col items-center gap-6 bg-[#f3ece6] border-t border-[#d8cabc]/40">
+                    <p class="text-3xl tracking-tighter text-[#53463a] font-normal uppercase" aria-label="I y O">
+                        I<span
+                            class="text-[#9f7c65] mx-2 font-['Pinyon_Script',cursive] text-4xl lowercase">&amp;</span>O
+                    </p>
+                    <p class="text-xs tracking-widest uppercase text-[#7a6b5d]">Gracias por ser parte de nuestra
+                        historia</p>
+                </footer>
+
+            </main>
+        </div> <!-- /#smooth-content -->
+    </div> <!-- /#smooth-wrapper -->
+
+    <!-- Toast Notification movido afuera del wrapper para no afectar 'position: fixed' -->
+    <div id="toast-notification"
+        class="fixed bottom-6 left-1/2 z-[110] flex items-center gap-4 bg-white/95 backdrop-blur-xl border border-[#d8cabc]/30 px-6 py-4 rounded-full shadow-2xl opacity-0 pointer-events-none transform -translate-x-1/2 translate-y-20 transition-all duration-500">
+        <div id="toast-icon"
+            class="flex items-center justify-center w-6 h-6 rounded-full bg-[#9f7c65] text-white text-xs">
+            <iconify-icon icon="solar:check-read-linear" width="14" stroke-width="1.5"></iconify-icon>
+        </div>
+        <span id="toast-message" class="text-sm font-medium text-[#53463a] pr-2">Mensaje</span>
+    </div>
 
     <script>
         // ── Smooth Scroll setup ──
@@ -632,7 +655,7 @@
             effects: true,     // enables data-speed and data-lag effects
             smoothTouch: 0.1   // just a little easing on mobile
         });
-        
+
         // Efecto para los párrafos (entradas suaves al scrollear)
         gsap.utils.toArray('section h2, section h3, section p.italic').forEach(elem => {
             gsap.from(elem, {
